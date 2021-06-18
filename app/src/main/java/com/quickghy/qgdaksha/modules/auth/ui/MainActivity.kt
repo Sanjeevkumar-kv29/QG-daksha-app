@@ -1,7 +1,8 @@
-package com.quickghy.qgdaksha
+package com.quickghy.qgdaksha.modules.auth.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.quickghy.qgdaksha.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
