@@ -1,4 +1,4 @@
-package com.quickghy.qgdaksha.modules.auth.login.ui
+package com.quickghy.qgdaksha.modules.auth.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
