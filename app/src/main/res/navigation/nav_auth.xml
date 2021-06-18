@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.quickghy.qgdaksha.modules.auth.ui.LoginFragment"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
@@ -18,15 +18,28 @@
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.quickghy.qgdaksha.modules.auth.ui.SignUpFragment"
-        tools:layout="@layout/fragment_sign_up" />
+        tools:layout="@layout/fragment_sign_up">
+        <action
+            android:id="@+id/action_signUpFragment_to_verifyOtpFragment"
+            app:destination="@id/verifyOtpFragment" />
+    </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
         android:name="com.quickghy.qgdaksha.modules.auth.ui.ForgotPasswordFragment"
         android:label="fragment_forgot_password"
-        tools:layout="@layout/fragment_forgot_password" >
+        tools:layout="@layout/fragment_forgot_password">
         <action
-            android:id="@+id/action_forgotPasswordFragment_to_otpfrag"
-            app:destination="@id/otpfrag" />
+            android:id="@+id/action_forgotPasswordFragment_to_VCodeFragment"
+            app:destination="@id/VCodeFragment" />
     </fragment>
-    <fragment android:id="@+id/otpfrag" />
+    <fragment
+        android:id="@+id/verifyOtpFragment"
+        android:name="com.quickghy.qgdaksha.modules.auth.ui.VerifyOtpFragment"
+        android:label="fragment_verify_otp"
+        tools:layout="@layout/fragment_verify_otp" />
+    <fragment
+        android:id="@+id/VCodeFragment"
+        android:name="com.quickghy.qgdaksha.VCodeFragment"
+        android:label="fragment_v_code"
+        tools:layout="@layout/fragment_reset_password" />
 </navigation>
