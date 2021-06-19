@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
-            name="AuthViewModel"
+            name="viewmodel"
             type="com.quickghy.qgdaksha.modules.auth.ui.AuthViewModel" />
     </data>
 
@@ -28,7 +28,7 @@
 
 
         <EditText
-            android:id="@+id/et_Phone"
+            android:id="@={viewmodel.phone}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:autofillHints="phone"
@@ -55,7 +55,7 @@
             android:id="@+id/btn_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{AuthViewModel::onLoginButtonCLicked}"
+            android:onClick="@{viewmodel::onLoginButtonClicked}"
 
             android:text="Login"
             app:layout_constraintEnd_toEndOf="@+id/et_Password"

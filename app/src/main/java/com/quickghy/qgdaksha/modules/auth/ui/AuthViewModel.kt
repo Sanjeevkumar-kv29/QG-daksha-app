@@ -1,5 +1,6 @@
 package com.quickghy.qgdaksha.modules.auth.ui
 
+import android.view.View
 import androidx.lifecycle.ViewModel
 
 /**
@@ -20,7 +21,7 @@ class AuthViewModel : ViewModel() {
         //  verify fields.
     }
 
-    fun onLoginButtonClicked() {
+    fun onLoginButtonClicked(view: View) {
         // Sanjeevs @TODO
     }
 }
