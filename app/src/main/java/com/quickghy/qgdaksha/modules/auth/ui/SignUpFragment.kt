@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.quickghy.qgdaksha.R
 
 
-class SignUpFragment : Fragment() {
+class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
 
 
     override fun onCreateView(
@@ -17,6 +17,19 @@ class SignUpFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_sign_up, container, false)
+
+    }
+
+    override fun onSignUpStarted() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onSignUpSuccess() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onSignUpFailure() {
+        TODO("Not yet implemented")
     }
 
 }
