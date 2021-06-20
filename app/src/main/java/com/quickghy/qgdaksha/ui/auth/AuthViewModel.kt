@@ -1,4 +1,4 @@
-package com.quickghy.qgdaksha.modules.auth.ui
+package com.quickghy.qgdaksha.ui.auth
 
 import android.view.View
 import androidx.lifecycle.ViewModel
@@ -17,7 +17,7 @@ class AuthViewModel : ViewModel() {
     var signUpAuthListener: AuthStateListener.SignUpStateListener? = null
     var loginStateListener: AuthStateListener.LoginStateListener? = null
 
-    fun onSignInButtonClicked() {
+    fun onSignInButtonClicked(view: View) {
         //  verify fields.
     }
 
