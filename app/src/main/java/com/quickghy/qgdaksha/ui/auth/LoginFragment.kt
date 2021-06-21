@@ -8,28 +8,24 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentLoginBinding
 
 
 class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
-    lateinit var viewModel: AuthViewModel
-    lateinit var binding: FragmentLoginBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        viewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
+        val binding: FragmentLoginBinding = DataBindingUtil.setContentView(requireActivity(),R.layout.fragment_login)
+        val viewModel = ViewModelProviders.of(this@LoginFragment).get(AuthViewModel::class.java)
 
         binding.viewmodel = viewModel
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_login,
-            container,
-            false
-        )
+
+        viewModel.loginStateListener = this
 
         binding.btnForgotPass.setOnClickListener { view ->
             view.findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
@@ -39,13 +35,7 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
         }
 
 
-        return binding.root
-
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
+        return inflater.inflate(R.layout.fragment_login, container, false)
 
     }
 

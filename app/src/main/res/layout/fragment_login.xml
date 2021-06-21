@@ -76,7 +76,7 @@
 
         <Button
             android:id="@+id/btn_go_to_signup"
-            android:onClick="@{viewmodel::onSignUpNowButtonClicked}"
+            android:onClick="@{viewmodel::onSignInButtonClicked}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sign Up now"
