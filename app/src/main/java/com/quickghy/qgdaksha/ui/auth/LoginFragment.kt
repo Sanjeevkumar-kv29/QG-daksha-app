@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -36,7 +37,7 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
         binding.btnGoToSignup.setOnClickListener { view ->
             view.findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
         }
-        binding.btnLogin.setOnClickListener { }
+
 
         return binding.root
 
@@ -50,13 +51,21 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
 
     override fun onLoginStarted() {
         // put api call for login here
+
+        Toast.makeText(context, "login start", Toast.LENGTH_SHORT).show()
+
     }
 
     override fun onLoginSuccess() {
         // display success toast
+
+        Toast.makeText(context, "login Success", Toast.LENGTH_SHORT).show()
     }
 
     override fun onLoginFailure(message: String) {
         // display failure message toast
+
+
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 }

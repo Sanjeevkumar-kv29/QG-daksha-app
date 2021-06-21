@@ -21,9 +21,9 @@ class DataStoreRepository(
         name = USER_PREFERENCES_NAME
     )
 
-    fun saveToLoginDataStore(name: String) {
+    /*fun saveToLoginDataStore(name: String) {
         dataStore.edit { preference ->
             preference[]
         }
-    }
+    }*/
 }

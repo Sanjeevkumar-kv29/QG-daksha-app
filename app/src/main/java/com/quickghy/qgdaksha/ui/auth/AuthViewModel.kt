@@ -23,19 +23,24 @@ class AuthViewModel : ViewModel() {
         //  verify fields.
         signUpAuthListener?.onSignUpStarted()
         signUpAuthListener?.onSignUpSuccess()
-        signUpAuthListener?.onSignUpFailure()
+       // signUpAuthListener?.onSignUpFailure()
 
     }
 
     fun onLoginButtonClicked(view: View) {
         // Sanjeevs @TODO
+
+        if (phone.isNullOrEmpty() || password.isNullOrEmpty()){
+
+            loginStateListener?.onLoginFailure("Invalid email or Password")
+
+            return
+        }
         loginStateListener?.onLoginStarted()
-        loginStateListener?.onLoginSuccess()
-        loginStateListener?.onLoginFailure()
     }
 
     fun onForgotPasswordButtonClicked(view: View){
-        Navigation.findNavController(view).navigate()
+       // Navigation.findNavController(view).navigate()
     }
 
     fun onSignUpNowButtonClicked(){
