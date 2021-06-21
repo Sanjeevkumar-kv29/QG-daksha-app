@@ -6,9 +6,4 @@ import kotlinx.coroutines.flow.Flow
  * @Author: Shubham Rimjha
  * @Date: 20-06-2021
  */
-interface UidStore {
-    fun isNightMode(): Flow<Boolean>
-
-    suspend fun toggleNightMode()
-
-}
+interface UidStore {}
