@@ -1,9 +1,8 @@
 package com.quickghy.qgdaksha.ui.auth
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModel
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
 
 /**
  * @Author: Shubham Rimjha
@@ -23,14 +22,14 @@ class AuthViewModel : ViewModel() {
         //  verify fields.
         signUpAuthListener?.onSignUpStarted()
         signUpAuthListener?.onSignUpSuccess()
-       // signUpAuthListener?.onSignUpFailure()
+        // signUpAuthListener?.onSignUpFailure()
 
     }
 
     fun onLoginButtonClicked(view: View) {
         // Sanjeevs @TODO
 
-        if (phone.isNullOrEmpty() || password.isNullOrEmpty()){
+        if (phone.isNullOrEmpty() || password.isNullOrEmpty()) {
 
             loginStateListener?.onLoginFailure("Invalid email or Password")
 
@@ -39,11 +38,11 @@ class AuthViewModel : ViewModel() {
         loginStateListener?.onLoginStarted()
     }
 
-    fun onForgotPasswordButtonClicked(view: View){
-       // Navigation.findNavController(view).navigate()
+    fun onForgotPasswordButtonClicked(view: View) {
+        Log.i("ForgotPassBtnClicked:", "onForgotPasswordButtonClicked")
     }
 
-    fun onSignUpNowButtonClicked(){
-
+    fun onSignUpNowButtonClicked(view: View) {
+        Log.i("SignUpBtnClicked:", "onForgotPasswordButtonClicked")
     }
 }
