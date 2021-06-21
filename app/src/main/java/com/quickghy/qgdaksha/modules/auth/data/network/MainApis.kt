@@ -8,6 +8,11 @@ import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
+/**
+ * @Author: Sanjeev Kumar
+ * @Date: 21-06-2021
+ */
+
 interface MainApis {
     @FormUrlEncoded
     @POST("Dgu_Mob/mob_dguLoginAttempt")
