@@ -2,8 +2,7 @@ package com.quickghy.qgdaksha.ui.auth
 
 import android.view.View
 import androidx.lifecycle.ViewModel
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
+import com.quickghy.qgdaksha.modules.auth.data.repositories.AuthUserRepository
 
 /**
  * @Author: Shubham Rimjha
@@ -30,13 +29,20 @@ class AuthViewModel : ViewModel() {
     fun onLoginButtonClicked(view: View) {
         // Sanjeevs @TODO
 
-        if (phone.isNullOrEmpty() || password.isNullOrEmpty()){
+        var key = "DAKSHA_2020"
 
+        loginStateListener?.onLoginStarted()
+        if (phone.isNullOrEmpty() or password.isNullOrEmpty()){
             loginStateListener?.onLoginFailure("Invalid email or Password")
-
             return
         }
-        loginStateListener?.onLoginStarted()
+        else{
+            val loginResponse = AuthUserRepository().userLogin(phone!!, password!!,key) //tight cuppeld we just remove is using DI
+            loginStateListener?.onLoginSuccess(loginResponse)
+        }
+
+
+
     }
 
     fun onForgotPasswordButtonClicked(view: View){

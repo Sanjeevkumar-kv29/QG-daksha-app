@@ -48,7 +48,7 @@
             android:autofillHints="password"
             android:ems="10"
             android:hint="Password"
-            android:text="@={viewmodel.phone}"
+            android:text="@={viewmodel.password}"
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="@+id/et_Phone"
             app:layout_constraintStart_toStartOf="@+id/et_Phone"

@@ -1,4 +1,4 @@
-package com.quickghy.qgdaksha.modules.auth.util
+package com.quickghy.qgdaksha.modules.util
 
 import android.content.Context
 import android.widget.Toast

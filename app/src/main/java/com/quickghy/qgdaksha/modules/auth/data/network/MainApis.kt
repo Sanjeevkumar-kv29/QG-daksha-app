@@ -8,7 +8,7 @@ import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
-interface AuthApi {
+interface MainApis {
     @FormUrlEncoded
     @POST("Dgu_Mob/mob_dguLoginAttempt")
     fun userLogin(
@@ -17,15 +17,14 @@ interface AuthApi {
         @Field("daksha_key") key:String,
     ): Call<ResponseBody>
 
-
     companion object{
 
-        operator  fun invoke() :AuthApi{
+        operator  fun invoke() :MainApis{
             return Retrofit.Builder()
                 .baseUrl("https://dakshassam.org/daksha_app/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-                .create(AuthApi::class.java)
+                .create(MainApis::class.java)
         }
     }
 
