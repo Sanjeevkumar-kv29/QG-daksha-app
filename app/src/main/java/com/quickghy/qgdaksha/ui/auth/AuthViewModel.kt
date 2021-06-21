@@ -2,6 +2,8 @@ package com.quickghy.qgdaksha.ui.auth
 
 import android.view.View
 import androidx.lifecycle.ViewModel
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 
 /**
  * @Author: Shubham Rimjha
@@ -19,9 +21,24 @@ class AuthViewModel : ViewModel() {
 
     fun onSignInButtonClicked(view: View) {
         //  verify fields.
+        signUpAuthListener?.onSignUpStarted()
+        signUpAuthListener?.onSignUpSuccess()
+        signUpAuthListener?.onSignUpFailure()
+
     }
 
     fun onLoginButtonClicked(view: View) {
         // Sanjeevs @TODO
+        loginStateListener?.onLoginStarted()
+        loginStateListener?.onLoginSuccess()
+        loginStateListener?.onLoginFailure()
+    }
+
+    fun onForgotPasswordButtonClicked(view: View){
+        Navigation.findNavController(view).navigate()
+    }
+
+    fun onSignUpNowButtonClicked(){
+
     }
 }
