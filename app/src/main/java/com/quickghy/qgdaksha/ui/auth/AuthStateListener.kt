@@ -9,13 +9,13 @@ interface AuthStateListener {
     interface LoginStateListener {
         fun onLoginStarted()
         fun onLoginSuccess()
-        fun onLoginFailure(message:String)
+        fun onLoginFailure(message: String)
     }
 
     interface SignUpStateListener {
         fun onSignUpStarted()
         fun onSignUpSuccess()
-        fun onSignUpFailure()
+        fun onSignUpFailure(message: String)
 
     }
 

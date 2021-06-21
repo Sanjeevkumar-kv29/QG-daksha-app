@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.auth.LoginFragment">
 
     <data>
+
         <variable
             name="viewmodel"
             type="com.quickghy.qgdaksha.ui.auth.AuthViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root_frag_login"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.auth.LoginFragment">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/textView"
@@ -58,17 +59,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="@{viewmodel::onLoginButtonClicked}"
-
             android:text="Login"
             app:layout_constraintEnd_toEndOf="@+id/et_Password"
             app:layout_constraintStart_toStartOf="@+id/et_Password"
             app:layout_constraintTop_toBottomOf="@+id/et_Password" />
 
         <Button
+            android:onClick="@{viewmodel::onForgotPasswordButtonClicked}"
             android:id="@+id/btn_forgot_pass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:text="Forgot password?"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -76,6 +76,7 @@
 
         <Button
             android:id="@+id/btn_go_to_signup"
+            android:onClick="@{viewmodel::onSignUpNowButtonClicked}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sign Up now"

@@ -4,43 +4,59 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.widget.ViewUtils
-import com.quickghy.qgdaksha.modules.auth.util.LongToast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentLoginBinding
 
 
-class LoginFragment : Fragment(),AuthStateListener.LoginStateListener{
-
+class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
+    lateinit var viewModel: AuthViewModel
+    lateinit var binding: FragmentLoginBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val binding: FragmentLoginBinding = DataBindingUtil.setContentView(requireActivity(),R.layout.fragment_login)
-        val viewModel = ViewModelProviders.of(this).get(AuthViewModel::class.java)
+
+        viewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
+
         binding.viewmodel = viewModel
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_login,
+            container,
+            false
+        )
 
-        viewModel.loginStateListener = this
+        binding.btnForgotPass.setOnClickListener { view ->
+            view.findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
+        }
+        binding.btnGoToSignup.setOnClickListener { view ->
+            view.findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
+        }
+        binding.btnLogin.setOnClickListener { }
 
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        return binding.root
+
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
+
+    }
 
     override fun onLoginStarted() {
-        Toast.makeText(context, "login start", Toast.LENGTH_SHORT).show()
+        // put api call for login here
     }
 
     override fun onLoginSuccess() {
-        Toast.makeText(context, "login Success", Toast.LENGTH_SHORT).show()
+        // display success toast
     }
 
     override fun onLoginFailure(message: String) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+        // display failure message toast
     }
 }
