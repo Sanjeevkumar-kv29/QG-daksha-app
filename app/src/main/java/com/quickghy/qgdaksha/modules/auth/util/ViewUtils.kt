@@ -1,12 +1,12 @@
-package com.mvvm.loginmvvm.util
+package com.quickghy.qgdaksha.modules.auth.util
 
 import android.content.Context
 import android.widget.Toast
 
 /**
- * @Author: Shubham Rimjha
+ * @Author: Shubham Rimjha , Sanjeev Kumar
  * @Date: 19-06-2021
  */
-fun Context.toast(message: String) {
+fun Context.LongToast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 }

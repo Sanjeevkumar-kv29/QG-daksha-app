@@ -23,5 +23,14 @@ class AuthViewModel : ViewModel() {
 
     fun onLoginButtonClicked(view: View) {
         // Sanjeevs @TODO
+
+        if (phone.isNullOrEmpty() || password.isNullOrEmpty()){
+
+            loginStateListener?.onLoginFailure("Invalid email or Password")
+
+            return
+        }
+        loginStateListener?.onLoginStarted()
+
     }
 }

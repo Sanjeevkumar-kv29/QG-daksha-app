@@ -28,12 +28,13 @@
 
 
         <EditText
-            android:id="@={viewmodel.phone}"
+            android:id="@+id/et_Phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:autofillHints="phone"
             android:ems="10"
             android:hint="Phone"
+            android:text="@={viewmodel.phone}"
             android:inputType="phone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,6 +47,7 @@
             android:autofillHints="password"
             android:ems="10"
             android:hint="Password"
+            android:text="@={viewmodel.phone}"
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="@+id/et_Phone"
             app:layout_constraintStart_toStartOf="@+id/et_Phone"
