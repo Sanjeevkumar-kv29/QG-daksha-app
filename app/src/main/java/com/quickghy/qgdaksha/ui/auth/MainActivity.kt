@@ -1,4 +1,4 @@
-package com.quickghy.qgdaksha.modules.auth.ui
+package com.quickghy.qgdaksha.ui.auth
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
