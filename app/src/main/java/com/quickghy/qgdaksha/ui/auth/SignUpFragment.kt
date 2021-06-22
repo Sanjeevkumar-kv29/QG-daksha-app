@@ -21,7 +21,10 @@ class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
         savedInstanceState: Bundle?
     ): View? {
 
-        viewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
+        //so that it calls the viewmodel owned by the parent activity
+        activity.let {
+            viewModel = ViewModelProvider(it!!).get(AuthViewModel::class.java)
+        }
         viewModel.signUpAuthListener = this
 
         binding.viewmodel = viewModel

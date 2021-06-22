@@ -23,7 +23,7 @@ class AuthViewModel : ViewModel() {
         //  verify fields.
         signUpAuthListener?.onSignUpStarted()
         signUpAuthListener?.onSignUpSuccess()
-       // signUpAuthListener?.onSignUpFailure()
+        // signUpAuthListener?.onSignUpFailure()
 
     }
 
@@ -33,24 +33,28 @@ class AuthViewModel : ViewModel() {
         var key = "DAKSHA_2020"
 
         loginStateListener?.onLoginStarted()
-        if (phone.isNullOrEmpty() or password.isNullOrEmpty()){
+        if (phone.isNullOrEmpty() or password.isNullOrEmpty()) {
             loginStateListener?.onLoginFailure("Invalid email or Password")
             return
-        }
-        else{
-            val loginResponse = AuthUserRepository().userLogin(phone!!, password!!,key) //tight cuppeld we just remove is using DI
+        } else {
+            val loginResponse = AuthUserRepository().userLogin(
+                phone!!,
+                password!!,
+                key
+            ) //tight cuppeld we just remove is using DI
             loginStateListener?.onLoginSuccess(loginResponse)
         }
 
 
+    }
+
+    fun onForgotPasswordButtonClicked(view: View) {
+        // Navigation.findNavController(view).navigate()
+    }
+
+    fun onSignUpNowButtonClicked() {
 
     }
 
-    fun onForgotPasswordButtonClicked(view: View){
-       // Navigation.findNavController(view).navigate()
-    }
 
-    fun onSignUpNowButtonClicked(){
-
-    }
 }

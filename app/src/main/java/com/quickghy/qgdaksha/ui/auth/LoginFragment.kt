@@ -5,35 +5,40 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.findNavController
+import androidx.lifecycle.ViewModelProvider
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentLoginBinding
 
 
 class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
+    lateinit var viewModel: AuthViewModel
+    lateinit var binding: FragmentLoginBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
-        val binding: FragmentLoginBinding = DataBindingUtil.setContentView(requireActivity(),R.layout.fragment_login)
-        val viewModel = ViewModelProviders.of(this@LoginFragment).get(AuthViewModel::class.java)
+        //so that it calls the viewmodel owned by the parent activity
+        activity.let {
+            viewModel = ViewModelProvider(it!!).get(AuthViewModel::class.java)
+        }
 
+        viewModel.loginStateListener = this
         binding.viewmodel = viewModel
 
         viewModel.loginStateListener = this
 
-        binding.btnForgotPass.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
-        }
-        binding.btnGoToSignup.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
-        }
+//        binding.btnForgotPass.setOnClickListener { view ->
+//            viewModel.onForgotPasswordButtonClicked()
+//        }
+//        binding.btnGoToSignup.setOnClickListener { view ->
+//            viewModel.onForgotPasswordButtonClicked()
+//            view.findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
+//        }
 
 
         return inflater.inflate(R.layout.fragment_login, container, false)
