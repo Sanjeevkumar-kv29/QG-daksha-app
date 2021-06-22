@@ -26,8 +26,8 @@ class AuthViewModel : ViewModel() {
 
     fun onSignInButtonClicked(view: View) {
         //  verify fields.
-        signUpStateListener?.onSignUpStarted()
-        signUpStateListener?.onSignUpSuccess()
+//        signUpStateListener?.onSignUpStarted()
+//        signUpStateListener?.onSignUpSuccess()
         // signUpAuthListener?.onSignUpFailure()
 
     }
@@ -95,9 +95,9 @@ class AuthViewModel : ViewModel() {
                     AuthUserRepository().userSignUp(username!!, phone!!, password!!, key)
                 if (signUpResponse.isSuccessful) {
                     if (signUpResponse.body()?.user_id == "error") {
-                        signUpStateListener?.onsignUpFailure(signUpResponse.body()?.opt!!)
+//                        signUpStateListener?.onsignUpFailure(signUpResponse.body()?.opt!!)
                     } else {
-                        signUpStateListener?.onsignUpSuccess(signUpResponse.body()?.opt!!)
+//                        signUpStateListener?.onsignUpSuccess(signUpResponse.body()?.opt!!)
                     }
 
 
