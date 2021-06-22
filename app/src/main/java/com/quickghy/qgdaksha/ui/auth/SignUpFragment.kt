@@ -22,10 +22,14 @@ class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
 
         val view = inflater.inflate(R.layout.fragment_sign_up, container, false)
 
-        viewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
-        viewModel.signUpAuthListener = this
+        activity.let {
+            viewModel = ViewModelProvider(it!!).get(AuthViewModel::class.java)
+        }
 
         binding.viewmodel = viewModel
+
+        viewModel.signUpStateListener = this
+
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_login,

@@ -2,6 +2,7 @@ package com.quickghy.qgdaksha.ui.auth
 
 import android.view.View
 import androidx.lifecycle.ViewModel
+import androidx.navigation.Navigation
 import com.quickghy.qgdaksha.data.auth.repositories.AuthUserRepository
 import com.quickghy.qgdaksha.util.Coroutines
 
@@ -17,13 +18,13 @@ class AuthViewModel : ViewModel() {
     var phone: String? = null
     var password: String? = null
     var username: String? = null
-    var signUpAuthListener: AuthStateListener.SignUpStateListener? = null
+    var signUpStateListener: AuthStateListener.SignUpStateListener? = null
     var loginStateListener: AuthStateListener.LoginStateListener? = null
 
     fun onSignInButtonClicked(view: View) {
         //  verify fields.
-        signUpAuthListener?.onSignUpStarted()
-        signUpAuthListener?.onSignUpSuccess()
+        signUpStateListener?.onSignUpStarted()
+        signUpStateListener?.onSignUpSuccess()
        // signUpAuthListener?.onSignUpFailure()
 
     }
@@ -62,6 +63,7 @@ class AuthViewModel : ViewModel() {
 
     fun onForgotPasswordButtonClicked(view: View){
        // Navigation.findNavController(view).navigate()
+
     }
 
     fun onSignUpNowButtonClicked(view: View){
