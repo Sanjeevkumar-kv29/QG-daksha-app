@@ -1,15 +1,11 @@
 package com.quickghy.qgdaksha.data.auth.repositories
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.quickghy.qgdaksha.data.auth.network.MainApis
 import com.quickghy.qgdaksha.data.auth.network.Response.AuthForgetPasswordResponse
 import com.quickghy.qgdaksha.data.auth.network.Response.AuthLoginResponse
-import okhttp3.ResponseBody
-import retrofit2.Call
-import retrofit2.Callback
+import com.quickghy.qgdaksha.data.auth.network.Response.AuthSignUpOtpResponse
+import com.quickghy.qgdaksha.data.auth.network.Response.AuthSignUpResponse
 import retrofit2.Response
-import kotlin.contracts.Returns
 
 /**
  * @Author: Sanjeev Kumar
@@ -51,18 +47,37 @@ class AuthUserRepository {
         return LoginResponse
     }*/
 
-    suspend fun userLogin(mobile: String, password: String,daksha_key: String): Response<AuthLoginResponse> {
-       return MainApis().userLogin(mobile,password,daksha_key)
+    suspend fun userLogin(
+        mobile: String,
+        password: String,
+        daksha_key: String
+    ): Response<AuthLoginResponse> {
+        return MainApis().userLogin(mobile, password, daksha_key)
     }
 
-    suspend fun userForgetPass(mobile: String,daksha_key: String): Response<AuthForgetPasswordResponse> {
-        return MainApis().userForgetPass(mobile,daksha_key)
+    suspend fun userForgetPass(
+        mobile: String,
+        daksha_key: String
+    ): Response<AuthForgetPasswordResponse> {
+        return MainApis().userForgetPass(mobile, daksha_key)
     }
 
 
+    suspend fun userSignUp(
+        name: String,
+        mobile: String,
+        password: String,
+        daksha_key: String
+    ): Response<AuthSignUpResponse> {
+        return MainApis().userSignUp(name, mobile, password, daksha_key)
+    }
 
-    suspend fun userSignUp(name: String, mobile: String,  password: String,daksha_key: String): Response<AuthLoginResponse> {
-        return MainApis().userSignUp(name,mobile,password,daksha_key)
+    suspend fun userSignUpOtp(
+        mobile: String,
+        otp: String,
+        daksha_key: String
+    ): Response<AuthSignUpOtpResponse> {
+        return MainApis().userSignUpOtp(mobile, otp, daksha_key)
     }
 
 }

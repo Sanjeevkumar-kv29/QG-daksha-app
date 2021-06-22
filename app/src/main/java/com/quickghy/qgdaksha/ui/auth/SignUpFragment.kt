@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentSignUpBinding
@@ -44,13 +44,15 @@ class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
         //put api to for
     }
 
-    override fun onSignUpSuccess(SignUpResponse: LiveData<String>) {
-        TODO("Not yet implemented")
+    override fun onSignUpSuccess(SignUpResponse: String) {
+        Toast.makeText(context, SignUpResponse, Toast.LENGTH_SHORT).show()
+//        do nav here to the otp screen
     }
 
 
     override fun onSignUpFailure(message: String) {
-        TODO("Not yet implemented")
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+//        toast error and do nothing else
     }
 
 }

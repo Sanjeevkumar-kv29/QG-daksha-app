@@ -2,6 +2,8 @@ package com.quickghy.qgdaksha.data.auth.network
 
 import com.quickghy.qgdaksha.data.auth.network.Response.AuthForgetPasswordResponse
 import com.quickghy.qgdaksha.data.auth.network.Response.AuthLoginResponse
+import com.quickghy.qgdaksha.data.auth.network.Response.AuthSignUpOtpResponse
+import com.quickghy.qgdaksha.data.auth.network.Response.AuthSignUpResponse
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -16,6 +18,7 @@ import retrofit2.http.POST
 
 interface MainApis {
 
+    //    post reqs for login
     @FormUrlEncoded
     @POST("Dgu_Mob/mob_dguLoginAttempt")
     suspend fun userLogin(
@@ -25,24 +28,34 @@ interface MainApis {
         @Field("daksha_key") key: String,
     ): Response<AuthLoginResponse>    // Response kept on auth login response data class inside response directory
 
-
-   @FormUrlEncoded
-    @POST("Dgu_Mob/mob_registerUser")
-    suspend fun userForgetPass(                                         // suspend function because this may run long
+    //    post reqs for forgot password--------------------------------
+    @FormUrlEncoded
+    @POST("Dgu_Mob/mob_sendVerCodeForgotPasswordDgu")
+    suspend fun userForgetPass(
+        // suspend function because this may run long
         @Field("ru_phone") phone: String,
-        @Field("daksha_key") key:String,
+        @Field("daksha_key") key: String,
     ): Response<AuthForgetPasswordResponse>  // Response kept on auth login response data class inside response directory
 
-
+    //    post requests for sign up seq------------------------------------
     @FormUrlEncoded
-    @POST("Dgu_Mob/mob_dguLoginAttempt")
+    @POST("Dgu_Mob/mob_registerUser")
     suspend fun userSignUp(
         // suspend function because this may run long
         @Field("ru_name") name: String,
         @Field("ru_phone") phone: String,
         @Field("ru_password") password: String,
         @Field("daksha_key") key: String,
-    ): Response<AuthSignUpResponse>    // Response kept on auth login response data class inside response directory
+    ): Response<AuthSignUpResponse>
+
+    @FormUrlEncoded
+    @POST("Dgu_Mob/mob_enterVerificationCode")
+    suspend fun userSignUpOtp(
+        // suspend function because this may run long
+        @Field("ru_phone") phone: String,
+        @Field("ru_v_code") otp: String,
+        @Field("daksha_key") key: String,
+    ): Response<AuthSignUpOtpResponse> // recieve access token on successful sign up.
 
     companion object {
 

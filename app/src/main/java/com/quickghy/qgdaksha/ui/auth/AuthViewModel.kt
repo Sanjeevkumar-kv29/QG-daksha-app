@@ -1,6 +1,7 @@
 package com.quickghy.qgdaksha.ui.auth
 
 import android.view.View
+import androidx.datastore.preferences.SharedPreferencesMigration
 import androidx.lifecycle.ViewModel
 import com.quickghy.qgdaksha.data.auth.repositories.AuthUserRepository
 import com.quickghy.qgdaksha.util.Coroutines
@@ -17,12 +18,15 @@ class AuthViewModel : ViewModel() {
     var phone: String? = null
     var password: String? = null
     var username: String? = null
+    var otp: String? = null
+
 
     var key = "DAKSHA_2020"
 
     var signUpStateListener: AuthStateListener.SignUpStateListener? = null
     var loginStateListener: AuthStateListener.LoginStateListener? = null
     var forgotPasswordStateListner: AuthStateListener.ForgotPasswordStateListner? = null
+    var signUpOtpStateListener: AuthStateListener.SignUpOtpStateListener? = null
 
     fun onSignInButtonClicked(view: View) {
         //  verify fields.
@@ -86,21 +90,39 @@ class AuthViewModel : ViewModel() {
 
 
     fun onSignUpNowButtonClicked(view: View) {
+
         signUpStateListener?.onSignUpStarted()
         if (phone.isNullOrEmpty() or password.isNullOrEmpty() or username.isNullOrEmpty()) {
             signUpStateListener?.onSignUpFailure("Fields Can't be empty")
         } else {
             Coroutines.main {
+
                 val signUpResponse =
                     AuthUserRepository().userSignUp(username!!, phone!!, password!!, key)
-                if (signUpResponse.isSuccessful) {
-                    if (signUpResponse.body()?.user_id == "error") {
-//                        signUpStateListener?.onsignUpFailure(signUpResponse.body()?.opt!!)
-                    } else {
-//                        signUpStateListener?.onsignUpSuccess(signUpResponse.body()?.opt!!)
-                    }
 
+                if (signUpResponse.body()?.opt is Int) {//if the response opt is a number, it is success
+                    signUpStateListener?.onSignUpSuccess(signUpResponse.body()?.opt.toString())
+                } else if (signUpResponse.body()?.opt !is Int) {
+                    signUpStateListener?.onSignUpFailure(signUpResponse.body()?.opt.toString())
+                }
+            }
+        }
+    }
 
+    fun onVerifyOtpButtonClicked(view: View) {
+
+        signUpOtpStateListener?.onSignUpOtpStarted()
+        if (otp.isNullOrEmpty() || phone.isNullOrEmpty()) {
+            signUpOtpStateListener?.onSignUpOtpFailure("Enter otp")
+        } else {
+            Coroutines.main {
+                val signUpOtpResponse = AuthUserRepository().userSignUpOtp(phone!!, otp!!, key)
+
+                if (signUpOtpResponse.body()?.opt is Int) {//if the response opt is a number, it is success
+                    signUpStateListener?.onSignUpSuccess(signUpOtpResponse.body()?.opt.toString())
+                } else if (signUpOtpResponse.body()?.opt is String) {
+                    signUpStateListener?.onSignUpFailure(signUpOtpResponse.body()?.opt.toString())
+                    Pref
                 }
             }
         }

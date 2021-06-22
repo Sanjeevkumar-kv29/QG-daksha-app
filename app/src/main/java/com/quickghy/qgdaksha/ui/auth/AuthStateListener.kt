@@ -1,7 +1,5 @@
 package com.quickghy.qgdaksha.ui.auth
 
-import androidx.lifecycle.LiveData
-
 /**
  * @Author: Shubham Rimjha
  * @Date: 19-06-2021
@@ -16,7 +14,7 @@ interface AuthStateListener {
 
     interface SignUpStateListener {
         fun onSignUpStarted()
-        fun onSignUpSuccess(SignUpResponse: LiveData<String>)
+        fun onSignUpSuccess(SignUpResponse: String)
         fun onSignUpFailure(message: String)
 
     }
@@ -27,6 +25,10 @@ interface AuthStateListener {
         fun onFailure(message: String)
 
     }
-
+    interface SignUpOtpStateListener {
+        fun onSignUpOtpStarted()
+        fun onSignUpOtpSuccess(opt: String)
+        fun onSignUpOtpFailure(message: String)
+    }
 
 }

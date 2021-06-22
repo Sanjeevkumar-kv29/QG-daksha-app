@@ -1,6 +1,5 @@
 package com.quickghy.qgdaksha.data.auth.network.Response
 
-class AuthForgetPasswordResponse (
+data class AuthForgetPasswordResponse (
     val opt : String?
-
 )
