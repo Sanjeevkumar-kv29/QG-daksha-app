@@ -19,5 +19,12 @@ interface AuthStateListener {
 
     }
 
+    interface ForgotPasswordStateListner {
+        fun onStart()
+        fun onSuccess(opt: String)
+        fun onFailure(message: String)
+
+    }
+
 
 }

@@ -3,6 +3,7 @@ package com.quickghy.qgdaksha.data.auth.repositories
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.quickghy.qgdaksha.data.auth.network.MainApis
+import com.quickghy.qgdaksha.data.auth.network.Response.AuthForgetPasswordResponse
 import com.quickghy.qgdaksha.data.auth.network.Response.AuthLoginResponse
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -53,5 +54,11 @@ class AuthUserRepository {
     suspend fun userLogin(mobile: String, password: String,daksha_key: String): Response<AuthLoginResponse> {
        return MainApis().userLogin(mobile,password,daksha_key)
     }
+
+    suspend fun userForgetPass(mobile: String,daksha_key: String): Response<AuthForgetPasswordResponse> {
+        return MainApis().userForgetPass(mobile,daksha_key)
+    }
+
+
 
 }

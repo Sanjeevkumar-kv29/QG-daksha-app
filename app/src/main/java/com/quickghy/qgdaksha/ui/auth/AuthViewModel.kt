@@ -2,7 +2,6 @@ package com.quickghy.qgdaksha.ui.auth
 
 import android.view.View
 import androidx.lifecycle.ViewModel
-import androidx.navigation.Navigation
 import com.quickghy.qgdaksha.data.auth.repositories.AuthUserRepository
 import com.quickghy.qgdaksha.util.Coroutines
 
@@ -18,13 +17,17 @@ class AuthViewModel : ViewModel() {
     var phone: String? = null
     var password: String? = null
     var username: String? = null
-    var signUpStateListener: AuthStateListener.SignUpStateListener? = null
+
+    var key = "DAKSHA_2020"
+
+    var signUpAuthListener: AuthStateListener.SignUpStateListener? = null
     var loginStateListener: AuthStateListener.LoginStateListener? = null
+    var forgotPasswordStateListner: AuthStateListener.ForgotPasswordStateListner? = null
 
     fun onSignInButtonClicked(view: View) {
         //  verify fields.
-        signUpStateListener?.onSignUpStarted()
-        signUpStateListener?.onSignUpSuccess()
+        signUpAuthListener?.onSignUpStarted()
+        signUpAuthListener?.onSignUpSuccess()
        // signUpAuthListener?.onSignUpFailure()
 
     }
@@ -32,7 +35,6 @@ class AuthViewModel : ViewModel() {
     fun onLoginButtonClicked(view: View) {
         // Sanjeevs @TODO
 
-        var key = "DAKSHA_2020"
         loginStateListener?.onLoginStarted()
 
         if (phone.isNullOrEmpty() or password.isNullOrEmpty()){
@@ -64,9 +66,34 @@ class AuthViewModel : ViewModel() {
     fun onForgotPasswordButtonClicked(view: View){
        // Navigation.findNavController(view).navigate()
 
+        forgotPasswordStateListner?.onStart()
+
+        if (phone.isNullOrEmpty()){
+            forgotPasswordStateListner?.onFailure("Fields Can't be empty")
+            return
+        }
+        else{
+            // val loginResponse = AuthUserRepository().userLogin(phone!!, password!!,key) //tight cuppeld we just remove is using DI
+            //loginStateListener?.onLoginSuccess(loginResponse)
+
+            Coroutines .main {
+                val forgetResponse = AuthUserRepository().userForgetPass(phone!!,key)
+                if (forgetResponse.isSuccessful){
+
+                        forgotPasswordStateListner?.onSuccess(forgetResponse.body()?.opt!!)
+
+                }
+            }
+        }
+
     }
 
+
+
     fun onSignUpNowButtonClicked(view: View){
+
+
+
 
     }
 }
