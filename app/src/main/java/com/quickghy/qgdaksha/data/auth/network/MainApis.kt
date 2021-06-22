@@ -1,4 +1,4 @@
-package com.quickghy.qgdaksha.modules.auth.data.network
+package com.quickghy.qgdaksha.data.auth.network
 
 import okhttp3.ResponseBody
 import retrofit2.Call

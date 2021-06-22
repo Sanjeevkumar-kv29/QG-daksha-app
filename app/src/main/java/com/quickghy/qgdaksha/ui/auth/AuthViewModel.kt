@@ -2,7 +2,7 @@ package com.quickghy.qgdaksha.ui.auth
 
 import android.view.View
 import androidx.lifecycle.ViewModel
-import com.quickghy.qgdaksha.modules.auth.data.repositories.AuthUserRepository
+import com.quickghy.qgdaksha.data.auth.repositories.AuthUserRepository
 
 /**
  * @Author: Shubham Rimjha

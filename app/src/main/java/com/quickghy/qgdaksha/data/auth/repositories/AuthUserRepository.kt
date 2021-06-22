@@ -1,8 +1,8 @@
-package com.quickghy.qgdaksha.modules.auth.data.repositories
+package com.quickghy.qgdaksha.data.auth.repositories
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.quickghy.qgdaksha.modules.auth.data.network.MainApis
+import com.quickghy.qgdaksha.data.auth.network.MainApis
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
