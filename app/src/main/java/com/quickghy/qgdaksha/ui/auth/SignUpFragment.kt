@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentSignUpBinding
 
-
 class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
 
     lateinit var viewModel: AuthViewModel
@@ -19,7 +18,9 @@ class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+
+        val view = inflater.inflate(R.layout.fragment_sign_up, container, false)
 
         viewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
         viewModel.signUpAuthListener = this
@@ -31,7 +32,7 @@ class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
             container,
             false
         )
-        return binding.root
+        return view
     }
 
     override fun onSignUpStarted() {
