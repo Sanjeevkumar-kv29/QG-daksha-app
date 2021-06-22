@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentLoginBinding
+import kotlinx.android.synthetic.main.fragment_login.*
 
 
 class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
@@ -47,13 +47,11 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
 
     }
 
-    override fun onLoginSuccess(loginResponse: LiveData<String>) {
-        // display success toast
 
-        loginResponse.observe(this, Observer {
-            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+    override fun onLoginSuccess(loginResponse: String) {
 
-        })
+            Toast.makeText(context, loginResponse, Toast.LENGTH_SHORT).show()
+
 
     }
 

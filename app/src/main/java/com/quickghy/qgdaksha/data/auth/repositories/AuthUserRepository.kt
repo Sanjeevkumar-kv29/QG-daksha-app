@@ -3,10 +3,12 @@ package com.quickghy.qgdaksha.data.auth.repositories
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.quickghy.qgdaksha.data.auth.network.MainApis
+import com.quickghy.qgdaksha.data.auth.network.Response.AuthLoginResponse
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.contracts.Returns
 
 /**
  * @Author: Sanjeev Kumar
@@ -15,7 +17,7 @@ import retrofit2.Response
 
 class AuthUserRepository {
 
-    fun userLogin(mobile: String, password: String,daksha_key: String): LiveData<String> {
+    /*fun userLogin(mobile: String, password: String,daksha_key: String): LiveData<String> {
 
         val LoginResponse = MutableLiveData<String>()
 
@@ -46,6 +48,10 @@ class AuthUserRepository {
             })
 
         return LoginResponse
+    }*/
+
+    suspend fun userLogin(mobile: String, password: String,daksha_key: String): Response<AuthLoginResponse> {
+       return MainApis().userLogin(mobile,password,daksha_key)
     }
 
 }
