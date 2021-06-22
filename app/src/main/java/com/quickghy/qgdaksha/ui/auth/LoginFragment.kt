@@ -23,6 +23,8 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
         savedInstanceState: Bundle?
     ): View? {
 
+        val view = inflater.inflate(R.layout.fragment_login, container, false)
+
         binding = DataBindingUtil.setContentView(requireActivity(), R.layout.fragment_login)
 //        because the viewmodel was first created in the main activity.
         activity.let {
@@ -35,14 +37,14 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
         viewModel.loginStateListener = this
 
         binding.btnForgotPass.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
+            view.findNavController().navigate(R.id.action_loginFrag_to_forgotPassFrag)
         }
         binding.btnGoToSignup.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
+            view.findNavController().navigate(R.id.action_loginFrag_to_signUpFrag)
         }
 
 
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        return view
 
     }
 

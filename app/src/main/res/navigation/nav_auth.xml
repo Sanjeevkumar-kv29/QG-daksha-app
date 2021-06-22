@@ -9,10 +9,10 @@
         android:name="com.quickghy.qgdaksha.ui.auth.LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
-            android:id="@+id/action_loginFragment_to_signUpFragment"
+            android:id="@+id/action_loginFrag_to_signUpFrag"
             app:destination="@id/signUpFragment" />
         <action
-            android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
+            android:id="@+id/action_loginFrag_to_forgotPassFrag"
             app:destination="@id/forgotPasswordFragment" />
     </fragment>
     <fragment
@@ -20,7 +20,7 @@
         android:name="com.quickghy.qgdaksha.ui.auth.SignUpFragment"
         tools:layout="@layout/fragment_sign_up">
         <action
-            android:id="@+id/action_signUpFragment_to_verifyOtpFragment"
+            android:id="@+id/action_signUpFrag_to_OtpFrag"
             app:destination="@id/verifyOtpFragment" />
     </fragment>
     <fragment
@@ -28,9 +28,9 @@
         android:name="com.quickghy.qgdaksha.ui.auth.ForgotPasswordFragment"
         android:label="fragment_forgot_password"
         tools:layout="@layout/fragment_forgot_password">
-    <!-- <action
+     <action
         android:id="@+id/action_forgotPasswordFragment_to_VCodeFragment"
-        app:destination="@id/VCodeFragment" />-->
+        app:destination="@id/" />
 </fragment>
 
 <fragment
