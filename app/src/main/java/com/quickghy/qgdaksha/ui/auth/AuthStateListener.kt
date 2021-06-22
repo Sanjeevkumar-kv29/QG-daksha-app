@@ -14,7 +14,7 @@ interface AuthStateListener {
 
     interface SignUpStateListener {
         fun onSignUpStarted()
-        fun onSignUpSuccess()
+        fun onSignUpSuccess(SignUpResponse: LiveData<String>)
         fun onSignUpFailure(message: String)
 
     }
