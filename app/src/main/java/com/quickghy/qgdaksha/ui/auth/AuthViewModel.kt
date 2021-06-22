@@ -20,15 +20,15 @@ class AuthViewModel : ViewModel() {
 
     var key = "DAKSHA_2020"
 
-    var signUpAuthListener: AuthStateListener.SignUpStateListener? = null
+    var signUpStateListener: AuthStateListener.SignUpStateListener? = null
     var loginStateListener: AuthStateListener.LoginStateListener? = null
     var forgotPasswordStateListner: AuthStateListener.ForgotPasswordStateListner? = null
 
     fun onSignInButtonClicked(view: View) {
         //  verify fields.
-        signUpAuthListener?.onSignUpStarted()
-        signUpAuthListener?.onSignUpSuccess()
-       // signUpAuthListener?.onSignUpFailure()
+        signUpStateListener?.onSignUpStarted()
+        signUpStateListener?.onSignUpSuccess()
+        // signUpAuthListener?.onSignUpFailure()
 
     }
 
@@ -37,50 +37,46 @@ class AuthViewModel : ViewModel() {
 
         loginStateListener?.onLoginStarted()
 
-        if (phone.isNullOrEmpty() or password.isNullOrEmpty()){
+        if (phone.isNullOrEmpty() or password.isNullOrEmpty()) {
             loginStateListener?.onLoginFailure("Fields Can't be empty")
             return
-        }
-                else{
-           // val loginResponse = AuthUserRepository().userLogin(phone!!, password!!,key) //tight cuppeld we just remove is using DI
+        } else {
+            // val loginResponse = AuthUserRepository().userLogin(phone!!, password!!,key) //tight cuppeld we just remove is using DI
             //loginStateListener?.onLoginSuccess(loginResponse)
 
-                Coroutines .main {
-                    val loginResponse = AuthUserRepository().userLogin(phone!!, password!!,key)
-                    if (loginResponse.isSuccessful){
-                        if (loginResponse.body()?.user_id == "error"){
-                            loginStateListener?.onLoginFailure(loginResponse.body()?.opt!!)
-                        }
-                        else{
-                            loginStateListener?.onLoginSuccess(loginResponse.body()?.opt!!)
-                        }
-
+            Coroutines.main {
+                val loginResponse = AuthUserRepository().userLogin(phone!!, password!!, key)
+                if (loginResponse.isSuccessful) {
+                    if (loginResponse.body()?.user_id == "error") {
+                        loginStateListener?.onLoginFailure(loginResponse.body()?.opt!!)
+                    } else {
+                        loginStateListener?.onLoginSuccess(loginResponse.body()?.opt!!)
                     }
-                }
-        }
 
+                }
+            }
+        }
 
 
     }
 
-    fun onForgotPasswordButtonClicked(view: View){
-       // Navigation.findNavController(view).navigate()
+    fun onForgotPasswordButtonClicked(view: View) {
+        // Navigation.findNavController(view).navigate()
 
         forgotPasswordStateListner?.onStart()
 
-        if (phone.isNullOrEmpty()){
+        if (phone.isNullOrEmpty()) {
             forgotPasswordStateListner?.onFailure("Fields Can't be empty")
             return
-        }
-        else{
+        } else {
             // val loginResponse = AuthUserRepository().userLogin(phone!!, password!!,key) //tight cuppeld we just remove is using DI
             //loginStateListener?.onLoginSuccess(loginResponse)
 
-            Coroutines .main {
-                val forgetResponse = AuthUserRepository().userForgetPass(phone!!,key)
-                if (forgetResponse.isSuccessful){
+            Coroutines.main {
+                val forgetResponse = AuthUserRepository().userForgetPass(phone!!, key)
+                if (forgetResponse.isSuccessful) {
 
-                        forgotPasswordStateListner?.onSuccess(forgetResponse.body()?.opt!!)
+                    forgotPasswordStateListner?.onSuccess(forgetResponse.body()?.opt!!)
 
                 }
             }
@@ -89,11 +85,24 @@ class AuthViewModel : ViewModel() {
     }
 
 
+    fun onSignUpNowButtonClicked(view: View) {
+        signUpStateListener?.onSignUpStarted()
+        if (phone.isNullOrEmpty() or password.isNullOrEmpty() or username.isNullOrEmpty()) {
+            signUpStateListener?.onSignUpFailure("Fields Can't be empty")
+        } else {
+            Coroutines.main {
+                val signUpResponse =
+                    AuthUserRepository().userSignUp(username!!, phone!!, password!!, key)
+                if (signUpResponse.isSuccessful) {
+                    if (signUpResponse.body()?.user_id == "error") {
+                        signUpStateListener?.onsignUpFailure(signUpResponse.body()?.opt!!)
+                    } else {
+                        signUpStateListener?.onsignUpSuccess(signUpResponse.body()?.opt!!)
+                    }
 
-    fun onSignUpNowButtonClicked(view: View){
 
-
-
-
+                }
+            }
+        }
     }
 }

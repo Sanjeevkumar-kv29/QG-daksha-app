@@ -61,4 +61,8 @@ class AuthUserRepository {
 
 
 
+    suspend fun userSignUp(name: String, mobile: String,  password: String,daksha_key: String): Response<AuthLoginResponse> {
+        return MainApis().userSignUp(name,mobile,password,daksha_key)
+    }
+
 }

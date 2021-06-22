@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentSignUpBinding
@@ -32,7 +33,7 @@ class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
 
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_login,
+            R.layout.fragment_sign_up,
             container,
             false
         )
@@ -43,9 +44,10 @@ class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
         //put api to for
     }
 
-    override fun onSignUpSuccess() {
+    override fun onSignUpSuccess(SignUpResponse: LiveData<String>) {
         TODO("Not yet implemented")
     }
+
 
     override fun onSignUpFailure(message: String) {
         TODO("Not yet implemented")
