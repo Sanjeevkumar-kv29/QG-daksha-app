@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentLoginBinding
+import com.quickghy.qgdaksha.util.toast
 
 
 class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
@@ -58,17 +58,19 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
 
     override fun onLoginStarted() {
         // put api call for login here
-        toast("login Start")
+        context?.toast("login Start")
     }
 
 
     override fun onLoginSuccess(successRes: String) {
-        toast(successRes)
+        context?.toast(successRes)
 //        activity.startActivity("Home Page...)
     }
 
     override fun onLoginFailure(message: String) {
         // display failure message toast
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+        context?.toast(message)
     }
+
+
 }
