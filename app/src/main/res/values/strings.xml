@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">QGDaksha</string>
+    <string name="forgot_pass_enter_mob">Forgot Pass, enter mob.</string>
+    <string name="phone">phone</string>
+    <string name="send_verification_code">Send verification code</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

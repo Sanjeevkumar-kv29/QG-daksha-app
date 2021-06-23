@@ -5,7 +5,6 @@
     tools:context=".ui.auth.LoginFragment">
 
     <data>
-
         <variable
             name="viewmodel"
             type="com.quickghy.qgdaksha.ui.auth.AuthViewModel" />
