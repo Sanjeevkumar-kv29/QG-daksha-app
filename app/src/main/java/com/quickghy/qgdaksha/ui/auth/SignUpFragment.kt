@@ -21,8 +21,12 @@ class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
         savedInstanceState: Bundle?
     ): View {
 
-        val view = inflater.inflate(R.layout.fragment_sign_up, container, false)
-
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_sign_up,
+            container,
+            false
+        )
         activity.let {
             viewModel = ViewModelProvider(it!!).get(AuthViewModel::class.java)
         }
@@ -31,13 +35,7 @@ class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
 
         viewModel.signUpStateListener = this
 
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_sign_up,
-            container,
-            false
-        )
-        return view
+        return binding.root
     }
 
     override fun onSignUpStarted() {

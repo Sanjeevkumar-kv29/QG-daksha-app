@@ -19,7 +19,6 @@ class AuthViewModel : ViewModel() {
     var username: String? = null
     var otp: String? = null
 
-
     val key = "DAKSHA_2020"
 
     var signUpStateListener: AuthStateListener.SignUpStateListener? = null
@@ -27,12 +26,6 @@ class AuthViewModel : ViewModel() {
     var forgotPasswordStateListner: AuthStateListener.ForgotPasswordStateListner? = null
     var signUpOtpStateListener: AuthStateListener.SignUpOtpStateListener? = null
 
-    fun onSignUpButtonClicked(view: View) {
-        //  verify fields.
-        signUpStateListener?.onSignUpStarted()
-//        signUpStateListener?.onSignUpSuccess()
-//        signUpStateListener?.onSignUpFailure()
-    }
 
     fun onLoginButtonClicked(view: View) {
         // Sanjeevs @TODO
@@ -87,7 +80,7 @@ class AuthViewModel : ViewModel() {
     }
 
 
-    fun onSignUpNowButtonClicked(view: View) {
+    fun onSignUpButtonClicked(view: View) {
 
         signUpStateListener?.onSignUpStarted()
         if (phone.isNullOrEmpty() or password.isNullOrEmpty() or username.isNullOrEmpty()) {
