@@ -47,7 +47,7 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
 //        }
 
 
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        return binding.root
 
     }
 

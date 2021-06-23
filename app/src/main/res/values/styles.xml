@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Button" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="background">@drawable/rectangle_2</item>
+    </style>
+
+    <style name="hey_there_w">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">#1E1E24</item>
+    </style>
+
+    <style name="login_here_">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#9E9E9E</item>
+    </style>
+
+    <style name="sign_up">
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:textColor">#FFA200</item>
+    </style>
+</resources>

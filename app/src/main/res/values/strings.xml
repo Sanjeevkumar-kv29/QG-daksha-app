@@ -4,4 +4,6 @@
     <string name="phone">phone</string>
     <string name="send_verification_code">Send verification code</string>
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="hey_there_w">Hey, there!Welcome back</string>
+    <string name="login_here_">Login here with your details</string>
 </resources>

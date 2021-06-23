@@ -5,6 +5,7 @@
     tools:context=".ui.auth.LoginFragment">
 
     <data>
+
         <variable
             name="viewmodel"
             type="com.quickghy.qgdaksha.ui.auth.AuthViewModel" />
@@ -16,72 +17,105 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/hey_there"
+            style="@style/hey_there_w"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="208dp"
-            android:text="Login fragment"
+            android:text="Hey there! Welcome back"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
+        <TextView
+            android:id="@+id/login_here"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login here with your details"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hey_there" />
 
         <EditText
             android:id="@+id/et_Phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:autofillHints="phone"
+            android:background="@drawable/rectangle_9"
             android:ems="10"
             android:hint="Phone"
-            android:text="@={viewmodel.phone}"
             android:inputType="phone"
+            android:text="@={viewmodel.phone}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/login_here" />
 
         <EditText
             android:id="@+id/et_Password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:autofillHints="password"
+            android:background="@drawable/rectangle_9"
             android:ems="10"
             android:hint="Password"
-            android:text="@={viewmodel.password}"
             android:inputType="textPassword"
+            android:text="@={viewmodel.password}"
             app:layout_constraintEnd_toEndOf="@+id/et_Phone"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/et_Phone"
             app:layout_constraintTop_toBottomOf="@+id/et_Phone" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:background="@color/white"
             android:onClick="@{viewmodel::onLoginButtonClicked}"
-            android:text="Login"
+            android:src="@drawable/btn"
             app:layout_constraintEnd_toEndOf="@+id/et_Password"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="@+id/et_Password"
             app:layout_constraintTop_toBottomOf="@+id/et_Password" />
 
-        <Button
-            android:onClick="@{viewmodel::onSignUpNowButtonClicked}"
+        <TextView
             android:id="@+id/btn_forgot_pass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:onClick="@{viewmodel::onSignUpNowButtonClicked}"
             android:text="Forgot password?"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
-        <Button
-            android:id="@+id/btn_go_to_signup"
-            android:onClick="@{viewmodel::onSignInButtonClicked}"
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign Up now"
+            android:layout_marginTop="72dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_forgot_pass" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_forgot_pass">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dont have an account?" />
+
+            <TextView
+                android:id="@+id/btn_go_to_signup"
+                style="@style/sign_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:onClick="@{viewmodel::onSignInButtonClicked}"
+                android:text="Sign Up" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
