@@ -41,7 +41,7 @@
 
 
         <EditText
-            android:id="@+id/et_Phone"
+            android:id="@+id/et_V_CODE"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -56,7 +56,7 @@
 
 
         <EditText
-            android:id="@+id/et_Password"
+            android:id="@+id/et_New_Password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -67,7 +67,7 @@
             android:text="@={viewmodel.password}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_Phone" />
+            app:layout_constraintTop_toBottomOf="@+id/et_V_CODE" />
 
         <Button
             android:id="@+id/btn_go_to_signup"
@@ -76,9 +76,9 @@
             android:layout_marginTop="56dp"
             android:onClick="@{viewmodel::onSignInButtonClicked}"
             android:text="Sign Up"
-            app:layout_constraintEnd_toEndOf="@+id/et_Password"
-            app:layout_constraintStart_toStartOf="@+id/et_Password"
-            app:layout_constraintTop_toBottomOf="@+id/et_Password" />
+            app:layout_constraintEnd_toEndOf="@+id/et_New_Password"
+            app:layout_constraintStart_toStartOf="@+id/et_New_Password"
+            app:layout_constraintTop_toBottomOf="@+id/et_New_Password" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

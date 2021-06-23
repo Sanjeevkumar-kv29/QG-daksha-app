@@ -38,7 +38,7 @@
             app:layout_constraintTop_toBottomOf="@id/hey_there" />
 
         <EditText
-            android:id="@+id/et_Phone"
+            android:id="@+id/et_V_CODE"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:autofillHints="phone"
@@ -54,7 +54,7 @@
             app:layout_constraintTop_toBottomOf="@+id/login_here" />
 
         <EditText
-            android:id="@+id/et_Password"
+            android:id="@+id/et_New_Password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -66,9 +66,9 @@
             android:inputType="textPassword"
             android:padding="5dp"
             android:text="@={viewmodel.password}"
-            app:layout_constraintEnd_toEndOf="@+id/et_Phone"
-            app:layout_constraintStart_toStartOf="@+id/et_Phone"
-            app:layout_constraintTop_toBottomOf="@+id/et_Phone" />
+            app:layout_constraintEnd_toEndOf="@+id/et_V_CODE"
+            app:layout_constraintStart_toStartOf="@+id/et_V_CODE"
+            app:layout_constraintTop_toBottomOf="@+id/et_V_CODE" />
 
         <ImageButton
             android:id="@+id/btn_login"
@@ -78,9 +78,9 @@
             android:background="@color/white"
             android:onClick="@{viewmodel::onLoginButtonClicked}"
             android:src="@drawable/btn"
-            app:layout_constraintEnd_toEndOf="@+id/et_Password"
-            app:layout_constraintStart_toStartOf="@+id/et_Password"
-            app:layout_constraintTop_toBottomOf="@+id/et_Password" />
+            app:layout_constraintEnd_toEndOf="@+id/et_New_Password"
+            app:layout_constraintStart_toStartOf="@+id/et_New_Password"
+            app:layout_constraintTop_toBottomOf="@+id/et_New_Password" />
 
         <TextView
             android:id="@+id/btn_forgot_pass"
