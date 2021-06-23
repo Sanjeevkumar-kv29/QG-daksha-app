@@ -8,18 +8,18 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.quickghy.qgdaksha.R
-import com.quickghy.qgdaksha.databinding.FragmentForgotPasswordBinding
+import com.quickghy.qgdaksha.databinding.FragmentResetPasswordBinding
 
 class ResetPasswordFragment : Fragment() {
 
     lateinit var viewModel: AuthViewModel
-    lateinit var binding: FragmentForgotPasswordBinding
+    lateinit var binding: FragmentResetPasswordBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         // Inflate the layout for this fragment
         binding =
             DataBindingUtil.setContentView(requireActivity(), R.layout.fragment_reset_password)
@@ -27,11 +27,7 @@ class ResetPasswordFragment : Fragment() {
         activity.let {
             viewModel = ViewModelProvider(it!!).get(AuthViewModel::class.java)
         }
-        binding.forgotviewmodel = viewModel
-
-        viewModel.forgotPasswordStateListner = this
-
-
+        binding.viewmodel = viewModel
 
         return binding.root
     }
