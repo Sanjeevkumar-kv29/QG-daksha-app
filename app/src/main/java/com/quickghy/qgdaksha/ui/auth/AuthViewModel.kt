@@ -27,9 +27,9 @@ class AuthViewModel : ViewModel() {
     var forgotPasswordStateListner: AuthStateListener.ForgotPasswordStateListner? = null
     var signUpOtpStateListener: AuthStateListener.SignUpOtpStateListener? = null
 
-    fun onSignInButtonClicked(view: View) {
+    fun onSignUpButtonClicked(view: View) {
         //  verify fields.
-//        signUpStateListener?.onSignUpStarted()
+        signUpStateListener?.onSignUpStarted()
 //        signUpStateListener?.onSignUpSuccess()
         // signUpAuthListener?.onSignUpFailure()
 
