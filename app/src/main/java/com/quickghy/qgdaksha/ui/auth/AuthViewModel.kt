@@ -31,8 +31,7 @@ class AuthViewModel : ViewModel() {
         //  verify fields.
         signUpStateListener?.onSignUpStarted()
 //        signUpStateListener?.onSignUpSuccess()
-        // signUpAuthListener?.onSignUpFailure()
-
+//        signUpStateListener?.onSignUpFailure()
     }
 
     fun onLoginButtonClicked(view: View) {
@@ -117,7 +116,7 @@ class AuthViewModel : ViewModel() {
             Coroutines.main {
                 val signUpOtpResponse = AuthUserRepository().userSignUpOtp(phone!!, otp!!, key)
 
-                if (signUpOtpResponse.body()?.opt !is String) {//if the response opt is a number, it is success
+                if (signUpOtpResponse.body()?.opt !is String) {//if the response opt is a number, it is success and a access_token should be stored here
                     signUpStateListener?.onSignUpSuccess(signUpOtpResponse.body()?.opt.toString())
                 } else if (signUpOtpResponse.body()?.opt is String) {
                     signUpStateListener?.onSignUpFailure(signUpOtpResponse.body()?.opt.toString())
