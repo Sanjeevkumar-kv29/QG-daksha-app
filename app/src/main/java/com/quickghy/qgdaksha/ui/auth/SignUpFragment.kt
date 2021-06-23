@@ -42,6 +42,7 @@ class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
 
     override fun onSignUpStarted() {
         //put api to for
+//        show progress bar here
     }
 
     override fun onSignUpSuccess(SignUpResponse: String) {

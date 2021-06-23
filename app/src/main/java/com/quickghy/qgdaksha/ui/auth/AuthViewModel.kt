@@ -118,11 +118,10 @@ class AuthViewModel : ViewModel() {
             Coroutines.main {
                 val signUpOtpResponse = AuthUserRepository().userSignUpOtp(phone!!, otp!!, key)
 
-                if (signUpOtpResponse.body()?.opt is Int) {//if the response opt is a number, it is success
+                if (signUpOtpResponse.body()?.opt !is String) {//if the response opt is a number, it is success
                     signUpStateListener?.onSignUpSuccess(signUpOtpResponse.body()?.opt.toString())
                 } else if (signUpOtpResponse.body()?.opt is String) {
                     signUpStateListener?.onSignUpFailure(signUpOtpResponse.body()?.opt.toString())
-                    Pref
                 }
             }
         }

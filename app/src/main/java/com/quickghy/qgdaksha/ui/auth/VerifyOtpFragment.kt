@@ -46,7 +46,7 @@ class VerifyOtpFragment : Fragment(), AuthStateListener.SignUpOtpStateListener {
     }
 
     override fun onSignUpOtpSuccess(opt: String) {
-        Toast.makeText(context,opt+ ": sign up success!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context,opt + ": sign up success!", Toast.LENGTH_SHORT).show()
         findNavController().navigate(R.id.action_verifyOtpFragment_to_loginFragment)
     }
 

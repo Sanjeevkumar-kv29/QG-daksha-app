@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.quickghy.qgdaksha.R
 
 class MainActivity : AppCompatActivity() {
+
     lateinit var authViewModel: AuthViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

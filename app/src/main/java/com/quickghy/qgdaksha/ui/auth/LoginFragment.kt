@@ -13,6 +13,7 @@ import com.quickghy.qgdaksha.databinding.FragmentLoginBinding
 
 
 class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
+
     lateinit var viewModel: AuthViewModel
     lateinit var binding: FragmentLoginBinding
 
@@ -53,12 +54,11 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
     override fun onLoginStarted() {
         // put api call for login here
         Toast.makeText(context, "login start", Toast.LENGTH_SHORT).show()
-
     }
 
 
-    override fun onLoginSuccess(loginResponse: String) {
-        Toast.makeText(context, loginResponse, Toast.LENGTH_SHORT).show()
+    override fun onLoginSuccess(successRes: String) {
+        Toast.makeText(context, successRes, Toast.LENGTH_SHORT).show()
     }
 
     override fun onLoginFailure(message: String) {
