@@ -43,9 +43,11 @@
             android:layout_height="wrap_content"
             android:autofillHints="phone"
             android:background="@drawable/rectangle_9"
+            android:drawableStart="@drawable/ic_mail"
             android:ems="10"
-            android:hint="Phone"
+            android:hint="Email or Phone Number"
             android:inputType="phone"
+            android:padding="5dp"
             android:text="@={viewmodel.phone}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,12 +60,13 @@
             android:layout_marginTop="16dp"
             android:autofillHints="password"
             android:background="@drawable/rectangle_9"
+            android:drawableStart="@drawable/ic_mail"
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
+            android:padding="5dp"
             android:text="@={viewmodel.password}"
             app:layout_constraintEnd_toEndOf="@+id/et_Phone"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/et_Phone"
             app:layout_constraintTop_toBottomOf="@+id/et_Phone" />
 
@@ -76,7 +79,6 @@
             android:onClick="@{viewmodel::onLoginButtonClicked}"
             android:src="@drawable/btn"
             app:layout_constraintEnd_toEndOf="@+id/et_Password"
-            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="@+id/et_Password"
             app:layout_constraintTop_toBottomOf="@+id/et_Password" />
 
@@ -88,14 +90,13 @@
             android:onClick="@{viewmodel::onSignUpNowButtonClicked}"
             android:text="Forgot password?"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="72dp"
+            android:layout_marginTop="100dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_forgot_pass">
