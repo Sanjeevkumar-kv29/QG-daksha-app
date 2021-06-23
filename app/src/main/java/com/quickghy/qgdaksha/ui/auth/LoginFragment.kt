@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentLoginBinding
 
@@ -38,14 +39,18 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
 
         viewModel.loginStateListener = this
 
-//        binding.btnForgotPass.setOnClickListener { view ->
-//            viewModel.onForgotPasswordButtonClicked()
-//        }
-//        binding.btnGoToSignup.setOnClickListener { view ->
-//            viewModel.onForgotPasswordButtonClicked()
-//            view.findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
-//        }
-
+        binding.btnLogin.setOnClickListener {
+            viewModel.onLoginButtonClicked(it)
+            findNavController().navigate(R.id.action_loginFrag_to_signUpFrag)
+        }
+        binding.btnForgotPass.setOnClickListener {
+            viewModel.onForgotPasswordButtonClicked(it)
+            findNavController().navigate(R.id.action_loginFrag_to_forgotPassFrag)
+        }
+        binding.btnGoToSignup.setOnClickListener {
+            viewModel.onForgotPasswordButtonClicked(it)
+            findNavController().navigate(R.id.action_loginFrag_to_signUpFrag)
+        }
 
         return binding.root
 
@@ -53,12 +58,13 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
 
     override fun onLoginStarted() {
         // put api call for login here
-        Toast.makeText(context, "login start", Toast.LENGTH_SHORT).show()
+        toast("login Start")
     }
 
 
     override fun onLoginSuccess(successRes: String) {
-        Toast.makeText(context, successRes, Toast.LENGTH_SHORT).show()
+        toast(successRes)
+//        activity.startActivity("Home Page...)
     }
 
     override fun onLoginFailure(message: String) {

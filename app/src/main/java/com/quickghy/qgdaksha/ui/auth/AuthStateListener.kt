@@ -10,6 +10,7 @@ interface AuthStateListener {
         fun onLoginStarted()
         fun onLoginSuccess(successRes: String)
         fun onLoginFailure(message: String)
+        abstract fun toast(s: String)
     }
 
     interface SignUpStateListener {
