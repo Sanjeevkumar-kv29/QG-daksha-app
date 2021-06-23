@@ -21,7 +21,7 @@ class AuthViewModel : ViewModel() {
     var otp: String? = null
 
 
-    var key = "DAKSHA_2020"
+    val key = "DAKSHA_2020"
 
     var signUpStateListener: AuthStateListener.SignUpStateListener? = null
     var loginStateListener: AuthStateListener.LoginStateListener? = null
