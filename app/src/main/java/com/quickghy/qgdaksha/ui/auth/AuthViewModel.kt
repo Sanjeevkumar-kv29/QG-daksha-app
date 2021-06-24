@@ -2,8 +2,12 @@ package com.quickghy.qgdaksha.ui.auth
 
 import android.view.View
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.navigation.findNavController
+import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.data.auth.repositories.AuthUserRepository
 import com.quickghy.qgdaksha.util.Coroutines
+import kotlinx.coroutines.launch
 
 /**
  * @Author: Shubham Rimjha, Sanjeev Kumar
@@ -19,7 +23,6 @@ class AuthViewModel : ViewModel() {
     var username: String? = null
     var otp: String? = null
 
-
     val key = "DAKSHA_2020"
 
     var signUpStateListener: AuthStateListener.SignUpStateListener? = null
@@ -28,11 +31,7 @@ class AuthViewModel : ViewModel() {
     var signUpOtpStateListener: AuthStateListener.SignUpOtpStateListener? = null
 
     fun onSignInButtonClicked(view: View) {
-        //  verify fields.
-//        signUpStateListener?.onSignUpStarted()
-//        signUpStateListener?.onSignUpSuccess()
-        // signUpAuthListener?.onSignUpFailure()
-
+        view.findNavController().navigate(R.id.action_loginFrag_to_signUpFrag)
     }
 
     fun onLoginButtonClicked(view: View) {
@@ -46,8 +45,7 @@ class AuthViewModel : ViewModel() {
         } else {
             // val loginResponse = AuthUserRepository().userLogin(phone!!, password!!,key) //tight cuppeld we just remove is using DI
             //loginStateListener?.onLoginSuccess(loginResponse)
-
-            Coroutines.main {
+            viewModelScope.launch {
                 val loginResponse = AuthUserRepository().userLogin(phone!!, password!!, key)
                 if (loginResponse.isSuccessful) {
                     if (loginResponse.body()?.user_id == "error") {

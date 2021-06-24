@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentSignUpBinding
+import kotlinx.coroutines.CoroutineScope
 
 class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
 
@@ -27,16 +28,18 @@ class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
             viewModel = ViewModelProvider(it!!).get(AuthViewModel::class.java)
         }
 
-        binding.viewmodel = viewModel
-
-        viewModel.signUpStateListener = this
-
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_sign_up,
             container,
             false
         )
+
+        binding.viewmodel = viewModel
+
+        viewModel.signUpStateListener = this
+
+
         return view
     }
 
