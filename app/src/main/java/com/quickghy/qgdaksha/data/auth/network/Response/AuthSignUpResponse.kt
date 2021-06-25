@@ -5,5 +5,5 @@ package com.quickghy.qgdaksha.data.auth.network.Response
  * @Date: 23-06-2021
  */
 data class AuthSignUpResponse(
-    val opt: Int?
+    val opt: String?
 )

@@ -21,7 +21,12 @@ class VerifyOtpFragment : Fragment(), AuthStateListener.SignUpOtpStateListener {
         savedInstanceState: Bundle?
     ): View? {
 
-        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_verify_otp, container, false)
+
+        activity.let {
+            viewModel = ViewModelProvider(it!!).get(AuthViewModel::class.java)
+        }
+
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_verify_otp,
@@ -29,15 +34,8 @@ class VerifyOtpFragment : Fragment(), AuthStateListener.SignUpOtpStateListener {
             false
         )
 
-        activity.let {
-            viewModel = ViewModelProvider(it!!).get(AuthViewModel::class.java)
-        }
-
         binding.viewmodel = viewModel
-        viewModel.signUpOtpStateListener = this
-
-
-        return inflater.inflate(R.layout.fragment_verify_otp, container, false)
+        return binding.root
     }
 
     override fun onSignUpOtpStarted() {

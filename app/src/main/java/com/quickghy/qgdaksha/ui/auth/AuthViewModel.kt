@@ -101,10 +101,9 @@ class AuthViewModel : ViewModel() {
                 val signUpResponse =
                     AuthUserRepository().userSignUp(username!!, phone!!, password!!, key)
 
-                if (signUpResponse.body()?.opt is Int) {//if the response opt is a number, it is success
+                if (signUpResponse.isSuccessful) {//if the response opt is a number, it is success
                     signUpStateListener?.onSignUpSuccess(signUpResponse.body()?.opt.toString())
-                } else if (signUpResponse.body()?.opt !is Int) {
-                    signUpStateListener?.onSignUpFailure(signUpResponse.body()?.opt.toString())
+                    view.findNavController().navigate(R.id.action_signUpFrag_to_OtpFrag)
                 }
             }
         }
