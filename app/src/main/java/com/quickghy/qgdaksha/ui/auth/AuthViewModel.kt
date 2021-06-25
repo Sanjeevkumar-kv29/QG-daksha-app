@@ -34,6 +34,10 @@ class AuthViewModel : ViewModel() {
         view.findNavController().navigate(R.id.action_loginFrag_to_signUpFrag)
     }
 
+    fun ForgotPasswordButtonClicked(view: View) {
+        view.findNavController().navigate(R.id.action_loginFrag_to_forgotPassFrag)
+    }
+
     fun onLoginButtonClicked(view: View) {
         // Sanjeevs @TODO
 

@@ -40,7 +40,7 @@ class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
         viewModel.signUpStateListener = this
 
 
-        return view
+        return binding.root
     }
 
     override fun onSignUpStarted() {
