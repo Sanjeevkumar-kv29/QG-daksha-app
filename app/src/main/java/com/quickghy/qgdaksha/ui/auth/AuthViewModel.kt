@@ -80,8 +80,8 @@ class AuthViewModel : ViewModel() {
             Coroutines.main {
                 val forgetResponse = AuthUserRepository().userForgetPass(phone!!, key)
                 if (forgetResponse.isSuccessful) {
-
                     forgotPasswordStateListner?.onSuccess(forgetResponse.body()?.opt!!)
+                    view.findNavController().navigate(R.id.action_forgotPasswordFragment_to_resetPasswordFragment)
 
                 }
             }

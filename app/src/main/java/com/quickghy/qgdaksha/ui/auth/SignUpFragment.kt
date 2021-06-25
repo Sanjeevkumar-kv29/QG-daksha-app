@@ -50,6 +50,7 @@ class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
 
     override fun onSignUpSuccess(SignUpResponse: String) {
         Toast.makeText(context, SignUpResponse, Toast.LENGTH_SHORT).show()
+
 //        do nav here to the otp screen
     }
 
