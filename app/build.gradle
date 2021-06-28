@@ -72,5 +72,9 @@ dependencies {
     // DataStore
     implementation("androidx.datastore:datastore:1.0.0-beta02")
     implementation 'androidx.datastore:datastore-preferences:1.0.0-beta02'
+    //Preference DataStore
+    implementation "androidx.datastore:datastore-preferences:1.0.0-beta02"
+    //Kodein
+    implementation 'org.kodein.di:kodein-di:7.6.0'
 
 }

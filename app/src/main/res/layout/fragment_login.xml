@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="120dp"
             android:background="@color/white"
-            android:onClick="@{viewmodel::onLoginButtonClicked}"
+            android:onClick="@{viewmodel::doLogin}"
             android:src="@drawable/btn"
             app:layout_constraintEnd_toEndOf="@+id/et_New_Password"
             app:layout_constraintStart_toStartOf="@+id/et_New_Password"
@@ -87,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:onClick="@{viewmodel::ForgotPasswordButtonClicked}"
+            android:onClick="@{viewmodel::goToForgotPass}"
             android:text="Forgot password?"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -113,7 +113,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:onClick="@{viewmodel::onSignInButtonClicked}"
+                android:onClick="@{viewmodel::goToSignUp}"
                 android:text="Sign Up" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 

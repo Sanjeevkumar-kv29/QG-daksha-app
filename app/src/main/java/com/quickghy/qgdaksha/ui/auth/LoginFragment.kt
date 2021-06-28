@@ -39,10 +39,10 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
         viewModel.loginStateListener = this
 
 //        binding.btnForgotPass.setOnClickListener { view ->
-//            viewModel.onForgotPasswordButtonClicked()
+//            viewModel.doSendOTP()
 //        }
 //        binding.btnGoToSignup.setOnClickListener { view ->
-//            viewModel.onForgotPasswordButtonClicked()
+//            viewModel.doSendOTP()
 //            view.findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
 //        }
 
