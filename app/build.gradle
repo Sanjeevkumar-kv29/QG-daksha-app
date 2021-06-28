@@ -1,6 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlin-android-extensions'
+
 
 
 android {
@@ -37,6 +40,7 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.firebase:firebase-auth:21.0.1'
     def room_version = "2.3.0"
     def nav_version = "2.3.5"
 
@@ -71,10 +75,12 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
     // DataStore
     implementation("androidx.datastore:datastore:1.0.0-beta02")
-    implementation 'androidx.datastore:datastore-preferences:1.0.0-beta02'
     //Preference DataStore
     implementation "androidx.datastore:datastore-preferences:1.0.0-beta02"
     //Kodein
     implementation 'org.kodein.di:kodein-di:7.6.0'
+
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+
 
 }
