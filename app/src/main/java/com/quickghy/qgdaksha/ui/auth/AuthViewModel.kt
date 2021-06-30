@@ -141,7 +141,7 @@ class AuthViewModel : ViewModel() {
             viewModelScope.launch {
                 val signUpOtpResponse = AuthUserRepository().userResetPass(phone!!, otp!!, password!!, key)
 
-                if (signUpOtpResponse.isSuccessful) {//if the response opt is a number, it is success
+                if (signUpOtpResponse.isSuccessful) {//if the response opt is a numb// er, it is success
                     signUpStateListener?.onSignUpSuccess(signUpOtpResponse.body()?.opt.toString())
                     view.findNavController()
                         .navigate(R.id.action_verifyOtpFragment_to_loginFragment)
