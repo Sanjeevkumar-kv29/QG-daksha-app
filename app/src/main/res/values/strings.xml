@@ -13,4 +13,10 @@
     <string name="title_notifications">Notifications</string>
     <string name="enter_mobile_number">Enter Mobile Number</string>
     <string name="will_send_otp_to_reset_password">We will send you an OTP to reset your password</string>
+    <string name="phone_or_email">Phone or Email</string>
+    <string name="password">Password</string>
+    <string name="login_button">Login Button</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="dont_have_an_account">Dont have an account?</string>
+    <string name="sign_up">Sign Up</string>
 </resources>

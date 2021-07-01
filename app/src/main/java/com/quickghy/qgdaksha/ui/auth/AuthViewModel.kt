@@ -38,6 +38,10 @@ class AuthViewModel : ViewModel() {
         view.findNavController().navigate(R.id.action_loginFrag_to_forgotPassFrag)
     }
 
+    fun goToLogin(view: View) {
+        view.findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
+    }
+
     fun doLogin(view: View) {
         // Sanjeevs @TODO
 

@@ -43,7 +43,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_32sdp"
-            android:hint="Phone"
             android:inputType="phone"
             app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
             app:boxCornerRadiusBottomStart="@dimen/_10sdp"
@@ -51,6 +50,7 @@
             app:boxCornerRadiusTopStart="@dimen/_10sdp"
             app:boxStrokeWidth="@dimen/_3sdp"
             app:boxStrokeWidthFocused="@dimen/_3sdp"
+            app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/login_here"
@@ -61,6 +61,7 @@
                 android:id="@+id/et_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/phone_or_email"
                 android:text="@={viewmodel.phone}" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,7 +73,6 @@
             android:layout_marginHorizontal="@dimen/_32sdp"
             android:layout_marginTop="16dp"
             android:autofillHints="password"
-            android:hint="Password"
             android:inputType="textPassword"
             app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
             app:boxCornerRadiusBottomStart="@dimen/_10sdp"
@@ -80,6 +80,7 @@
             app:boxCornerRadiusTopStart="@dimen/_10sdp"
             app:boxStrokeWidth="@dimen/_3sdp"
             app:boxStrokeWidthFocused="@dimen/_3sdp"
+            app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="@+id/textInputLayout1"
             app:layout_constraintStart_toStartOf="@+id/textInputLayout1"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout1"
@@ -90,6 +91,7 @@
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/password"
                 android:text="@={viewmodel.password}" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,7 +101,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_50sdp"
             android:background="#ffffff"
-            android:contentDescription="Login Button"
+            android:contentDescription="@string/login_button"
             android:onClick="@{viewmodel::doLogin}"
             android:src="@drawable/btn"
             app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
@@ -126,7 +128,7 @@
             android:layout_height="wrap_content"
             android:onClick="@{viewmodel::goToForgotPass}"
             android:padding="@dimen/_3sdp"
-            android:text="Forgot password?"
+            android:text="@string/forgot_password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_anim" />
@@ -156,16 +158,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dont have an account?" />
+                android:text="@string/dont_have_an_account" />
 
             <TextView
                 android:id="@+id/btn_go_to_signup"
                 style="@style/sign_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
                 android:onClick="@{viewmodel::goToSignUp}"
-                android:text="Sign Up" />
+                android:padding="@dimen/_2sdp"
+                android:text="@string/sign_up" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 

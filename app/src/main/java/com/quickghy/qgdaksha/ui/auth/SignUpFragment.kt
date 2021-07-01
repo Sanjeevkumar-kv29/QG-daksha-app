@@ -8,14 +8,16 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.airbnb.lottie.LottieAnimationView
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentSignUpBinding
-import kotlinx.coroutines.CoroutineScope
 
 class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
 
     lateinit var viewModel: AuthViewModel
     lateinit var binding: FragmentSignUpBinding
+    lateinit var anim_btn: LottieAnimationView
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +38,7 @@ class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
         )
 
         binding.viewmodel = viewModel
+        anim_btn = binding.btnGoToSignupWheel
 
         viewModel.signUpStateListener = this
 
@@ -46,11 +49,16 @@ class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
     override fun onSignUpStarted() {
         //put api to for
 //        show progress bar here
+        anim_btn.visibility = View.VISIBLE
+        binding.btnGoToSignup.visibility = View.INVISIBLE
+        anim_btn.playAnimation()
     }
 
     override fun onSignUpSuccess(SignUpResponse: String) {
         Toast.makeText(context, SignUpResponse, Toast.LENGTH_SHORT).show()
-
+        anim_btn.visibility = View.INVISIBLE
+        binding.btnGoToSignup.visibility = View.VISIBLE
+        anim_btn.pauseAnimation()
 //        do nav here to the otp screen
     }
 
@@ -58,6 +66,9 @@ class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
     override fun onSignUpFailure(message: String) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 //        toast error and do nothing else
+        binding.btnGoToSignup.visibility = View.VISIBLE
+        anim_btn.visibility = View.INVISIBLE
+        anim_btn.pauseAnimation()
     }
 
 }
