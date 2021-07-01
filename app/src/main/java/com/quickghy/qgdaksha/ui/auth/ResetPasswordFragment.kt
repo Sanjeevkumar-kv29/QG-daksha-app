@@ -11,7 +11,7 @@ import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentResetPasswordBinding
 import com.quickghy.qgdaksha.util.toast
 
-class ResetPasswordFragment : Fragment(),AuthStateListener.SignUpOtpStateListener {
+class ResetPasswordFragment : Fragment(), AuthStateListener.ResetPassOtpStateListener {
 
     lateinit var viewModel: AuthViewModel
     lateinit var binding: FragmentResetPasswordBinding
@@ -37,15 +37,16 @@ class ResetPasswordFragment : Fragment(),AuthStateListener.SignUpOtpStateListene
         return binding.root
     }
 
-    override fun onSignUpOtpStarted() {
+
+    override fun onResetPassStarted() {
         context?.toast("Updating your password")
     }
 
-    override fun onSignUpOtpSuccess(opt: String) {
+    override fun onResetPassSuccess(opt: String) {
         context?.toast("Success code = $opt")
     }
 
-    override fun onSignUpOtpFailure(message: String) {
+    override fun onResetPassFailure(message: String) {
         context?.toast("Failure: $message")
     }
 

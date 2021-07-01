@@ -1,8 +1,6 @@
 package com.quickghy.qgdaksha.ui.auth
 
-import android.content.Intent
 import android.view.View
-import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
@@ -30,7 +28,7 @@ class AuthViewModel : ViewModel() {
     var signUpStateListener: AuthStateListener.SignUpStateListener? = null
     var loginStateListener: AuthStateListener.LoginStateListener? = null
     var forgotPasswordStateListner: AuthStateListener.ForgotPasswordStateListner? = null
-    var signUpOtpStateListener: AuthStateListener.SignUpOtpStateListener? = null
+    var resetOtpStateListener: AuthStateListener.SignUpOtpStateListener? = null
 
     fun goToSignUp(view: View) {
         view.findNavController().navigate(R.id.action_loginFrag_to_signUpFrag)
@@ -43,12 +41,11 @@ class AuthViewModel : ViewModel() {
     fun doLogin(view: View) {
         // Sanjeevs @TODO
 
-        loginStateListener?.onLoginStarted()
-
         if (phone.isNullOrEmpty() or password.isNullOrEmpty()) {
             loginStateListener?.onLoginFailure("Fields Can't be empty")
             return
         } else {
+            loginStateListener?.onLoginStarted()
             // val loginResponse = AuthUserRepository().userLogin(phone!!, password!!,key) //tight cuppeld we just remove is using DI
             //loginStateListener?.onLoginSuccess(loginResponse)
             viewModelScope.launch {
@@ -116,9 +113,9 @@ class AuthViewModel : ViewModel() {
     }
 
     fun doVerifyOTP(view: View) {
-        signUpOtpStateListener?.onSignUpOtpStarted()
+        resetOtpStateListener?.onSignUpOtpStarted()
         if (otp.isNullOrEmpty() || phone.isNullOrEmpty()) {
-            signUpOtpStateListener?.onSignUpOtpFailure("Enter otp")
+            resetOtpStateListener?.onResetOtpFailure("Enter otp")
         } else {
             viewModelScope.launch {
                 val signUpOtpResponse = AuthUserRepository().userSignUpOtp(phone!!, otp!!, key)
@@ -134,29 +131,31 @@ class AuthViewModel : ViewModel() {
     }
 
 
-    fun doUpdatePass(view: View){
+    fun doUpdatePass(view: View) {
         if (otp.isNullOrEmpty() || password.isNullOrEmpty()) {
-            signUpOtpStateListener?.onSignUpOtpFailure("OTP or Password incorrect")
+            resetOtpStateListener?.onResetOtpFailure("OTP or Password incorrect")
         } else {
             viewModelScope.launch {
-                val signUpOtpResponse = AuthUserRepository().userResetPass(phone!!, otp!!, password!!, key)
+                val signUpOtpResponse =
+                    AuthUserRepository().userResetPass(phone!!, otp!!, password!!, key)
 
                 if (signUpOtpResponse.isSuccessful) {//if the response opt is a numb// er, it is success
-                    signUpStateListener?.onSignUpSuccess(signUpOtpResponse.body()?.opt.toString())
+                    resetOtpStateListener?.onSignUpOtpSuccess(signUpOtpResponse.body()?.opt.toString())
                     view.findNavController()
                         .navigate(R.id.action_verifyOtpFragment_to_loginFragment)
                 }
             }
         }
     }
-    fun finishThisAndGoToHome(){
+
+    fun finishThisAndGoToHome() {
         //this is where you navigate to the home page...--------------------------------------------
         // also save the user into the dataStore here
     }
+
     private fun putaccesstokenintoDB(toString: String) {
         //call
     }
-
 
 
 }

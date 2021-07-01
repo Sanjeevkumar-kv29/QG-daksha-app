@@ -1,16 +1,18 @@
 package com.quickghy.qgdaksha.ui.auth
 
-import android.content.Context
 import android.content.Intent
+import android.hardware.input.InputManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.airbnb.lottie.LottieAnimationView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -20,13 +22,13 @@ import com.google.android.gms.tasks.Task
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentLoginBinding
 import com.quickghy.qgdaksha.util.toast
-import kotlinx.android.synthetic.main.fragment_login.*
 
 
 class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
 
     lateinit var viewModel: AuthViewModel
     lateinit var binding: FragmentLoginBinding
+    lateinit var anim_btn: LottieAnimationView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +49,7 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
         viewModel.loginStateListener = this
         binding.viewmodel = viewModel
 
+        anim_btn = binding.btnAnimWheel
         viewModel.loginStateListener = this
 
 //        binding.btnForgotPass.setOnClickListener { view ->
@@ -72,10 +75,10 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
                 .requestEmail()
                 .build()
 
-        val mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso!!);
-        sign_in_google.setSize(SignInButton.SIZE_ICON_ONLY)
+        val mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso!!)
+        binding.signInGoogle.setSize(SignInButton.SIZE_ICON_ONLY)
 
-        sign_in_google.setOnClickListener {
+        binding.signInGoogle.setOnClickListener {
 
             val signInIntent = mGoogleSignInClient.signInIntent
             startActivityForResult(signInIntent, 123)
@@ -113,15 +116,25 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
     override fun onLoginStarted() {
         // put api call for login here
         Toast.makeText(context, "login start", Toast.LENGTH_SHORT).show()
+        anim_btn.visibility = View.VISIBLE
+        binding.btnAnim.visibility = View.INVISIBLE
+        anim_btn.playAnimation()
+
     }
 
 
     override fun onLoginSuccess(successRes: String) {
         Toast.makeText(context, successRes, Toast.LENGTH_SHORT).show()
+        anim_btn.visibility = View.INVISIBLE
+        binding.btnAnim.visibility = View.VISIBLE
+        anim_btn.pauseAnimation()
     }
 
     override fun onLoginFailure(message: String) {
         // display failure message toast
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+        binding.btnAnim.visibility = View.VISIBLE
+        anim_btn.visibility = View.INVISIBLE
+        anim_btn.pauseAnimation()
     }
 }

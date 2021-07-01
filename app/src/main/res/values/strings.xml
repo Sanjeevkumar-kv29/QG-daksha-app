@@ -1,9 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">QGDaksha</string>
     <string name="forgot_pass_enter_mob">Forgot Pass, enter mob.</string>
     <string name="phone">phone</string>
     <string name="send_verification_code">Send verification code</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hey_there_w">Hey, there!Welcome back</string>
+    <string name="hey_there_w"><br>Hey, there!</br> Welcome back</string>
     <string name="login_here_">Login here with your details</string>
+    <string name="title_activity_dash">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

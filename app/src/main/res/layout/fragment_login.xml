@@ -21,7 +21,7 @@
             style="@style/hey_there_w"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/_50sdp"
             android:text="Hey there! Welcome back"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,65 +37,104 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/hey_there" />
 
-        <EditText
-            android:id="@+id/et_V_CODE"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout1"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autofillHints="phone"
-            android:background="@drawable/rectangle_9"
-            android:drawableStart="@drawable/ic_mail"
-            android:ems="10"
-            android:hint="Email or Phone Number"
+            android:layout_marginHorizontal="@dimen/_32sdp"
+            android:hint="Phone"
             android:inputType="phone"
-            android:padding="5dp"
-            android:text="@={viewmodel.phone}"
+            app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
+            app:boxCornerRadiusBottomStart="@dimen/_10sdp"
+            app:boxCornerRadiusTopEnd="@dimen/_10sdp"
+            app:boxCornerRadiusTopStart="@dimen/_10sdp"
+            app:boxStrokeWidth="@dimen/_3sdp"
+            app:boxStrokeWidthFocused="@dimen/_3sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login_here" />
+            app:layout_constraintTop_toBottomOf="@+id/login_here"
+            app:startIconCheckable="true"
+            app:startIconDrawable="@drawable/ic_mail">
 
-        <EditText
-            android:id="@+id/et_New_Password"
-            android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={viewmodel.phone}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout2"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_32sdp"
             android:layout_marginTop="16dp"
             android:autofillHints="password"
-            android:background="@drawable/rectangle_9"
-            android:drawableStart="@drawable/ic_mail"
-            android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
-            android:padding="5dp"
-            android:text="@={viewmodel.password}"
-            app:layout_constraintEnd_toEndOf="@+id/et_V_CODE"
-            app:layout_constraintStart_toStartOf="@+id/et_V_CODE"
-            app:layout_constraintTop_toBottomOf="@+id/et_V_CODE" />
+            app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
+            app:boxCornerRadiusBottomStart="@dimen/_10sdp"
+            app:boxCornerRadiusTopEnd="@dimen/_10sdp"
+            app:boxCornerRadiusTopStart="@dimen/_10sdp"
+            app:boxStrokeWidth="@dimen/_3sdp"
+            app:boxStrokeWidthFocused="@dimen/_3sdp"
+            app:layout_constraintEnd_toEndOf="@+id/textInputLayout1"
+            app:layout_constraintStart_toStartOf="@+id/textInputLayout1"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout1"
+            app:passwordToggleEnabled="true"
+            app:startIconDrawable="@drawable/ic_mail">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={viewmodel.password}" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <ImageButton
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_anim"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
-            android:background="@color/white"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:background="#ffffff"
+            android:contentDescription="Login Button"
             android:onClick="@{viewmodel::doLogin}"
             android:src="@drawable/btn"
-            app:layout_constraintEnd_toEndOf="@+id/et_New_Password"
-            app:layout_constraintStart_toStartOf="@+id/et_New_Password"
-            app:layout_constraintTop_toBottomOf="@+id/et_New_Password" />
+            app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
+            app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/btn_anim_wheel"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:scaleType="fitCenter"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_anim"
+            app:layout_constraintEnd_toEndOf="@+id/btn_anim"
+            app:layout_constraintStart_toStartOf="@+id/btn_anim"
+            app:layout_constraintTop_toTopOf="@+id/btn_anim"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/btn_yellow_spinner" />
 
         <TextView
             android:id="@+id/btn_forgot_pass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:onClick="@{viewmodel::goToForgotPass}"
+            android:padding="@dimen/_3sdp"
             android:text="Forgot password?"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_anim" />
 
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/sign_in_google"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@+id/linearLayoutCompat2"
@@ -108,13 +147,13 @@
             android:id="@+id/linearLayoutCompat2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_forgot_pass">
+            app:layout_constraintTop_toBottomOf="@+id/btn_forgot_pass"
+            app:layout_constraintVertical_bias="0.925">
 
             <TextView
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Dont have an account?" />
