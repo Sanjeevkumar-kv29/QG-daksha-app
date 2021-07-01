@@ -11,4 +11,6 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="enter_mobile_number">Enter Mobile Number</string>
+    <string name="will_send_otp_to_reset_password">We will send you an OTP to reset your password</string>
 </resources>
