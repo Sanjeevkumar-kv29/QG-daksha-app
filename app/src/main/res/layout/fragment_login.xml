@@ -161,11 +161,12 @@
                     android:layout_gravity="end"
                     android:layout_marginEnd="@dimen/_32sdp"
                     android:text="@string/forgot_password" />
+
                 <ImageButton
                     android:id="@+id/btn_anim"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_50sdp"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:background="#ffffff"
                     android:contentDescription="@string/login_button"
                     android:onClick="@{viewmodel::doLogin}"
@@ -173,8 +174,8 @@
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/btn_anim_wheel"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_100sdp"
                     android:scaleType="fitCenter"
                     android:visibility="gone"
                     app:lottie_autoPlay="true"
