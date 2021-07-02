@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_signUpFrag_to_OtpFrag"
             app:destination="@id/verifyOtpFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"

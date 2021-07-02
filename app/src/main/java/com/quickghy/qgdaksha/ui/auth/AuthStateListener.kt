@@ -25,10 +25,17 @@ interface AuthStateListener {
         fun onFailure(message: String)
 
     }
+
     interface SignUpOtpStateListener {
         fun onSignUpOtpStarted()
         fun onSignUpOtpSuccess(opt: String)
-        fun onSignUpOtpFailure(message: String)
+        fun onResetOtpFailure(message: String)
+    }
+
+    interface ResetPassOtpStateListener {
+        fun onResetPassStarted()
+        fun onResetPassSuccess(opt: String)
+        fun onResetPassFailure(message: String)
     }
 
 }

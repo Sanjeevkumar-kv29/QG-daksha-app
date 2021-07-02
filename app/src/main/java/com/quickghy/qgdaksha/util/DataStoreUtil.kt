@@ -1,4 +1,4 @@
-package com.quickghy.qgdaksha.util.database
+package com.quickghy.qgdaksha.util
 
 import android.content.Context
 import androidx.datastore.preferences.preferencesDataStore

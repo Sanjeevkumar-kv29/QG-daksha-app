@@ -48,7 +48,7 @@ class VerifyOtpFragment : Fragment(), AuthStateListener.SignUpOtpStateListener {
         findNavController().navigate(R.id.action_verifyOtpFragment_to_loginFragment)
     }
 
-    override fun onSignUpOtpFailure(message: String) {
+    override fun onResetOtpFailure(message: String) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
