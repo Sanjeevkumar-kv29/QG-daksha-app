@@ -5,5 +5,3 @@ package com.quickghy.qgdaksha.util
  * @Date: 21-06-2021
  */
 
-interface ApiEndPoints {
-}

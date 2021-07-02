@@ -116,6 +116,7 @@ class AuthViewModel : ViewModel() {
         }
     }
 
+
     fun doVerifyOTP(view: View) {
         resetOtpStateListener?.onSignUpOtpStarted()
         if (otp.isNullOrEmpty() || phone.isNullOrEmpty()) {
