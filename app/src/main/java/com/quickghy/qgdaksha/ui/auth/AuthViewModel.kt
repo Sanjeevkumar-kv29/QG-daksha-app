@@ -75,7 +75,7 @@ class AuthViewModel : ViewModel() {
     }
 
 
-    fun doSendOTP(view: View) {
+    fun doSendOTP (view: View) {
         // Navigation.findNavController(view).navigate()
 
         forgotPasswordStateListner?.onStart()
