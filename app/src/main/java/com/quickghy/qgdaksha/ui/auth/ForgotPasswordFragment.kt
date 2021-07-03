@@ -1,9 +1,11 @@
 package com.quickghy.qgdaksha.ui.auth
 
+import android.hardware.input.InputManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethod
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider

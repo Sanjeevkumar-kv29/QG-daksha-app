@@ -16,222 +16,177 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_elip"
-            android:gravity="center"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/textView2"/>
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_20ssp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-            app:layout_constraintTop_toTopOf="@+id/linearLayout"
-            tools:layout_editor_absoluteX="24dp">
-
-            <ImageView
-                android:layout_width="@dimen/_50ssp"
-                android:layout_height="@dimen/_20ssp"
-                android:layout_gravity="start"
-                android:layout_weight="1"
-                android:src="@drawable/ic_backarrow" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:orientation="horizontal">
+                android:layout_marginTop="-25dp"
+                android:background="@drawable/ic_elip"
+                android:gravity="center"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
-                    android:text="Need help?"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_12ssp"
-                    android:textStyle="bold" />
+                    android:layout_margin="20dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="start"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_backarrow" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Need help?"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
 
-        </LinearLayout>
-
-
-        <TextView
-            android:id="@+id/textView2"
-            style="@style/hey_there_w"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Hey, there!"
-            android:textStyle="bold"
-            android:layout_marginTop="@dimen/_30sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-        <TextView
-            android:id="@+id/textView3"
-            style="@style/hey_there_w"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Welcome back"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/textView2"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-
-        <TextView
-            android:id="@+id/login_here"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10ssp"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Login here with your details"
-            app:layout_constraintEnd_toEndOf="@+id/textView3"
-            app:layout_constraintStart_toStartOf="@+id/textView3"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout1"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_32sdp"
-            android:inputType="phone"
-            android:layout_marginTop="@dimen/_40sdp"
-            app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
-            app:boxCornerRadiusBottomStart="@dimen/_10sdp"
-            app:boxCornerRadiusTopEnd="@dimen/_10sdp"
-            app:boxCornerRadiusTopStart="@dimen/_10sdp"
-            app:boxStrokeWidth="@dimen/_2sdp"
-            app:boxStrokeWidthFocused="@dimen/_2sdp"
-            app:hintEnabled="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login_here"
-            app:startIconCheckable="true"
-            app:startIconDrawable="@drawable/ic_mail">
-
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_phone"
+            <LinearLayout
+                android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
-                android:hint="@string/phone_or_email"
-                android:text="@={viewmodel.phone}" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_22sdp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/hey_there_w"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_40sdp"
+                    android:text="Hey, there!" />
+
+                <TextView
+                    style="@style/hey_there_w"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Welcome back" />
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout2"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/_10sdp"
-            android:layout_marginHorizontal="@dimen/_32sdp"
-            android:autofillHints="password"
-            android:inputType="textPassword"
-            app:boxCornerRadiusBottomEnd="@dimen/_10ssp"
-            app:boxCornerRadiusBottomStart="@dimen/_10ssp"
-            app:boxCornerRadiusTopEnd="@dimen/_10ssp"
-            app:boxCornerRadiusTopStart="@dimen/_10ssp"
-            app:boxStrokeWidth="@dimen/_2ssp"
-            app:boxStrokeWidthFocused="@dimen/_2ssp"
-            app:hintEnabled="false"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout1"
-            app:passwordToggleEnabled="true"
-            app:startIconDrawable="@drawable/ic_password">
+                <TextView
+                    android:id="@+id/login_here"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/_12sdp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Login here with your details" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
-                android:hint="@string/password"
-                android:text="@={viewmodel.password}" />
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout1"
+                    style="@style/customET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    app:startIconDrawable="@drawable/ic_mail">
 
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:hint="@string/phone_or_email"
+                        android:padding="@dimen/_1sdp"
+                        android:text="@={viewmodel.phone}"
+                        android:textSize="@dimen/_10ssp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/btn_forgot_pass"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:onClick="@{viewmodel::goToForgotPass}"
-            android:padding="@dimen/_5sdp"
-            android:text="@string/forgot_password"
-            app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout2"
+                    style="@style/customET_pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:startIconDrawable="@drawable/ic_mail">
 
-        <ImageButton
-            android:id="@+id/btn_anim"
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_100ssp"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="#ffffff"
-            android:contentDescription="@string/login_button"
-            android:onClick="@{viewmodel::doLogin}"
-            android:src="@drawable/btn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_forgot_pass" />
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/btn_anim_wheel"
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_100sdp"
-            android:scaleType="fitCenter"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_forgot_pass"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/btn_yellow_spinner" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:hint="@string/password"
+                        android:padding="@dimen/_1sdp"
+                        android:text="@={viewmodel.password}" />
+                </com.google.android.material.textfield.TextInputLayout>
 
 
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/sign_in_google"
-            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_5ssp"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_anim" />
+                <TextView
+                    android:id="@+id/btn_forgot_pass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:fontFamily="@font/poppins_regular"
+                    android:onClick="@{viewmodel::goToForgotPass}"
+                    android:padding="@dimen/_3sdp"
+                    android:text="@string/forgot_password"
+                    android:textColor="@color/gray" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center|bottom"
-            app:layout_constraintBottom_toBottomOf="parent">
+                <ImageButton
+                    android:id="@+id/btn_anim"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="#ffffff"
+                    android:contentDescription="@string/login_button"
+                    android:onClick="@{viewmodel::doLogin}"
+                    android:src="@drawable/btn" />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/btn_anim_wheel"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/btn_yellow_spinner" />
+
+
+                <com.google.android.gms.common.SignInButton
+                    android:id="@+id/sign_in_google"
+                    style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp" />
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/linearLayoutCompat2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_5sdp">
-
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:padding="@dimen/_3sdp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/dont_have_an_account" />
+                    android:text="@string/dont_have_an_account"
+                    android:textSize="@dimen/_11sdp" />
 
                 <TextView
                     android:id="@+id/btn_go_to_signup"
@@ -239,10 +194,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="@{viewmodel::goToSignUp}"
+                    android:paddingStart="@dimen/_3sdp"
                     android:text="@string/sign_up" />
             </LinearLayout>
-
         </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
