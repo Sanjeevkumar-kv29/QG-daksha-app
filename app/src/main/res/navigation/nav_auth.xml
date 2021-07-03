@@ -32,8 +32,8 @@
         android:label="fragment_forgot_password"
         tools:layout="@layout/fragment_forgot_password">
         <action
-            android:id="@+id/action_forgotPasswordFragment_to_resetPasswordFragment"
-            app:destination="@id/resetPasswordFragment" />
+            android:id="@+id/action_forgotPasswordFragment_to_verifyOtpFragment"
+            app:destination="@id/verifyOtpFragment" />
     </fragment>
 
 <fragment
@@ -44,6 +44,9 @@
     <action
         android:id="@+id/action_verifyOtpFragment_to_loginFragment"
         app:destination="@id/loginFragment" />
+    <action
+        android:id="@+id/action_verifyOtpFragment_to_resetPasswordFragment"
+        app:destination="@id/resetPasswordFragment" />
 </fragment>
     <fragment
         android:id="@+id/resetPasswordFragment"

@@ -20,6 +20,7 @@ class AuthViewModel : ViewModel() {
 
     var phone: String? = null
     var password: String? = null
+    var repassword: String? = null
     var username: String? = null
     var otp: String? = null
 
@@ -72,7 +73,7 @@ class AuthViewModel : ViewModel() {
     }
 
 
-    fun doSendOTP(view: View) {
+    fun doSendOTP (view: View) {
         // Navigation.findNavController(view).navigate()
 
         forgotPasswordStateListner?.onStart()
@@ -89,7 +90,7 @@ class AuthViewModel : ViewModel() {
                 if (forgetResponse.isSuccessful) {
                     forgotPasswordStateListner?.onSuccess(forgetResponse.body()?.opt!!)
                     view.findNavController()
-                        .navigate(R.id.action_forgotPasswordFragment_to_resetPasswordFragment)
+                        .navigate(R.id.action_forgotPasswordFragment_to_verifyOtpFragment)
 
                 }
             }
