@@ -117,7 +117,7 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
         // put api call for login here
         Toast.makeText(context, "login start", Toast.LENGTH_SHORT).show()
         anim_btn.visibility = View.VISIBLE
-        binding.btnAnim.visibility = View.INVISIBLE
+        binding.btnAnim.visibility = View.GONE
         anim_btn.playAnimation()
 
     }
@@ -125,7 +125,7 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
 
     override fun onLoginSuccess(successRes: String) {
         Toast.makeText(context, successRes, Toast.LENGTH_SHORT).show()
-        anim_btn.visibility = View.INVISIBLE
+        anim_btn.visibility = View.GONE
         binding.btnAnim.visibility = View.VISIBLE
         anim_btn.pauseAnimation()
     }
@@ -134,7 +134,7 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
         // display failure message toast
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
         binding.btnAnim.visibility = View.VISIBLE
-        anim_btn.visibility = View.INVISIBLE
+        anim_btn.visibility = View.GONE
         anim_btn.pauseAnimation()
     }
 }
