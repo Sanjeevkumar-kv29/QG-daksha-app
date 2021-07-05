@@ -19,6 +19,22 @@
         android:layout_marginVertical="@dimen/_1sdp"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_20sdp"
+            android:gravity="start"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{viewmodel::goBack"
+                android:src="@drawable/ic_backarrow" />
+
+        </LinearLayout>
+
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -78,6 +94,7 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <TextView
+                android:id="@+id/Resend"
                 style="@style/sign_up"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

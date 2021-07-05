@@ -40,13 +40,11 @@ class ForgotPasswordFragment : Fragment(), AuthStateListener.ForgotPasswordState
         return binding.root
     }
 
-
-    override fun onSuccess(opt: String) {
+    override fun onSuccessForgot(opt: String) {
         context?.toast(opt)
-
     }
 
-    override fun onFailure(message: String) {
+    override fun onFailureForgot(message: String) {
         context?.toast(message)
     }
 

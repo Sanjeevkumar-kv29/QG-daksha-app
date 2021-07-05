@@ -16,26 +16,23 @@ interface AuthStateListener {
         fun onSignUpStarted()
         fun onSignUpSuccess(SignUpResponse: String)
         fun onSignUpFailure(message: String)
-
     }
-
-    interface ForgotPasswordStateListner {
-        fun onStart()
-        fun onSuccess(opt: String)
-        fun onFailure(message: String)
-
-    }
-
     interface SignUpOtpStateListener {
         fun onSignUpOtpStarted()
         fun onSignUpOtpSuccess(opt: String)
         fun onResetOtpFailure(message: String)
     }
 
-    interface ResetPassOtpStateListener {
-        fun onResetPassStarted()
-        fun onResetPassSuccess(opt: String)
-        fun onResetPassFailure(message: String)
+    interface ForgotPasswordStateListner {
+        fun onSuccessForgot(opt: String)
+        fun onFailureForgot(message: String)
     }
+    interface ResetPassOtpStateListener {
+        fun onStartReset()
+        fun onSuccessReset(opt: String)
+        fun onFailReset(message: String)
+    }
+
+
 
 }

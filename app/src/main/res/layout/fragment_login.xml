@@ -15,15 +15,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginBottom="@dimen/_10sdp">
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:background="@drawable/ic_elip"
             android:gravity="center"
-            android:layout_weight="1"
             android:orientation="vertical">
 
             <LinearLayout
@@ -38,6 +38,7 @@
                     android:layout_height="40dp"
                     android:layout_gravity="start"
                     android:layout_weight="1"
+                    android:onClick="@{viewmodel::goBack"
                     android:src="@drawable/ic_backarrow" />
 
                 <LinearLayout
@@ -51,6 +52,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
+                        android:onClick="@{viewmodel::help}"
                         android:text="Need help?"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
@@ -63,8 +65,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="@dimen/_22sdp"
-            android:gravity="center"
             android:layout_weight="3"
+            android:gravity="center"
             android:orientation="vertical">
 
             <TextView
@@ -113,7 +115,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                app:startIconDrawable="@drawable/ic_mail">
+                app:startIconDrawable="@drawable/ic_pass_lock">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_password"
@@ -122,8 +124,8 @@
                     android:fontFamily="@font/poppins_regular"
                     android:hint="@string/password"
                     android:padding="@dimen/_1sdp"
-                    android:textSize="@dimen/_10sdp"
-                    android:text="@={viewmodel.password}" />
+                    android:text="@={viewmodel.password}"
+                    android:textSize="@dimen/_10sdp" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -165,7 +167,7 @@
                 style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/_10sdp"/>
+                android:layout_marginVertical="@dimen/_10sdp" />
 
             <LinearLayout
                 android:id="@+id/linearLayoutCompat2"

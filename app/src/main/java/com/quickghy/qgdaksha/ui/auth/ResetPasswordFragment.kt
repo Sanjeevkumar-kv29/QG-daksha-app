@@ -37,16 +37,15 @@ class ResetPasswordFragment : Fragment(), AuthStateListener.ResetPassOtpStateLis
         return binding.root
     }
 
-
-    override fun onResetPassStarted() {
+    override fun onStartReset() {
         context?.toast("Updating your password")
     }
 
-    override fun onResetPassSuccess(opt: String) {
+    override fun onSuccessReset(opt: String) {
         context?.toast("Success code = $opt")
     }
 
-    override fun onResetPassFailure(message: String) {
+    override fun onFailReset(message: String) {
         context?.toast("Failure: $message")
     }
 

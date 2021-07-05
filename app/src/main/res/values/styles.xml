@@ -3,7 +3,10 @@
 
     <style name="AuthStyle" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:statusBarColor">@color/white</item>
-        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorPrimaryDark">@color/app_yellow</item>
+        <item name="colorPrimary">@color/yellow</item>
+        <item name="colorAccent">@color/ghost_yellow</item>
+        <item name="statusBarBackground">@color/white</item>
     </style>
 
     <style name="Button" parent="Widget.MaterialComponents.Button.TextButton">

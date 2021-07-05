@@ -32,7 +32,6 @@ class VerifyOtpFragment : Fragment(), AuthStateListener.SignUpOtpStateListener {
     ): View {
 
         // val view = inflater.inflate(R.layout.fragment_verify_otp, container, false)
-
         activity.let {
             viewModel = ViewModelProvider(it!!).get(AuthViewModel::class.java)
         }
@@ -67,17 +66,18 @@ class VerifyOtpFragment : Fragment(), AuthStateListener.SignUpOtpStateListener {
     }
 
     override fun onSignUpOtpStarted() {
-        TODO("Not yet implemented")
 //        update ui or do other stuff
+        binding.Resend.isClickable = false
     }
 
     override fun onSignUpOtpSuccess(opt: String) {
-        Toast.makeText(context, "$opt: sign up success!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "$opt: Password reset successfully!", Toast.LENGTH_SHORT).show()
         findNavController().navigate(R.id.action_verifyOtpFragment_to_loginFragment)
     }
 
     override fun onResetOtpFailure(message: String) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+        binding.Resend.isClickable = false
     }
 
 
@@ -152,7 +152,7 @@ class GenericTextWatcher internal constructor(
         arg1: Int,
         arg2: Int,
         arg3: Int
-    ) { // TODO Auto-generated method stub
+    ) {
     }
 
     override fun onTextChanged(
@@ -160,7 +160,7 @@ class GenericTextWatcher internal constructor(
         arg1: Int,
         arg2: Int,
         arg3: Int
-    ) { // TODO Auto-generated method stub
+    ) {
     }
 
 }
