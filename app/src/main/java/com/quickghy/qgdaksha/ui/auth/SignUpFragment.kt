@@ -16,7 +16,7 @@ class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
 
     lateinit var viewModel: AuthViewModel
     lateinit var binding: FragmentSignUpBinding
-    lateinit var anim_btn: LottieAnimationView
+    private lateinit var anim_btn: LottieAnimationView
 
 
     override fun onCreateView(
@@ -24,7 +24,7 @@ class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
         savedInstanceState: Bundle?
     ): View {
 
-        val view = inflater.inflate(R.layout.fragment_sign_up, container, false)
+//        val view = inflater.inflate(R.layout.fragment_sign_up, container, false)
 
         activity.let {
             viewModel = ViewModelProvider(it!!).get(AuthViewModel::class.java)
@@ -38,7 +38,7 @@ class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
         )
 
         binding.viewmodel = viewModel
-        anim_btn = binding.btnGoToSignupWheel
+        anim_btn = binding.btnAnimWheel
 
         viewModel.signUpStateListener = this
 
@@ -50,14 +50,14 @@ class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
         //put api to for
 //        show progress bar here
         anim_btn.visibility = View.VISIBLE
-        binding.btnGoToSignup.visibility = View.INVISIBLE
+        binding.btnAnimSignUp.visibility = View.INVISIBLE
         anim_btn.playAnimation()
     }
 
     override fun onSignUpSuccess(SignUpResponse: String) {
         Toast.makeText(context, SignUpResponse, Toast.LENGTH_SHORT).show()
         anim_btn.visibility = View.INVISIBLE
-        binding.btnGoToSignup.visibility = View.VISIBLE
+        binding.btnAnimSignUp.visibility = View.VISIBLE
         anim_btn.pauseAnimation()
 //        do nav here to the otp screen
     }
@@ -66,7 +66,7 @@ class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
     override fun onSignUpFailure(message: String) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 //        toast error and do nothing else
-        binding.btnGoToSignup.visibility = View.VISIBLE
+        binding.btnAnimSignUp.visibility = View.VISIBLE
         anim_btn.visibility = View.INVISIBLE
         anim_btn.pauseAnimation()
     }

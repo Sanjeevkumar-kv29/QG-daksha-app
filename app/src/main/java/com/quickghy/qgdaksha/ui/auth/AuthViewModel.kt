@@ -24,6 +24,7 @@ class AuthViewModel : ViewModel() {
     var username: String? = null
     var otp: String? = null
 
+
     val key = "DAKSHA_2020"
 
     var signUpStateListener: AuthStateListener.SignUpStateListener? = null
@@ -73,7 +74,7 @@ class AuthViewModel : ViewModel() {
     }
 
 
-    fun doSendOTP (view: View) {
+    fun doSendOTP(view: View) {
         // Navigation.findNavController(view).navigate()
 
         forgotPasswordStateListner?.onStart()

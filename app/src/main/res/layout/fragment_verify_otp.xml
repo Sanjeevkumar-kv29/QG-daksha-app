@@ -58,27 +58,27 @@
                     android:weightSum="6">
 
                     <EditText
-                        android:id="@+id/otp_et1"
+                        android:id="@+id/otpET1"
                         style="@style/customET_OTP" />
 
                     <EditText
-                        android:id="@+id/otp_et2"
+                        android:id="@+id/otpET2"
                         style="@style/customET_OTP" />
 
                     <EditText
-                        android:id="@+id/otp_et3"
+                        android:id="@+id/otpET3"
                         style="@style/customET_OTP" />
 
                     <EditText
-                        android:id="@+id/otp_et4"
+                        android:id="@+id/otpET4"
                         style="@style/customET_OTP" />
 
                     <EditText
-                        android:id="@+id/otp_et5"
+                        android:id="@+id/otpET5"
                         style="@style/customET_OTP" />
 
                     <EditText
-                        android:id="@+id/otp_et6"
+                        android:id="@+id/otpET6"
                         style="@style/customET_OTP" />
 
 

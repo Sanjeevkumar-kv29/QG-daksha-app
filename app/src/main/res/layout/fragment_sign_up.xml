@@ -135,14 +135,14 @@
 
 
                 <ImageButton
-                    android:id="@+id/btn_anim"
+                    android:id="@+id/btn_anim_signUp"
                     android:layout_width="@dimen/_100sdp"
                     android:layout_height="@dimen/_100sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="#ffffff"
                     android:contentDescription="@string/login_button"
                     android:onClick="@{viewmodel::doSignUp}"
-                    android:src="@drawable/btn" />
+                    android:src="@drawable/btn"/>
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/btn_anim_wheel"
