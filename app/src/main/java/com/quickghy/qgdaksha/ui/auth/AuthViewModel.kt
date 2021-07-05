@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 //authViewModel is responsible for LoginFrag, SignUpFrag, VerifyOtpFrag screens
 class AuthViewModel : ViewModel() {
 
+    var fullname: String? = null
     var phone: String? = null
     var password: String? = null
     var username: String? = null

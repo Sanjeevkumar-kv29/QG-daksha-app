@@ -15,33 +15,35 @@
         android:layout_height="match_parent"
         tools:context=".ui.auth.SignUpFragment">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="-25dp"
                 android:background="@drawable/ic_elip"
                 android:gravity="center"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
                     android:gravity="center"
+                    android:layout_margin="@dimen/_20sdp"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="40dp"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_30sdp"
                         android:layout_gravity="start"
                         android:layout_weight="1"
                         android:src="@drawable/ic_backarrow" />
@@ -56,125 +58,228 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_regular"
                             android:text="Need help?"
+                            android:fontFamily="@font/poppins_regular"
                             android:textColor="@color/black"
                             android:textSize="15dp"
-                            />
+                            android:textStyle="bold" />
 
                     </LinearLayout>
                 </LinearLayout>
+            </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_signup"
+            style="@style/hey_there_w"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:text="Sign Up" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_25sdp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Let's get started with your details" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_32sdp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:inputType="text"
+                app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_10sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_10sdp"
+                app:boxCornerRadiusTopStart="@dimen/_10sdp"
+                app:boxStrokeWidth="@dimen/_2sdp"
+                app:boxStrokeWidthFocused="@dimen/_2sdp"
+                app:hintEnabled="false"
+                app:startIconCheckable="true"
+                android:backgroundTint="#E5E5E5"
+                app:startIconDrawable="@drawable/ic_person">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_fullname"
+                    android:layout_width="match_parent"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/fullname"
+                    android:text="@={viewmodel.fullname}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_32sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:inputType="text"
+                app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_10sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_10sdp"
+                app:boxCornerRadiusTopStart="@dimen/_10sdp"
+                app:boxStrokeWidth="@dimen/_2sdp"
+                app:boxStrokeWidthFocused="@dimen/_2sdp"
+                app:hintEnabled="false"
+                app:startIconCheckable="true"
+                app:startIconDrawable="@drawable/ic_phone">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_phonenumber"
+                    android:layout_width="match_parent"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/phone"
+                    android:text="@={viewmodel.fullname}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_32sdp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:inputType="text"
+                app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_10sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_10sdp"
+                app:boxCornerRadiusTopStart="@dimen/_10sdp"
+                app:boxStrokeWidth="@dimen/_2sdp"
+                app:boxStrokeWidthFocused="@dimen/_2sdp"
+                app:hintEnabled="false"
+                app:startIconCheckable="true"
+                app:startIconDrawable="@drawable/ic_password">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_password"
+                    android:layout_width="match_parent"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password"
+                    android:text="@={viewmodel.fullname}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_32sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:inputType="text"
+                app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_10sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_10sdp"
+                app:boxCornerRadiusTopStart="@dimen/_10sdp"
+                app:boxStrokeWidth="@dimen/_2sdp"
+                app:boxStrokeWidthFocused="@dimen/_2sdp"
+                app:hintEnabled="false"
+                app:startIconCheckable="true"
+                app:startIconDrawable="@drawable/ic_password">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_confirmpassword"
+                    android:layout_width="match_parent"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/confirm_password"
+                    android:text="@={viewmodel.fullname}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <CheckBox
+                    android:id="@+id/checkBox"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="I accept the" />
+
+                <TextView
+                    android:id="@+id/termofuse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/red"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text=" Terms of use &amp; Privacy Policy " />
 
 
             </LinearLayout>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <ImageButton
+            android:id="@+id/btn_go_to_signup"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:background="#ffffff"
+            android:contentDescription="@string/login_button"
+            android:onClick="@{viewmodel::doSignUp}"
+                android:layout_margin="@dimen/_10sdp"
+            android:src="@drawable/btn"/>
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/btn_go_to_signup_wheel"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:scaleType="fitCenter"
+            android:layout_margin="@dimen/_10sdp"
+            android:visibility="gone"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/btn_yellow_spinner" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center|bottom">
+
+            <LinearLayout
+                android:id="@+id/linearLayoutCompat2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/txt_signup"
-                    style="@style/hey_there_w"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_60sdp"
-                    android:text="Sign Up"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Lets' get started with your details"
-                    android:gravity="bottom"/>
-
-                <EditText
-                    android:id="@+id/editTextTextPersonName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:ems="10"
-                    android:hint="Name"
-                    android:inputType="textPersonName"
-                    android:text="@={viewmodel.username}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_signup" />
+                android:padding="@dimen/_5sdp">
 
 
-                <EditText
-                    android:id="@+id/textInputLayout1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:autofillHints="phone"
-                    android:ems="10"
-                    android:hint="Phone"
-                    android:inputType="phone"
-                    android:text="@={viewmodel.phone}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dont_have_an_account" />
 
+            <TextView
+                android:id="@+id/btn_go_to_login"
+                style="@style/sign_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{viewmodel::goToLogin}"
+                android:text="Login" />
 
-                <EditText
-                    android:id="@+id/et_New_Password"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:autofillHints="password"
-                    android:ems="10"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:text="@={viewmodel.password}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout1" />
+            </LinearLayout>
 
+            </LinearLayout>
 
-                <ImageButton
-                    android:id="@+id/btn_anim"
-                    android:layout_width="@dimen/_100sdp"
-                    android:layout_height="@dimen/_100sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:background="#ffffff"
-                    android:contentDescription="@string/login_button"
-                    android:onClick="@{viewmodel::doSignUp}"
-                    android:src="@drawable/btn" />
+        </LinearLayout>
 
-                <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/btn_anim_wheel"
-                    android:layout_width="@dimen/_100sdp"
-                    android:layout_height="@dimen/_100sdp"
-                    android:scaleType="fitCenter"
-                    android:visibility="gone"
-                    app:lottie_autoPlay="true"
-                    app:lottie_loop="true"
-                    app:lottie_rawRes="@raw/btn_yellow_spinner" />
+        </LinearLayout>
 
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/linearLayoutCompat2"
-                    android:layout_width="wrap_content"
-                    android:layout_gravity="center|bottom"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/dont_have_an_account" />
-
-                    <TextView
-                        android:id="@+id/btn_go_to_login"
-                        style="@style/sign_up"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="@{viewmodel::goToLogin}"
-                        android:padding="@dimen/_2sdp"
-                        android:text="Login" />
-                </androidx.appcompat.widget.LinearLayoutCompat>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-        </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
