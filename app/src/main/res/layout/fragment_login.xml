@@ -16,18 +16,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginBottom="@dimen/_10sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginBottom="@dimen/_10sdp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-25dp"
             android:background="@drawable/ic_elip"
             android:gravity="center"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <LinearLayout
@@ -64,11 +60,11 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_marginHorizontal="@dimen/_22sdp"
             android:gravity="center"
+            android:layout_weight="3"
             android:orientation="vertical">
 
             <TextView
