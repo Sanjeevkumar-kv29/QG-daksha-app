@@ -122,6 +122,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:hint="@string/password"
                     android:padding="@dimen/_1sdp"
+                    android:textSize="@dimen/_10sdp"
                     android:text="@={viewmodel.password}" />
             </com.google.android.material.textfield.TextInputLayout>
 
