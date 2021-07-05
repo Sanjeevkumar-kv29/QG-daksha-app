@@ -15,5 +15,6 @@
     <color name="app_gray">#1E1E24</color>
     <color name="app_yellow">#FFA200</color>
     <color name="yellow">#FFDD00</color>
+    <color name="yellow_1">#FFBF00</color>
     <color name="ghost_yellow">#FFF59D</color>
 </resources>

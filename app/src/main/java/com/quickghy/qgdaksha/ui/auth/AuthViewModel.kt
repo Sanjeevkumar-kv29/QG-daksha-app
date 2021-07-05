@@ -26,6 +26,7 @@ class AuthViewModel : ViewModel() {
     var otp: String? = null
 
 
+
     val key = "DAKSHA_2020"
 
     var signUpStateListener: AuthStateListener.SignUpStateListener? = null
@@ -93,7 +94,6 @@ class AuthViewModel : ViewModel() {
                     forgotPasswordStateListner?.onSuccess(forgetResponse.body()?.opt!!)
                     view.findNavController()
                         .navigate(R.id.action_forgotPasswordFragment_to_verifyOtpFragment)
-
                 }
             }
         }
