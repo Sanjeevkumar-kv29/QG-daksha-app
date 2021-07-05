@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">QGDaksha</string>
     <string name="forgot_pass_enter_mob">Forgot Pass, enter mob.</string>
-    <string name="phone">phone</string>
+    <string name="phone">Phone Number</string>
     <string name="send_verification_code">Send verification code</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hey_there_w"><br>Hey, there!</br> Welcome back</string>
@@ -15,8 +15,10 @@
     <string name="will_send_otp_to_reset_password">We will send you an OTP to reset your password</string>
     <string name="phone_or_email">Phone or Email</string>
     <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
     <string name="login_button">Login Button</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="dont_have_an_account">Dont have an account?</string>
     <string name="sign_up">Sign Up</string>
+    <string name="fullname">Full Name </string>
 </resources>
