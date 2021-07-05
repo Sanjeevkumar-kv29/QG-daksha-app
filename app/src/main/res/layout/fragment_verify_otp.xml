@@ -16,38 +16,98 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/txt_enter_otp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="113dp"
-            android:text="Enter otp to verify"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayoutCompat3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/_35sdp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/et_otp_signup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="4"
-            android:hint="otp"
-            android:text="@{viewmodel.otp}"
-            android:inputType="number"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_enter_otp" />
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"
+                android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btn_verify_otp_signup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Verify otp"
-            android:onClick="@{viewmodel::doVerifyOTP}"
-            app:layout_constraintEnd_toEndOf="@+id/et_otp_signup"
-            app:layout_constraintStart_toStartOf="@+id/et_otp_signup"
-            app:layout_constraintTop_toBottomOf="@+id/et_otp_signup" />
+                <TextView
+                    android:id="@+id/txt_enter_mob_numb"
+                    style="@style/hey_there_w"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_90sdp"
+                    android:text="Enter Code" />
 
+                <TextView
+                    android:id="@+id/txt_forgot_pass_enter_mob"
+                    style="@style/login_here"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:letterSpacing=".01"
+                    android:text="We have sent you an SMS with the code to your phone number"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/_10ssp" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/_15sdp"
+                    android:weightSum="6">
+
+                    <EditText
+                        android:id="@+id/otp_et1"
+                        style="@style/customET_OTP" />
+
+                    <EditText
+                        android:id="@+id/otp_et2"
+                        style="@style/customET_OTP" />
+
+                    <EditText
+                        android:id="@+id/otp_et3"
+                        style="@style/customET_OTP" />
+
+                    <EditText
+                        android:id="@+id/otp_et4"
+                        style="@style/customET_OTP" />
+
+                    <EditText
+                        android:id="@+id/otp_et5"
+                        style="@style/customET_OTP" />
+
+                    <EditText
+                        android:id="@+id/otp_et6"
+                        style="@style/customET_OTP" />
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <TextView
+                    style="@style/sign_up"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Re-send OTP? (30)" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|bottom">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_send_v_code"
+                    style="@style/wide_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{viewmodel::doVerifyOTP}"
+                    android:text="Verify" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AuthStyle" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="customET_pass" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusBottomEnd">@dimen/_10sdp</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/_10sdp</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/_10sdp</item>
+        <item name="boxCornerRadiusTopStart">@dimen/_10sdp</item>
+        <item name="startIconCheckable">true</item>
+        <item name="hintEnabled">false</item>
+        <item name="android:autofillHints">"password"</item>
+        <item name="android:inputType">textPassword</item>
+        <item name="boxStrokeWidth">@dimen/_2sdp</item>
+        <item name="boxStrokeWidthFocused">@dimen/_2sdp</item>
+        <item name="passwordToggleEnabled">true</item>
+    </style>
+
+
+</resources>
