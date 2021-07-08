@@ -26,6 +26,7 @@ class AuthViewModel : ViewModel() {
     var username: String? = null
     var otp: String? = null
 
+    var tnc_flag: Boolean = false
     var countdown = 30
     var resendText = "Resend OTP? $countdown"
 
@@ -53,9 +54,10 @@ class AuthViewModel : ViewModel() {
         view.findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
     }
 
-    fun help(view: View){
+    fun help(view: View) {
         view.findNavController().navigate(R.id.helpFragment)
     }
+
     fun doLogin(view: View) {
         // Sanjeevs @TODO
 
@@ -112,7 +114,11 @@ class AuthViewModel : ViewModel() {
 
         signUpStateListener?.onSignUpStarted()
         if (phone.isNullOrEmpty() or password.isNullOrEmpty() or username.isNullOrEmpty()) {
-            signUpStateListener?.onSignUpFailure("Fields Can't be empty")
+            signUpStateListener?.onSignUpFailure("Fields Can't be empty.")
+        } else if (!password.equals(repassword)) {
+            signUpStateListener?.onSignUpFailure("Passwords do not match.")
+        } else if (!tnc_flag) {
+            signUpStateListener?.onSignUpFailure("Please accept T&C")
         } else {
             viewModelScope.launch {
                 val signUpResponse =
@@ -177,6 +183,10 @@ class AuthViewModel : ViewModel() {
     fun goBackToForgot(view: View) {
         view.findNavController()
             .popBackStack(R.id.action_resetPasswordFragment_to_loginFragment, false)
+    }
+
+    fun updatetncflag(view: View) {
+        tnc_flag = !tnc_flag
     }
 
     fun finishThisAndGoToHome() {

@@ -61,7 +61,7 @@
         android:id="@+id/helpFragment"
         android:name="com.quickghy.qgdaksha.HelpFragment"
         android:label="fragment_help"
-        tools:layout="@layout/fragment_help" >
+        tools:layout="@layout/fragment_help">
         <action
             android:id="@+id/action_helpFragment_to_loginFragment"
             app:popUpTo="@id/loginFragment" />

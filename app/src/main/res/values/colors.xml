@@ -17,4 +17,6 @@
     <color name="yellow">#FFDD00</color>
     <color name="yellow_1">#FFBF00</color>
     <color name="ghost_yellow">#FFF59D</color>
+    <color name="red_hot">#FF1717</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>
