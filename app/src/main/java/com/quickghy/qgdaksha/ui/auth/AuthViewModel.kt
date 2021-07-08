@@ -2,8 +2,13 @@ package com.quickghy.qgdaksha.ui.auth
 
 import android.view.View
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.navigation.findNavController
+import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.data.auth.repositories.AuthUserRepository
-import com.quickghy.qgdaksha.util.Coroutines
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+
 
 /**
  * @Author: Shubham Rimjha, Sanjeev Kumar
@@ -14,38 +19,63 @@ import com.quickghy.qgdaksha.util.Coroutines
 //authViewModel is responsible for LoginFrag, SignUpFrag, VerifyOtpFrag screens
 class AuthViewModel : ViewModel() {
 
+    var fullname: String? = null
     var phone: String? = null
     var password: String? = null
+    var repassword: String? = null
     var username: String? = null
     var otp: String? = null
+
+    var countdown = 30
+    var resendText = "Resend OTP? $countdown"
+
+    //if otp for sign up needed, use flag 1, for password reset use flag 0
+    var flagForOTP = 0
 
     val key = "DAKSHA_2020"
 
     var signUpStateListener: AuthStateListener.SignUpStateListener? = null
+    var signUpOtpListener: AuthStateListener.SignUpOtpStateListener? = null
     var loginStateListener: AuthStateListener.LoginStateListener? = null
     var forgotPasswordStateListner: AuthStateListener.ForgotPasswordStateListner? = null
-    var signUpOtpStateListener: AuthStateListener.SignUpOtpStateListener? = null
+    var resetOtpStateListener: AuthStateListener.ResetPassOtpStateListener? = null
 
+    fun goToSignUp(view: View) {
+        view.findNavController().navigate(R.id.action_loginFrag_to_signUpFrag)
+    }
 
-    fun onLoginButtonClicked(view: View) {
+    fun goToForgotPass(view: View) {
+        flagForOTP = 1
+        view.findNavController().navigate(R.id.action_loginFrag_to_forgotPassFrag)
+    }
+
+    fun goToLogin(view: View) {
+        view.findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
+    }
+
+    fun help(view: View){
+        view.findNavController().navigate(R.id.helpFragment)
+    }
+    fun doLogin(view: View) {
         // Sanjeevs @TODO
-
-        loginStateListener?.onLoginStarted()
 
         if (phone.isNullOrEmpty() or password.isNullOrEmpty()) {
             loginStateListener?.onLoginFailure("Fields Can't be empty")
             return
         } else {
+            loginStateListener?.onLoginStarted()
             // val loginResponse = AuthUserRepository().userLogin(phone!!, password!!,key) //tight cuppeld we just remove is using DI
             //loginStateListener?.onLoginSuccess(loginResponse)
-
-            Coroutines.main {
+            viewModelScope.launch {
                 val loginResponse = AuthUserRepository().userLogin(phone!!, password!!, key)
                 if (loginResponse.isSuccessful) {
                     if (loginResponse.body()?.user_id == "error") {
                         loginStateListener?.onLoginFailure(loginResponse.body()?.opt!!)
                     } else {
                         loginStateListener?.onLoginSuccess(loginResponse.body()?.opt!!)
+
+                        // this is the exit point from this activity.
+                        finishThisAndGoToHome()//-----------------------------------------
                     }
 
                 }
@@ -55,24 +85,22 @@ class AuthViewModel : ViewModel() {
 
     }
 
-    fun onForgotPasswordButtonClicked(view: View) {
-        // Navigation.findNavController(view).navigate()
 
-        forgotPasswordStateListner?.onStart()
+    fun doSendOTP(view: View) {
 
         if (phone.isNullOrEmpty()) {
-            forgotPasswordStateListner?.onFailure("Fields Can't be empty")
+            forgotPasswordStateListner?.onFailureForgot("Fields Can't be empty")
             return
         } else {
             // val loginResponse = AuthUserRepository().userLogin(phone!!, password!!,key) //tight cuppeld we just remove is using DI
             //loginStateListener?.onLoginSuccess(loginResponse)
 
-            Coroutines.main {
+            viewModelScope.launch {
                 val forgetResponse = AuthUserRepository().userForgetPass(phone!!, key)
                 if (forgetResponse.isSuccessful) {
-
-                    forgotPasswordStateListner?.onSuccess(forgetResponse.body()?.opt!!)
-
+                    forgotPasswordStateListner?.onSuccessForgot(forgetResponse.body()?.opt!!)
+                    view.findNavController()
+                        .navigate(R.id.action_forgotPasswordFragment_to_verifyOtpFragment)
                 }
             }
         }
@@ -80,41 +108,100 @@ class AuthViewModel : ViewModel() {
     }
 
 
-    fun onSignUpButtonClicked(view: View) {
+    fun doSignUp(view: View) {
 
         signUpStateListener?.onSignUpStarted()
         if (phone.isNullOrEmpty() or password.isNullOrEmpty() or username.isNullOrEmpty()) {
             signUpStateListener?.onSignUpFailure("Fields Can't be empty")
         } else {
-            Coroutines.main {
-
+            viewModelScope.launch {
                 val signUpResponse =
                     AuthUserRepository().userSignUp(username!!, phone!!, password!!, key)
 
-                if (signUpResponse.body()?.opt is Int) {//if the response opt is a number, it is success
+                if (signUpResponse.isSuccessful) {//if the response opt is a number, it is success
                     signUpStateListener?.onSignUpSuccess(signUpResponse.body()?.opt.toString())
-                } else if (signUpResponse.body()?.opt !is Int) {
-                    signUpStateListener?.onSignUpFailure(signUpResponse.body()?.opt.toString())
+                    view.findNavController().navigate(R.id.action_signUpFrag_to_OtpFrag)
                 }
             }
         }
     }
 
-    fun onVerifyOtpButtonClicked(view: View) {
 
-        signUpOtpStateListener?.onSignUpOtpStarted()
-        if (otp.isNullOrEmpty() || phone.isNullOrEmpty()) {
-            signUpOtpStateListener?.onSignUpOtpFailure("Enter otp")
-        } else {
-            Coroutines.main {
+    fun doVerifyOTP(view: View) {
+
+        if (flagForOTP == 1) {
+            //opens password reset screen
+            resetOtpStateListener?.onStartReset()
+            viewModelScope.launch { doCountdown() }
+            if (otp.isNullOrEmpty() || otp!!.length < 6) {
+                resetOtpStateListener?.onFailReset("Enter correct otp")
+            } else {
+                //go to reset screen
+                view.findNavController()
+                    .navigate(R.id.action_verifyOtpFragment_to_resetPasswordFragment)
+            }
+        } else if (flagForOTP == 0) {
+            //results in sign up success.
+            viewModelScope.launch {
                 val signUpOtpResponse = AuthUserRepository().userSignUpOtp(phone!!, otp!!, key)
-
-                if (signUpOtpResponse.body()?.opt !is String) {//if the response opt is a number, it is success and a access_token should be stored here
-                    signUpStateListener?.onSignUpSuccess(signUpOtpResponse.body()?.opt.toString())
-                } else if (signUpOtpResponse.body()?.opt is String) {
-                    signUpStateListener?.onSignUpFailure(signUpOtpResponse.body()?.opt.toString())
+                if (signUpOtpResponse.isSuccessful) {//if the response opt is success, password has been reset.
+                    signUpStateListener?.onSignUpSuccess(signUpOtpResponse.body()?.access_token.toString())
+                    putaccesstokenintoDB(signUpOtpResponse.body()?.access_token.toString())
+                    finishThisAndGoToHome()//go to home activity.
                 }
             }
         }
+    }
+
+
+    fun doUpdatePass(view: View) {
+        if (password.isNullOrEmpty() || repassword.isNullOrEmpty() || !password.equals(repassword)) {
+            resetOtpStateListener?.onFailReset("OTP or Password incorrect")
+        } else {
+            viewModelScope.launch {
+                val signUpOtpResponse =
+                    AuthUserRepository().userResetPass(phone!!, otp!!, password!!, key)
+                if (signUpOtpResponse.isSuccessful) {//if the response opt is a numb// er, it is success
+                    resetOtpStateListener?.onSuccessReset(signUpOtpResponse.body()?.opt.toString())
+                    view.findNavController()
+                        .navigate(R.id.action_verifyOtpFragment_to_loginFragment)
+                }
+            }
+        }
+    }
+
+    fun goBack(view: View) {
+        view.findNavController().popBackStack()
+    }
+
+    fun goBackToForgot(view: View) {
+        view.findNavController()
+            .popBackStack(R.id.action_resetPasswordFragment_to_loginFragment, false)
+    }
+
+    fun finishThisAndGoToHome() {
+        //this is where you navigate to the home page...--------------------------------------------
+        // also save the user into the dataStore here
+    }
+
+    private fun putaccesstokenintoDB(toString: String) {
+        //call DB
+    }
+
+
+    suspend fun doCountdown() {
+        while (countdown > 0) {
+            countdown--
+            resendText = "Resend OTP? ($countdown)"
+            delay(1000)
+            if (countdown == 1) {
+                resetCountdown()
+                break
+            }
+        }
+    }
+
+    private fun resetCountdown() {
+        countdown = 30
     }
 }

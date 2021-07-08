@@ -9,8 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentResetPasswordBinding
+import com.quickghy.qgdaksha.util.toast
 
-class ResetPasswordFragment : Fragment() {
+class ResetPasswordFragment : Fragment(), AuthStateListener.ResetPassOtpStateListener {
 
     lateinit var viewModel: AuthViewModel
     lateinit var binding: FragmentResetPasswordBinding
@@ -19,17 +20,34 @@ class ResetPasswordFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        // Inflate the layout for this fragment
-        binding =
-            DataBindingUtil.setContentView(requireActivity(), R.layout.fragment_reset_password)
+        val view = inflater.inflate(R.layout.fragment_reset_password, container, false)
 
         activity.let {
             viewModel = ViewModelProvider(it!!).get(AuthViewModel::class.java)
         }
-        binding.viewmodel = viewModel
 
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_reset_password,
+            container,
+            false
+        )
+
+        binding.viewmodel = viewModel
         return binding.root
     }
+
+    override fun onStartReset() {
+        context?.toast("Updating your password")
+    }
+
+    override fun onSuccessReset(opt: String) {
+        context?.toast("Success code = $opt")
+    }
+
+    override fun onFailReset(message: String) {
+        context?.toast("Failure: $message")
+    }
+
 
 }

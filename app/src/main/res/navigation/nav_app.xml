@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_app"
+    app:startDestination="@id/auth_activity">
+
+    <activity android:id="@+id/auth_activity"
+        android:label="Auth Activity"
+        android:name="com.quickghy.qgdaksha.ui.auth.MainActivity"/>
+    <activity
+        android:id="@+id/dash_activity"
+        android:name="com.quickghy.qgdaksha.ui.dash.DashActivity"
+        android:label="Dash Activity" />
+</navigation>

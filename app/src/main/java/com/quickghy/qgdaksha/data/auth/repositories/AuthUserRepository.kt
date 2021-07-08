@@ -1,10 +1,8 @@
 package com.quickghy.qgdaksha.data.auth.repositories
 
+import com.internshala.booky.database.UserEntity
 import com.quickghy.qgdaksha.data.auth.network.MainApis
-import com.quickghy.qgdaksha.data.auth.network.Response.AuthForgetPasswordResponse
-import com.quickghy.qgdaksha.data.auth.network.Response.AuthLoginResponse
-import com.quickghy.qgdaksha.data.auth.network.Response.AuthSignUpOtpResponse
-import com.quickghy.qgdaksha.data.auth.network.Response.AuthSignUpResponse
+import com.quickghy.qgdaksha.data.auth.network.Response.*
 import retrofit2.Response
 
 /**
@@ -60,6 +58,15 @@ class AuthUserRepository {
         daksha_key: String
     ): Response<AuthForgetPasswordResponse> {
         return MainApis().userForgetPass(mobile, daksha_key)
+    }
+
+    suspend fun userResetPass(
+        mobile: String,
+        otp: String,
+        password: String,
+        daksha_key: String
+    ): Response<AuthPasswordResetRespones> {
+        return MainApis().userResetPass(mobile, otp, password, daksha_key)
     }
 
 

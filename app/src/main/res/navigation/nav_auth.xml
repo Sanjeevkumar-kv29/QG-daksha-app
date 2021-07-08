@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_signUpFrag_to_OtpFrag"
             app:destination="@id/verifyOtpFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
@@ -29,32 +32,39 @@
         android:label="fragment_forgot_password"
         tools:layout="@layout/fragment_forgot_password">
         <action
-            android:id="@+id/action_forgotPasswordFragment_to_resetPasswordFragment"
-            app:destination="@id/resetPasswordFragment" />
+            android:id="@+id/action_forgotPasswordFragment_to_verifyOtpFragment"
+            app:destination="@id/verifyOtpFragment" />
     </fragment>
 
-<fragment
-    android:id="@+id/verifyOtpFragment"
-    android:name="com.quickghy.qgdaksha.ui.auth.VerifyOtpFragment"
-    android:label="fragment_verify_otp"
-    tools:layout="@layout/fragment_verify_otp" >
-    <action
-        android:id="@+id/action_verifyOtpFragment_to_loginFragment"
-        app:destination="@id/loginFragment" />
-</fragment>
+    <fragment
+        android:id="@+id/verifyOtpFragment"
+        android:name="com.quickghy.qgdaksha.ui.auth.VerifyOtpFragment"
+        android:label="fragment_verify_otp"
+        tools:layout="@layout/fragment_verify_otp">
+        <action
+            android:id="@+id/action_verifyOtpFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_verifyOtpFragment_to_resetPasswordFragment"
+            app:destination="@id/resetPasswordFragment" />
+    </fragment>
     <fragment
         android:id="@+id/resetPasswordFragment"
         android:name="com.quickghy.qgdaksha.ui.auth.ResetPasswordFragment"
         android:label="fragment_reset_password"
-        tools:layout="@layout/fragment_reset_password" >
+        tools:layout="@layout/fragment_reset_password">
         <action
             android:id="@+id/action_resetPasswordFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/helpFragment"
+        android:name="com.quickghy.qgdaksha.HelpFragment"
+        android:label="fragment_help"
+        tools:layout="@layout/fragment_help" >
+        <action
+            android:id="@+id/action_helpFragment_to_loginFragment"
+            app:popUpTo="@id/loginFragment" />
+    </fragment>
 
-    <!--<fragment
-        android:id="@+id/VCodeFragment"
-        android:name="com.quickghy.qgdaksha.VCodeFragment"
-        android:label="fragment_v_code"
-        tools:layout="@layout/fragment_reset_password" /> -->
 </navigation>

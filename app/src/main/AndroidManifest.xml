@@ -13,7 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QGDaksha">
-        <activity android:name="com.quickghy.qgdaksha.ui.auth.MainActivity">
+        <activity
+            android:name=".ui.dash.DashActivity"
+            android:label="@string/title_activity_dash" />
+
+        <activity android:name=".ui.auth.MainActivity"
+            android:theme="@style/AuthStyle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
