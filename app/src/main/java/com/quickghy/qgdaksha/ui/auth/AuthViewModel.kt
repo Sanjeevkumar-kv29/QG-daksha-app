@@ -125,8 +125,13 @@ class AuthViewModel : ViewModel() {
                     AuthUserRepository().userSignUp(username!!, phone!!, password!!, key)
 
                 if (signUpResponse.isSuccessful) {//if the response opt is a number, it is success
-                    signUpStateListener?.onSignUpSuccess(signUpResponse.body()?.opt.toString())
-                    view.findNavController().navigate(R.id.action_signUpFrag_to_OtpFrag)
+                    if (signUpResponse.body()?.opt.toString() == "Already Registered Phone Number") signUpStateListener?.onSignUpFailure(
+                        signUpResponse.body()?.opt.toString()
+                    )
+                    else {
+                        signUpStateListener?.onSignUpSuccess(signUpResponse.body()?.opt.toString())
+                        view.findNavController().navigate(R.id.action_signUpFrag_to_OtpFrag)
+                    }
                 }
             }
         }
@@ -169,11 +174,12 @@ class AuthViewModel : ViewModel() {
             viewModelScope.launch {
                 val signUpOtpResponse =
                     AuthUserRepository().userResetPass(phone!!, otp!!, password!!, key)
-                if (signUpOtpResponse.isSuccessful) {//if the response opt is a numb// er, it is success
+                if (signUpOtpResponse.body()?.opt.toString() == "1") {//if the response opt is a numb// er, it is success
                     resetOtpStateListener?.onSuccessReset(signUpOtpResponse.body()?.opt.toString())
                     view.findNavController()
                         .navigate(R.id.action_resetPasswordFragment_to_loginFragment)
-                }
+                } else
+                    resetOtpStateListener?.onFailReset("Password Update failed...")
             }
         }
     }

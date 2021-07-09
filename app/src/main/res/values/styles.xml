@@ -52,7 +52,6 @@
     </style>
 
     <style name="customInputTxt">
-        <item name="android:inputType">textPassword</item>
         <item name="fontFamily">@font/poppins_regular</item>
         <item name="android:padding">1dp</item>
         <item name="android:textSize">@dimen/_10ssp</item>

@@ -19,7 +19,31 @@
         android:layout_marginBottom="@dimen/_10sdp"
         android:orientation="vertical">
 
-        <include layout="@layout/bar_log_sign" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_80sdp"
+            android:background="@drawable/ic_elip"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:onClick="@{viewmodel::help}"
+                    android:text="Need help?"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -99,8 +123,9 @@
                 android:textColor="@color/gray" />
 
             <FrameLayout
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_100sdp">
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="@dimen/_90sdp">
 
                 <ImageButton
                     android:id="@+id/btn_anim"
