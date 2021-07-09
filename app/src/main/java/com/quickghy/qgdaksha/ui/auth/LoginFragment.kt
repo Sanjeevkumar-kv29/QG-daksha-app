@@ -76,7 +76,6 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
                 .build()
 
         val mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso!!)
-        binding.signInGoogle.setSize(SignInButton.SIZE_ICON_ONLY)
 
         binding.signInGoogle.setOnClickListener {
 

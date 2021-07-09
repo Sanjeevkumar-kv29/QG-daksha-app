@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.dash.ProfileFragment">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.quickghy.qgdaksha.ui.auth.AuthViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/_1sdp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_if_signed_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/profile_txt1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Himanta Biswa Sarma"
+                app:drawableEndCompat="@drawable/ic_edit" />
+
+
+            <TextView
+                style="@style/profile_txt2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="+91 9999999999"
+                app:drawableStartCompat="@drawable/ic_phone" />
+
+            <TextView
+                style="@style/profile_txt2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/_2sdp"
+                android:text="himanta@biswa.com"
+                app:drawableStartCompat="@drawable/ic_mail"
+                app:drawableTint="@color/gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    style="@style/profile_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle_2"
+                    android:text="My Orders"
+                    app:drawableStartCompat="@drawable/ic_pass_lock" />
+
+
+                <TextView
+                    style="@style/profile_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle_2"
+                    android:text="My Address"
+                    app:drawableStartCompat="@drawable/ic_pass_lock" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_if_unsigned"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_11sdp"
+                android:contentDescription="illustration"
+                android:src="@drawable/ic_mobile_otp_illustration" />
+
+            <android.widget.Button
+                style="@style/wide_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/_35sdp"
+                android:text="Login" />
+
+            <TextView
+                style="@style/profile_sign_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sign_up" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/profile_settings"
+                style="@style/profile_list_item"
+                android:text="Settings"
+                app:drawableEndCompat="@drawable/ic_right_arrow"
+                app:drawableStartCompat="@drawable/ic_profile_settings" />
+
+            <View style="@style/profile_line" />
+
+            <TextView
+                android:id="@+id/profile_blog"
+                style="@style/profile_list_item"
+                android:text="Blog"
+                app:drawableEndCompat="@drawable/ic_right_arrow"
+                app:drawableStartCompat="@drawable/ic_profile_blog" />
+
+            <View style="@style/profile_line" />
+
+            <TextView
+                android:id="@+id/profile_help"
+                style="@style/profile_list_item"
+                android:text="Help &amp; FAQS"
+                app:drawableEndCompat="@drawable/ic_right_arrow"
+                app:drawableStartCompat="@drawable/ic_profile_help" />
+
+            <View style="@style/profile_line" />
+
+            <TextView
+                android:id="@+id/profile_refer"
+                style="@style/profile_list_item"
+                android:text="Refer"
+                app:drawableStartCompat="@drawable/ic_profile_refer" />
+
+            <View style="@style/profile_line" />
+
+            <TextView
+                style="@style/profile_list_item"
+                android:text="Logout"
+                android:textColor="@color/red_hot"
+                app:drawableStartCompat="@drawable/ic_profile_logout" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

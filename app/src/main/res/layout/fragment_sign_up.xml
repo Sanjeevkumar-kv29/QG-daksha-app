@@ -9,62 +9,21 @@
             type="com.quickghy.qgdaksha.ui.auth.AuthViewModel" />
     </data>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="@dimen/_1sdp"
         android:layout_marginBottom="@dimen/_10sdp"
         android:gravity="center"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/ic_elip"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="start"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_backarrow" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="Need help?"
-                        android:onClick="@{viewmodel::help}"
-                        android:textColor="@color/black"
-                        android:textSize="15dp" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-
-        </LinearLayout>
+        <include layout="@layout/bar_log_sign" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="@dimen/_35sdp"
-            android:layout_weight="3"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -73,16 +32,13 @@
                 style="@style/hey_there_w"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:text="Sign Up"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="Sign Up" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_20ssp"
+                android:layout_marginBottom="@dimen/_15ssp"
                 android:gravity="bottom"
                 android:text="Lets' get started with your details" />
 
@@ -91,18 +47,16 @@
                 style="@style/customET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="phone"
+                android:inputType="textPersonName"
                 app:startIconDrawable="@drawable/ic_person">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextTextPersonName"
+                    style="@style/customInputTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
                     android:hint="@string/fullname"
-                    android:padding="@dimen/_1sdp"
-                    android:text="@={viewmodel.username}"
-                    android:textSize="@dimen/_10ssp" />
+                    android:text="@={viewmodel.username}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -110,50 +64,43 @@
                 style="@style/customET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/_8sdp"
                 android:inputType="phone"
                 app:startIconDrawable="@drawable/ic_phone">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_phone"
+                    style="@style/customInputTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
                     android:hint="@string/phone_or_email"
-                    android:padding="@dimen/_1sdp"
-                    android:text="@={viewmodel.phone}"
-                    android:textSize="@dimen/_10ssp" />
+                    android:text="@={viewmodel.phone}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout5"
-                style="@style/customET"
+                style="@style/customPassET"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="phone"
-                app:startIconDrawable="@drawable/ic_password">
+                android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_New_Password"
+                    style="@style/customInputTxtPass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
-                    android:hint="@string/phone_or_email"
-                    android:padding="@dimen/_1sdp"
-                    android:text="@={viewmodel.password}"
-                    android:textSize="@dimen/_10ssp" />
+                    android:hint="Password"
+                    android:text="@={viewmodel.password}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout3"
-                style="@style/customET_pass"
+                style="@style/customPassET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 app:startIconDrawable="@drawable/ic_pass_lock">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_password_confirm"
+                    style="@style/customInputTxtPass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/confirm_password"
@@ -167,9 +114,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|bottom">
 
-                <com.google.android.material.checkbox.MaterialCheckBox
+                <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="@{viewmodel::updatetncflag}"
                     android:text="I accept the "
                     android:textSize="@dimen/_10ssp" />
 
@@ -177,37 +125,44 @@
                     style="@style/sign_up"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="@{viewmodel::goToLogin}"
                     android:text="Terms Of use and privacy policy"
                     android:textColor="@color/red"
                     android:textSize="@dimen/_9ssp" />
             </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/btn_anim_signUp"
+            <FrameLayout
                 android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_100sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="#ffffff"
-                android:contentDescription="@string/login_button"
-                android:onClick="@{viewmodel::doSignUp}"
-                android:src="@drawable/btn" />
+                android:layout_height="@dimen/_100sdp">
 
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/btn_anim_wheel"
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_100sdp"
-                android:scaleType="fitCenter"
-                android:visibility="gone"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true"
-                app:lottie_rawRes="@raw/btn_yellow_spinner" />
+                <ImageButton
+                    android:id="@+id/btn_anim_signUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/transparent"
+                    android:contentDescription="@string/login_button"
+                    android:onClick="@{viewmodel::doSignUp}"
+                    android:src="@drawable/btn" />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/btn_anim_wheel"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"
+                    android:visibility="invisible"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/btn_yellow_spinner" />
+            </FrameLayout>
+
 
             <LinearLayout
                 android:id="@+id/linearLayoutCompat2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center|bottom">
+                android:layout_weight="1"
+                android:gravity="center|bottom">
 
                 <TextView
                     android:layout_width="wrap_content"
