@@ -27,8 +27,6 @@ class AuthViewModel : ViewModel() {
     var otp: String? = null
 
     var tnc_flag: Boolean = false
-    var countdown = 30
-    var resendText = "Resend OTP? $countdown"
 
     //if otp for sign up needed, use flag 1, for password reset use flag 0
     var flagForOTP = 0
@@ -59,7 +57,6 @@ class AuthViewModel : ViewModel() {
     }
 
     fun doLogin(view: View) {
-        // Sanjeevs @TODO
 
         if (phone.isNullOrEmpty() or password.isNullOrEmpty()) {
             loginStateListener?.onLoginFailure("Fields Can't be empty")
@@ -143,7 +140,6 @@ class AuthViewModel : ViewModel() {
         if (flagForOTP == 1) {
             //opens password reset screen
             resetOtpStateListener?.onStartReset()
-            viewModelScope.launch { doCountdown() }
             if (otp.isNullOrEmpty() || otp!!.length < 6) {
                 resetOtpStateListener?.onFailReset("Enter correct otp")
             } else {
@@ -205,20 +201,4 @@ class AuthViewModel : ViewModel() {
         //call DB
     }
 
-
-    suspend fun doCountdown() {
-        while (countdown > 0) {
-            countdown--
-            resendText = "Resend OTP? ($countdown)"
-            delay(1000)
-            if (countdown == 1) {
-                resetCountdown()
-                break
-            }
-        }
-    }
-
-    private fun resetCountdown() {
-        countdown = 30
-    }
 }
