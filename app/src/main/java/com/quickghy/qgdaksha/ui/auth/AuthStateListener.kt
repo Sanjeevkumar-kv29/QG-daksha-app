@@ -27,7 +27,7 @@ interface AuthStateListener {
         fun onSuccessForgot(opt: String)
         fun onFailureForgot(message: String)
     }
-    interface ResetPassOtpStateListener {
+    interface ResetPassStateListener {
         fun onStartReset()
         fun onSuccessReset(opt: String)
         fun onFailReset(message: String)

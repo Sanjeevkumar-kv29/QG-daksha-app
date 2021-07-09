@@ -84,10 +84,10 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_New_Password"
-                    style="@style/customInputTxt"
+                    style="@style/customInputTxtPass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/phone_or_email"
+                    android:hint="Password"
                     android:text="@={viewmodel.password}" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,7 +100,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_password_confirm"
-                    style="@style/customInputTxt"
+                    style="@style/customInputTxtPass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/confirm_password"
@@ -117,8 +117,8 @@
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="I accept the "
                     android:onClick="@{viewmodel::updatetncflag}"
+                    android:text="I accept the "
                     android:textSize="@dimen/_10ssp" />
 
                 <TextView

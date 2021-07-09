@@ -27,7 +27,6 @@
                 android:layout_height="40dp"
                 android:layout_gravity="start"
                 android:layout_weight="1"
-                android:onClick="@{viewmodel::goBack"
                 android:src="@drawable/ic_backarrow" />
 
             <LinearLayout

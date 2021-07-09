@@ -39,7 +39,7 @@ class AuthViewModel : ViewModel() {
     var signUpOtpListener: AuthStateListener.SignUpOtpStateListener? = null
     var loginStateListener: AuthStateListener.LoginStateListener? = null
     var forgotPasswordStateListner: AuthStateListener.ForgotPasswordStateListner? = null
-    var resetOtpStateListener: AuthStateListener.ResetPassOtpStateListener? = null
+    var resetOtpStateListener: AuthStateListener.ResetPassStateListener? = null
 
     fun goToSignUp(view: View) {
         view.findNavController().navigate(R.id.action_loginFrag_to_signUpFrag)
@@ -161,8 +161,10 @@ class AuthViewModel : ViewModel() {
 
 
     fun doUpdatePass(view: View) {
-        if (password.isNullOrEmpty() || repassword.isNullOrEmpty() || !password.equals(repassword)) {
-            resetOtpStateListener?.onFailReset("OTP or Password incorrect")
+        resetOtpStateListener?.onStartReset()
+
+        if (password.isNullOrEmpty() || !password.equals(repassword)) {
+            resetOtpStateListener?.onFailReset("Passwords don't match or are empty")
         } else {
             viewModelScope.launch {
                 val signUpOtpResponse =
@@ -170,7 +172,7 @@ class AuthViewModel : ViewModel() {
                 if (signUpOtpResponse.isSuccessful) {//if the response opt is a numb// er, it is success
                     resetOtpStateListener?.onSuccessReset(signUpOtpResponse.body()?.opt.toString())
                     view.findNavController()
-                        .navigate(R.id.action_verifyOtpFragment_to_loginFragment)
+                        .navigate(R.id.action_resetPasswordFragment_to_loginFragment)
                 }
             }
         }
@@ -181,8 +183,7 @@ class AuthViewModel : ViewModel() {
     }
 
     fun goBackToForgot(view: View) {
-        view.findNavController()
-            .popBackStack(R.id.action_resetPasswordFragment_to_loginFragment, false)
+        view.findNavController().navigate(R.id.forgotPasswordFragment)
     }
 
     fun updatetncflag(view: View) {
