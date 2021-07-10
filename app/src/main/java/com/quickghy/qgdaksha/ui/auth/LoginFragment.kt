@@ -21,6 +21,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentLoginBinding
+import com.quickghy.qgdaksha.ui.dash.DashActivity
 import com.quickghy.qgdaksha.util.toast
 
 
@@ -127,6 +128,7 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
         anim_btn.visibility = View.GONE
         binding.btnAnim.visibility = View.VISIBLE
         anim_btn.pauseAnimation()
+        startActivity(Intent(context,DashActivity::class.java))
     }
 
     override fun onLoginFailure(message: String) {
