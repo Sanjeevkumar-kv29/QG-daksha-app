@@ -1,5 +1,4 @@
 package com.quickghy.qgdaksha.ui.dash
-
 import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -12,17 +11,16 @@ class DashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dash)
 
-
     }
 
     fun homeclick(view: View)
     {
-        homeBtn.setColorFilter(Color.parseColor("#FFDD00"))
+        homeBtn.setColorFilter(Color.parseColor("#FFA200"))
         profileBTN.setColorFilter(Color.parseColor("#292932"))
         offersBTN.setColorFilter(Color.parseColor("#292932"))
         cartBTN.setColorFilter(Color.parseColor("#292932"))
 
-        tvhome.setTextColor(Color.parseColor("#FFDD00"))
+        tvhome.setTextColor(Color.parseColor("#FFA200"))
         tvprofile.setTextColor(Color.parseColor("#292932"))
         tvoffers.setTextColor(Color.parseColor("#292932"))
         tvcart.setTextColor(Color.parseColor("#292932"))
@@ -30,12 +28,12 @@ class DashActivity : AppCompatActivity() {
     fun profileclick(view: View){
 
         homeBtn.setColorFilter(Color.parseColor("#292932"))
-        profileBTN.setColorFilter(Color.parseColor("#FFDD00"))
+        profileBTN.setColorFilter(Color.parseColor("#FFA200"))
         offersBTN.setColorFilter(Color.parseColor("#292932"))
         cartBTN.setColorFilter(Color.parseColor("#292932"))
 
         tvhome.setTextColor(Color.parseColor("#292932"))
-        tvprofile.setTextColor(Color.parseColor("#FFDD00"))
+        tvprofile.setTextColor(Color.parseColor("#FFA200"))
         tvoffers.setTextColor(Color.parseColor("#292932"))
         tvcart.setTextColor(Color.parseColor("#292932"))
 
@@ -44,12 +42,12 @@ class DashActivity : AppCompatActivity() {
     fun offerclick(view: View){
         homeBtn.setColorFilter(Color.parseColor("#292932"))
         profileBTN.setColorFilter(Color.parseColor("#292932"))
-        offersBTN.setColorFilter(Color.parseColor("#FFDD00"))
+        offersBTN.setColorFilter(Color.parseColor("#FFA200"))
         cartBTN.setColorFilter(Color.parseColor("#292932"))
 
         tvhome.setTextColor(Color.parseColor("#292932"))
         tvprofile.setTextColor(Color.parseColor("#292932"))
-        tvoffers.setTextColor(Color.parseColor("#FFDD00"))
+        tvoffers.setTextColor(Color.parseColor("#FFA200"))
         tvcart.setTextColor(Color.parseColor("#292932"))
     }
 
@@ -57,12 +55,12 @@ class DashActivity : AppCompatActivity() {
         homeBtn.setColorFilter(Color.parseColor("#292932"))
         profileBTN.setColorFilter(Color.parseColor("#292932"))
         offersBTN.setColorFilter(Color.parseColor("#292932"))
-        cartBTN.setColorFilter(Color.parseColor("#FFDD00"))
+        cartBTN.setColorFilter(Color.parseColor("#FFA200"))
 
         tvhome.setTextColor(Color.parseColor("#292932"))
         tvprofile.setTextColor(Color.parseColor("#292932"))
         tvoffers.setTextColor(Color.parseColor("#292932"))
-        tvcart.setTextColor(Color.parseColor("#FFDD00"))
+        tvcart.setTextColor(Color.parseColor("#FFA200"))
     }
 
 }
