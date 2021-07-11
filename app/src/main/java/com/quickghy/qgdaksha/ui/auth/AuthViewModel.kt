@@ -4,9 +4,9 @@ import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
+import com.internshala.Usery.database.UserDAO
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.data.auth.repositories.AuthUserRepository
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 
 //authViewModel is responsible for LoginFrag, SignUpFrag, VerifyOtpFrag screens
 class AuthViewModel : ViewModel() {
+
 
     var fullname: String? = null
     var phone: String? = null
@@ -74,7 +75,7 @@ class AuthViewModel : ViewModel() {
                         loginStateListener?.onLoginSuccess(loginResponse.body()?.opt!!)
 
                         // this is the exit point from this activity.
-                        finishThisAndGoToHome()//-----------------------------------------
+                        finishThisAndGoToHome(view)//-----------------------------------------
                     }
 
                 }
@@ -154,7 +155,7 @@ class AuthViewModel : ViewModel() {
                 if (signUpOtpResponse.isSuccessful) {//if the response opt is success, password has been reset.
                     signUpStateListener?.onSignUpSuccess(signUpOtpResponse.body()?.access_token.toString())
                     putaccesstokenintoDB(signUpOtpResponse.body()?.access_token.toString())
-                    finishThisAndGoToHome()//go to home activity.
+                    finishThisAndGoToHome(view)//go to home activity.
                 }
             }
         }
@@ -192,9 +193,11 @@ class AuthViewModel : ViewModel() {
         tnc_flag = !tnc_flag
     }
 
-    fun finishThisAndGoToHome() {
+    fun finishThisAndGoToHome(view: View) {
         //this is where you navigate to the home page...--------------------------------------------
         // also save the user into the dataStore here
+
+        view.findNavController().navigate(R.id.dash_activity)
     }
 
     private fun putaccesstokenintoDB(toString: String) {
