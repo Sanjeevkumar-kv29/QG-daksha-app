@@ -29,7 +29,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="@{viewmodel::goBack"
+                android:onClick="@{viewmodel::goBack}"
                 android:src="@drawable/ic_backarrow" />
 
         </LinearLayout>
@@ -46,7 +46,7 @@
                 style="@style/hey_there_w"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_90sdp"
+                android:layout_marginTop="@dimen/_80sdp"
                 android:text="Enter Code" />
 
             <TextView
@@ -93,23 +93,6 @@
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <TextView
-                android:id="@+id/Resend"
-                style="@style/sign_up"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text="Re-send OTP? (30)" />
-
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center|bottom">
-
             <android.widget.Button
                 android:id="@+id/btn_send_v_code"
                 style="@style/wide_btn"
@@ -117,6 +100,24 @@
                 android:layout_height="wrap_content"
                 android:onClick="@{viewmodel::doVerifyOTP}"
                 android:text="Verify" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="Didn't recieve the OTP?" />
+
+            <TextView
+                android:id="@+id/Resend"
+                style="@style/sign_up"
+                android:textSize="@dimen/_12sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Re-send OTP? (30)" />
+
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

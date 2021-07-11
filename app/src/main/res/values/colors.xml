@@ -19,4 +19,5 @@
     <color name="ghost_yellow">#FFF59D</color>
     <color name="red_hot">#FF1717</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="dashtextcolor">#292932</color>
 </resources>

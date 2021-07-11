@@ -18,7 +18,49 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <include layout="@layout/bar_log_sign" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_80sdp"
+            android:background="@drawable/ic_elip"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="start"
+                    android:layout_weight="1"
+                    android:contentDescription="Back Button"
+                    android:onClick="@{viewmodel::goToLogin}"
+                    android:src="@drawable/ic_backarrow" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:onClick="@{viewmodel::help}"
+                        android:text="Need help?"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -131,8 +173,8 @@
             </LinearLayout>
 
             <FrameLayout
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_100sdp">
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="@dimen/_90sdp">
 
                 <ImageButton
                     android:id="@+id/btn_anim_signUp"
@@ -149,7 +191,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:scaleType="fitCenter"
+                    android:scaleType="centerCrop"
                     android:visibility="invisible"
                     app:lottie_autoPlay="true"
                     app:lottie_loop="true"
@@ -180,5 +222,4 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
 </layout>

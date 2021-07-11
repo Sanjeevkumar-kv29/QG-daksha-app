@@ -1,6 +1,7 @@
 package com.quickghy.qgdaksha.ui.auth
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.KeyEvent
@@ -21,6 +22,8 @@ import com.quickghy.qgdaksha.databinding.FragmentVerifyOtpBinding
 
 var otp: StringBuilder = StringBuilder()
 lateinit var viewModel: AuthViewModel
+
+
 
 class VerifyOtpFragment : Fragment(), AuthStateListener.SignUpOtpStateListener {
 
@@ -43,6 +46,21 @@ class VerifyOtpFragment : Fragment(), AuthStateListener.SignUpOtpStateListener {
             false
         )
         binding.viewmodel = viewModel
+
+
+        val timer = object: CountDownTimer(30000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                binding.Resend.text = "Re-send OTP? (${millisUntilFinished/1000})"
+            }
+
+            override fun onFinish() {
+                binding.Resend.isEnabled = true
+            }
+        }
+
+        binding.btnSendVCode.setOnClickListener {
+            timer.start()
+        }
 
         //GenericTextWatcher here works only for moving to next edittext when a number is entered
         // first paramEter is the current edittext and second paramEter is next binding.otpEt
@@ -67,7 +85,7 @@ class VerifyOtpFragment : Fragment(), AuthStateListener.SignUpOtpStateListener {
 
     override fun onSignUpOtpStarted() {
 //        update ui or do other stuff
-        binding.Resend.isClickable = false
+        binding.Resend.isEnabled = false
     }
 
     override fun onSignUpOtpSuccess(opt: String) {
@@ -77,8 +95,9 @@ class VerifyOtpFragment : Fragment(), AuthStateListener.SignUpOtpStateListener {
 
     override fun onResetOtpFailure(message: String) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-        binding.Resend.isClickable = false
+        binding.Resend.isEnabled = true
     }
+
 
 
 }
@@ -164,3 +183,4 @@ class GenericTextWatcher internal constructor(
     }
 
 }
+

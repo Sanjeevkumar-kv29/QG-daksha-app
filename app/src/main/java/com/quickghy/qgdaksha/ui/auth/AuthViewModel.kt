@@ -27,8 +27,6 @@ class AuthViewModel : ViewModel() {
     var otp: String? = null
 
     var tnc_flag: Boolean = false
-    var countdown = 30
-    var resendText = "Resend OTP? $countdown"
 
     //if otp for sign up needed, use flag 1, for password reset use flag 0
     var flagForOTP = 0
@@ -59,7 +57,6 @@ class AuthViewModel : ViewModel() {
     }
 
     fun doLogin(view: View) {
-        // Sanjeevs @TODO
 
         if (phone.isNullOrEmpty() or password.isNullOrEmpty()) {
             loginStateListener?.onLoginFailure("Fields Can't be empty")
@@ -125,8 +122,13 @@ class AuthViewModel : ViewModel() {
                     AuthUserRepository().userSignUp(username!!, phone!!, password!!, key)
 
                 if (signUpResponse.isSuccessful) {//if the response opt is a number, it is success
-                    signUpStateListener?.onSignUpSuccess(signUpResponse.body()?.opt.toString())
-                    view.findNavController().navigate(R.id.action_signUpFrag_to_OtpFrag)
+                    if (signUpResponse.body()?.opt.toString() == "Already Registered Phone Number") signUpStateListener?.onSignUpFailure(
+                        signUpResponse.body()?.opt.toString()
+                    )
+                    else {
+                        signUpStateListener?.onSignUpSuccess(signUpResponse.body()?.opt.toString())
+                        view.findNavController().navigate(R.id.action_signUpFrag_to_OtpFrag)
+                    }
                 }
             }
         }
@@ -138,7 +140,6 @@ class AuthViewModel : ViewModel() {
         if (flagForOTP == 1) {
             //opens password reset screen
             resetOtpStateListener?.onStartReset()
-            viewModelScope.launch { doCountdown() }
             if (otp.isNullOrEmpty() || otp!!.length < 6) {
                 resetOtpStateListener?.onFailReset("Enter correct otp")
             } else {
@@ -169,11 +170,12 @@ class AuthViewModel : ViewModel() {
             viewModelScope.launch {
                 val signUpOtpResponse =
                     AuthUserRepository().userResetPass(phone!!, otp!!, password!!, key)
-                if (signUpOtpResponse.isSuccessful) {//if the response opt is a numb// er, it is success
+                if (signUpOtpResponse.body()?.opt.toString() == "1") {//if the response opt is a numb// er, it is success
                     resetOtpStateListener?.onSuccessReset(signUpOtpResponse.body()?.opt.toString())
                     view.findNavController()
                         .navigate(R.id.action_resetPasswordFragment_to_loginFragment)
-                }
+                } else
+                    resetOtpStateListener?.onFailReset("Password Update failed...")
             }
         }
     }
@@ -199,20 +201,4 @@ class AuthViewModel : ViewModel() {
         //call DB
     }
 
-
-    suspend fun doCountdown() {
-        while (countdown > 0) {
-            countdown--
-            resendText = "Resend OTP? ($countdown)"
-            delay(1000)
-            if (countdown == 1) {
-                resetCountdown()
-                break
-            }
-        }
-    }
-
-    private fun resetCountdown() {
-        countdown = 30
-    }
 }
