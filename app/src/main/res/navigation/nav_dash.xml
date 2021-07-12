@@ -1,6 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_dash">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_dash"
+    app:startDestination="@id/homeFragment">
 
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.quickghy.qgdaksha.ui.dash.HomeFragment"
+        android:label="home_fragment"
+        tools:layout="@layout/home_fragment">
+        <action
+            android:id="@+id/action_homeFragment_to_notifFragment"
+            app:destination="@id/notifFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.quickghy.qgdaksha.ui.dash.CartFragment"
+        android:label="cart_fragment"
+        tools:layout="@layout/cart_fragment" >
+        <action
+            android:id="@+id/action_cartFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_cartFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_cartFragment_to_notifFragment"
+            app:destination="@id/notifFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/notifFragment"
+        android:name="com.quickghy.qgdaksha.ui.dash.NotifFragment"
+        android:label="notif_fragment"
+        tools:layout="@layout/notif_fragment" >
+        <action
+            android:id="@+id/action_notifFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_notifFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_notifFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.quickghy.qgdaksha.ui.dash.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_notifFragment"
+            app:destination="@id/notifFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_homeFragment"
+        app:destination="@id/homeFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/homeFragment"
+        app:popUpToInclusive="true" />
+    <action
+        android:id="@+id/action_global_cartFragment"
+        app:destination="@id/cartFragment"
+        app:popUpTo="@id/cartFragment"
+        app:popUpToInclusive="true"
+        app:launchSingleTop="true" />
+    <action
+        android:id="@+id/action_global_notifFragment"
+        app:destination="@id/notifFragment"
+        app:popUpTo="@id/notifFragment"
+        app:popUpToInclusive="true"
+        app:launchSingleTop="true" />
+    <action
+        android:id="@+id/action_global_profileFragment"
+        app:destination="@id/profileFragment"
+        app:popUpTo="@id/profileFragment"
+        app:popUpToInclusive="true"
+        app:launchSingleTop="true" />
 </navigation>

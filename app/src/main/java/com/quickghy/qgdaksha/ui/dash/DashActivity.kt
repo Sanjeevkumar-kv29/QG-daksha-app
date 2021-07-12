@@ -13,8 +13,8 @@ class DashActivity : AppCompatActivity() {
 
     }
 
-    fun homeclick(view: View)
-    {
+    fun homeclick(view: View){
+
         homeBtn.setColorFilter(Color.parseColor("#FFA200"))
         profileBTN.setColorFilter(Color.parseColor("#292932"))
         offersBTN.setColorFilter(Color.parseColor("#292932"))

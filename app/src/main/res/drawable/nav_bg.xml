@@ -18,6 +18,6 @@
                 />
         </shape>
     </item>
-    <item android:drawable="@drawable/ic_vector" />
+    <item android:drawable="@drawable/nav_bg_shape" />
 
 </layer-list>

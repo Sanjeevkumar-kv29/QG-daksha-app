@@ -1,0 +1,32 @@
+package com.quickghy.qgdaksha.ui.dash
+
+import androidx.lifecycle.ViewModelProvider
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.quickghy.qgdaksha.R
+
+class NotifFragment : Fragment() {
+
+    companion object {
+        fun newInstance() = NotifFragment()
+    }
+
+    private lateinit var viewModel: NotifViewModel
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.notif_fragment, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel = ViewModelProvider(this).get(NotifViewModel::class.java)
+        // TODO: Use the ViewModel
+    }
+
+}

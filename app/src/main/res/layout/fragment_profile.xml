@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_11sdp"
                 android:contentDescription="illustration"
-                android:src="@drawable/ic_mobile_otp_illustration" />
+                android:src="@drawable/illustration_mobile_otp" />
 
             <android.widget.Button
                 style="@style/wide_btn"
