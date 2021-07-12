@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -129,6 +130,7 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
         binding.btnAnim.visibility = View.VISIBLE
         anim_btn.pauseAnimation()
         startActivity(Intent(context,DashActivity::class.java))
+
     }
 
     override fun onLoginFailure(message: String) {
