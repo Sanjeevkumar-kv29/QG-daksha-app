@@ -14,6 +14,10 @@ import com.quickghy.qgdaksha.ui.auth.AuthViewModel
 
 class ProfileFragment : Fragment() {
 
+    companion object {
+        fun newInstance() = ProfileFragment()
+    }
+
     lateinit var viewModel: AuthViewModel
     lateinit var binding: FragmentProfileBinding
 

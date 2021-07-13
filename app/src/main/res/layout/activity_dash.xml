@@ -18,13 +18,11 @@
 
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/nav_host_fragment_activity_dash"
-            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:id="@+id/dash_host_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@id/llyt"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/nav_dash" />
+             />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -61,7 +59,7 @@
                     android:layout_margin="@dimen/_10ssp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:onClick="@{viewmodel::goToHome}"
+                    android:onClick="homeclick"
                     android:orientation="vertical">
 
                     <ImageButton
@@ -93,7 +91,7 @@
                     android:layout_margin="@dimen/_10ssp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:onClick="@{viewmodel::goToProfile}"
+                    android:onClick="profileclick"
                     android:orientation="vertical">
 
                     <ImageButton
@@ -135,7 +133,7 @@
                     android:layout_margin="@dimen/_10ssp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:onClick="@{viewmodel::goToBell}"
+                    android:onClick="offerclick"
                     android:orientation="vertical">
 
                     <ImageButton
@@ -166,7 +164,7 @@
                     android:layout_margin="@dimen/_10ssp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:onClick="@{viewmodel::goToCart}"
+                    android:onClick="cartclick"
                     android:orientation="vertical">
 
                     <ImageButton
@@ -190,7 +188,6 @@
 
                 </LinearLayout>
             </LinearLayout>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </RelativeLayout>
