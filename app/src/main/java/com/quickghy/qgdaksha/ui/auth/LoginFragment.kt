@@ -120,7 +120,6 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
         anim_btn.visibility = View.VISIBLE
         binding.btnAnim.visibility = View.GONE
         anim_btn.playAnimation()
-
     }
 
 
@@ -130,7 +129,7 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
         binding.btnAnim.visibility = View.VISIBLE
         anim_btn.pauseAnimation()
         startActivity(Intent(context,DashActivity::class.java))
-
+        requireActivity().finish()
     }
 
     override fun onLoginFailure(message: String) {

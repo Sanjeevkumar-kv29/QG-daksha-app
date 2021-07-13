@@ -73,9 +73,6 @@ class AuthViewModel : ViewModel() {
                         loginStateListener?.onLoginFailure(loginResponse.body()?.opt!!)
                     } else {
                         loginStateListener?.onLoginSuccess(loginResponse.body()?.opt!!)
-
-                        // this is the exit point from this activity.
-                        finishThisAndGoToHome(view)//-----------------------------------------
                     }
 
                 }
@@ -152,10 +149,9 @@ class AuthViewModel : ViewModel() {
             //results in sign up success.
             viewModelScope.launch {
                 val signUpOtpResponse = AuthUserRepository().userSignUpOtp(phone!!, otp!!, key)
-                if (signUpOtpResponse.isSuccessful) {//if the response opt is success, password has been reset.
+                if (signUpOtpResponse.isSuccessful) {
                     signUpStateListener?.onSignUpSuccess(signUpOtpResponse.body()?.access_token.toString())
                     putaccesstokenintoDB(signUpOtpResponse.body()?.access_token.toString())
-                    finishThisAndGoToHome(view)//go to home activity.
                 }
             }
         }
@@ -191,13 +187,6 @@ class AuthViewModel : ViewModel() {
 
     fun updatetncflag(view: View) {
         tnc_flag = !tnc_flag
-    }
-
-    fun finishThisAndGoToHome(view: View) {
-        //this is where you navigate to the home page...--------------------------------------------
-        // also save the user into the dataStore here
-
-        view.findNavController().navigate(R.id.dash_activity)
     }
 
     private fun putaccesstokenintoDB(toString: String) {

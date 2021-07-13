@@ -15,7 +15,7 @@ import retrofit2.http.POST
 
 interface MainApis {
 
-    //    post reqs for login
+    // post reqs for login
     @FormUrlEncoded
     @POST("Dgu_Mob/mob_dguLoginAttempt")
     suspend fun userLogin(
