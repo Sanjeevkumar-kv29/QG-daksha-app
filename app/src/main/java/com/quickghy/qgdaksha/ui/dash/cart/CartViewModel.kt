@@ -1,4 +1,4 @@
-package com.quickghy.qgdaksha.ui.dash
+package com.quickghy.qgdaksha.ui.dash.cart
 
 import androidx.lifecycle.ViewModel
 

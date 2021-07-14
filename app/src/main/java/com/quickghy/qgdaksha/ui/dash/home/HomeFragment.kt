@@ -1,4 +1,4 @@
-package com.quickghy.qgdaksha.ui.dash
+package com.quickghy.qgdaksha.ui.dash.home
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle

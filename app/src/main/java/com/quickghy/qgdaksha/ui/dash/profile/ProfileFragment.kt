@@ -1,4 +1,4 @@
-package com.quickghy.qgdaksha.ui.dash
+package com.quickghy.qgdaksha.ui.dash.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater

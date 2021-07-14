@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.quickghy.qgdaksha.ui.dash.HomeFragment"
+        android:name="com.quickghy.qgdaksha.ui.dash.home.HomeFragment"
         android:label="home_fragment"
         tools:layout="@layout/home_fragment">
         <action
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/cartFragment"
-        android:name="com.quickghy.qgdaksha.ui.dash.CartFragment"
+        android:name="com.quickghy.qgdaksha.ui.dash.cart.CartFragment"
         android:label="cart_fragment"
         tools:layout="@layout/cart_fragment" >
         <action
@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/notifFragment"
-        android:name="com.quickghy.qgdaksha.ui.dash.NotifFragment"
+        android:name="com.quickghy.qgdaksha.ui.dash.offers.OffersFragment"
         android:label="notif_fragment"
         tools:layout="@layout/notif_fragment" >
         <action
@@ -52,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.quickghy.qgdaksha.ui.dash.ProfileFragment"
+        android:name="com.quickghy.qgdaksha.ui.dash.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action

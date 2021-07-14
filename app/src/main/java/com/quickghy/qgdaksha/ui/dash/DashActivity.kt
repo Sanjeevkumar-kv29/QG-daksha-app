@@ -5,9 +5,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentContainerView
-import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.commit
 import com.quickghy.qgdaksha.R
+import com.quickghy.qgdaksha.ui.dash.cart.CartFragment
+import com.quickghy.qgdaksha.ui.dash.home.HomeFragment
+import com.quickghy.qgdaksha.ui.dash.offers.OffersFragment
+import com.quickghy.qgdaksha.ui.dash.profile.ProfileFragment
 import kotlinx.android.synthetic.main.activity_dash.*
 
 class DashActivity : AppCompatActivity() {
@@ -24,7 +27,7 @@ class DashActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().add(R.id.dash_host_fragment, homeFragment)
             .commit()
         supportFragmentManager.commit {
-            add(R.id.dash_host_fragment,HomeFragment.newInstance())
+            add(R.id.dash_host_fragment, HomeFragment.newInstance())
         }
     }
 
@@ -65,7 +68,7 @@ class DashActivity : AppCompatActivity() {
 
     fun offerclick(view: View) {
         fragmentManager.commit {
-            replace(R.id.dash_host_fragment, NotifFragment.newInstance())
+            replace(R.id.dash_host_fragment, OffersFragment.newInstance())
         }
         homeBtn.setColorFilter(Color.parseColor("#292932"))
         profileBTN.setColorFilter(Color.parseColor("#292932"))

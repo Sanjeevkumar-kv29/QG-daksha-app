@@ -4,7 +4,6 @@ import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
-import com.internshala.Usery.database.UserDAO
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.data.auth.repositories.AuthUserRepository
 import kotlinx.coroutines.launch
@@ -27,18 +26,18 @@ class AuthViewModel : ViewModel() {
     var username: String? = null
     var otp: String? = null
 
-    var tnc_flag: Boolean = false
+    private var tNcflag = false
 
     //if otp for sign up needed, use flag 1, for password reset use flag 0
-    var flagForOTP = 0
+    private var flagForOTP = 0
 
-    val key = "DAKSHA_2020"
+    private val key = "DAKSHA_2020"
 
     var signUpStateListener: AuthStateListener.SignUpStateListener? = null
     var signUpOtpListener: AuthStateListener.SignUpOtpStateListener? = null
     var loginStateListener: AuthStateListener.LoginStateListener? = null
     var forgotPasswordStateListner: AuthStateListener.ForgotPasswordStateListner? = null
-    var resetOtpStateListener: AuthStateListener.ResetPassStateListener? = null
+    private var resetOtpStateListener: AuthStateListener.ResetPassStateListener? = null
 
     fun goToSignUp(view: View) {
         view.findNavController().navigate(R.id.action_loginFrag_to_signUpFrag)
@@ -89,6 +88,7 @@ class AuthViewModel : ViewModel() {
             forgotPasswordStateListner?.onFailureForgot("Fields Can't be empty")
             return
         } else {
+            view.isEnabled = false
             // val loginResponse = AuthUserRepository().userLogin(phone!!, password!!,key) //tight cuppeld we just remove is using DI
             //loginStateListener?.onLoginSuccess(loginResponse)
 
@@ -112,7 +112,7 @@ class AuthViewModel : ViewModel() {
             signUpStateListener?.onSignUpFailure("Fields Can't be empty.")
         } else if (!password.equals(repassword)) {
             signUpStateListener?.onSignUpFailure("Passwords do not match.")
-        } else if (!tnc_flag) {
+        } else if (!tNcflag) {
             signUpStateListener?.onSignUpFailure("Please accept T&C")
         } else {
             viewModelScope.launch {
@@ -182,11 +182,11 @@ class AuthViewModel : ViewModel() {
     }
 
     fun goBackToForgot(view: View) {
-        view.findNavController().navigate(R.id.forgotPasswordFragment)
+        view.findNavController().popBackStack(R.id.forgotPasswordFragment, false)
     }
 
     fun updatetncflag(view: View) {
-        tnc_flag = !tnc_flag
+        tNcflag = !tNcflag
     }
 
     private fun putaccesstokenintoDB(toString: String) {

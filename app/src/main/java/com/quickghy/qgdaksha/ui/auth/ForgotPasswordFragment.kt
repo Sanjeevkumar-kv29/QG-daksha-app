@@ -1,11 +1,10 @@
 package com.quickghy.qgdaksha.ui.auth
 
-import android.hardware.input.InputManager
+import android.animation.Animator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethod
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -37,15 +36,42 @@ class ForgotPasswordFragment : Fragment(), AuthStateListener.ForgotPasswordState
 
         binding.viewmodel = viewModel
         viewModel.forgotPasswordStateListner = this
+
+
+        binding.etPhone.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) ToggleImg(View.GONE)
+            else ToggleImg(View.VISIBLE)
+        }
         return binding.root
+    }
+
+    private fun ToggleImg(visible: Int) {
+        if (visible == View.GONE) {
+            binding.imgInForgotPass.animate().scaleY(0.0f).alpha(0.0f).translationZBy(100.0f)
+                .setDuration(300)
+                .setUpdateListener {
+                    it.addListener(object : Animator.AnimatorListener {
+                        override fun onAnimationEnd(animation: Animator?) {
+                            binding.imgInForgotPass.visibility = visible
+                        }
+
+                        override fun onAnimationStart(animation: Animator?) {}
+                        override fun onAnimationCancel(animation: Animator?) {}
+                        override fun onAnimationRepeat(animation: Animator?) {}
+
+                    })
+                }
+        }
     }
 
     override fun onSuccessForgot(opt: String) {
         context?.toast(opt)
+        binding.btnSendVCode.text = "Sending OTP"
     }
 
     override fun onFailureForgot(message: String) {
         context?.toast(message)
+        binding.btnSendVCode.text = "Continue"
     }
 
 }

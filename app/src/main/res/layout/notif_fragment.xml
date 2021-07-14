@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dash.NotifFragment">
+    tools:context=".ui.dash.offers.OffersFragment">
 
     <TextView
         style="@style/hey_there_w"

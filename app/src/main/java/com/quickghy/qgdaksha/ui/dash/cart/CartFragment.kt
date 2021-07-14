@@ -1,4 +1,4 @@
-package com.quickghy.qgdaksha.ui.dash
+package com.quickghy.qgdaksha.ui.dash.cart
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -8,24 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 import com.quickghy.qgdaksha.R
 
-class NotifFragment : Fragment() {
+class CartFragment : Fragment() {
 
     companion object {
-        fun newInstance() = NotifFragment()
+        fun newInstance() = CartFragment()
     }
 
-    private lateinit var viewModel: NotifViewModel
+    private lateinit var viewModel: CartViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.notif_fragment, container, false)
+        return inflater.inflate(R.layout.cart_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(NotifViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(CartViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
