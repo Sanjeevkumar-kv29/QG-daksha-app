@@ -3,16 +3,18 @@ package com.quickghy.qgdaksha
 import com.quickghy.qgdaksha.data.auth.network.MainApis
 import com.quickghy.qgdaksha.data.auth.repositories.AuthUserRepository
 import com.quickghy.qgdaksha.ui.auth.AuthViewModel
+import net.simplifiedcoding.data.PrefDataStore
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
+import kotlin.math.sin
 
 
 val appModule = module{
 
 single { MainApis() }
-single { AuthUserRepository(get()) }
-factory { AuthViewModel(get()) }
-    
+single { PrefDataStore(get()) }
+single { AuthUserRepository(get(),get()) }
+
 }
 
 val viewmodelModule = module {

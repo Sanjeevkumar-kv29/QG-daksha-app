@@ -3,6 +3,7 @@ package com.quickghy.qgdaksha.data.auth.repositories
 import com.internshala.booky.database.UserEntity
 import com.quickghy.qgdaksha.data.auth.network.MainApis
 import com.quickghy.qgdaksha.data.auth.network.Response.*
+import net.simplifiedcoding.data.PrefDataStore
 import retrofit2.Response
 
 /**
@@ -12,41 +13,14 @@ import retrofit2.Response
 
 class AuthUserRepository(
 
-    val APICALL:MainApis
-) {
-
-    /*fun userLogin(mobile: String, password: String,daksha_key: String): LiveData<String> {
-
-        val LoginResponse = MutableLiveData<String>()
-
-        MainApis().userLogin(mobile,password,daksha_key)  //tight cuppeld we just remove is using DI
-            .enqueue(object:Callback<ResponseBody>{
-
-                override fun onResponse(
-                    call: Call<ResponseBody>,
-                    response: Response<ResponseBody>
-                ) {
-                    if (response.isSuccessful){
-
-                        LoginResponse.value = response.body()?.string()
-                    }
-                    else{
-                        LoginResponse.value = response.errorBody()?.string()
-
-                    }
-                }
-
-                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+    val APICALL:MainApis,
+    val DATASTORE:PrefDataStore ) {
 
 
-                    LoginResponse.value = t.message
-                }
-
-
-            })
-
-        return LoginResponse
-    }*/
+    suspend fun saveDATAtoDS(uid: String, uname: String, utoken: String, uphone: String )
+    {
+        DATASTORE.savedetailstoDS(uid,uname,utoken,uphone)
+    }
 
     suspend fun userLogin(
         mobile: String,

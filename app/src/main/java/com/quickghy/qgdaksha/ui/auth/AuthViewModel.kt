@@ -77,6 +77,10 @@ class AuthViewModel(
                         loginStateListener?.onLoginFailure(loginResponse.body()?.opt!!)
                     } else {
                         loginStateListener?.onLoginSuccess(loginResponse.body()?.opt!!)
+                        repository.saveDATAtoDS(loginResponse.body()?.user_id.toString(),
+                                                loginResponse.body()?.user_name.toString(),
+                                                loginResponse.body()?.access_token.toString(),
+                                                phone!!)
                     }
 
                 }

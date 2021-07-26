@@ -6,7 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import com.quickghy.qgdaksha.R
+import com.quickghy.qgdaksha.util.toast
+import kotlinx.coroutines.launch
+import net.simplifiedcoding.data.PrefDataStore
+import org.koin.core.component.getScopeName
 
 class HomeFragment : Fragment() {
 
@@ -27,6 +32,9 @@ class HomeFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         // TODO: Use the ViewModel
+
+
+        context?.toast(PrefDataStore(requireContext()).uphoneno.toString())
     }
 
 }
