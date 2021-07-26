@@ -24,13 +24,16 @@ import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentLoginBinding
 import com.quickghy.qgdaksha.ui.dash.DashActivity
 import com.quickghy.qgdaksha.util.toast
+import org.koin.android.ext.android.inject
+import org.koin.java.KoinJavaComponent.inject
 
 
 class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
 
-    lateinit var viewModel: AuthViewModel
     lateinit var binding: FragmentLoginBinding
     lateinit var anim_btn: LottieAnimationView
+
+    val viewModel: AuthViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,10 +46,6 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
             false
         )
 
-        //so that it calls the viewmodel owned by the parent activity
-        activity.let {
-            viewModel = ViewModelProvider(it!!).get(AuthViewModel::class.java)
-        }
 
         viewModel.loginStateListener = this
         binding.viewmodel = viewModel

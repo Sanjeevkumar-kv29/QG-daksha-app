@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import com.quickghy.qgdaksha.R
+import com.quickghy.qgdaksha.data.auth.network.MainApis
 import com.quickghy.qgdaksha.data.auth.repositories.AuthUserRepository
 import kotlinx.coroutines.launch
 
@@ -16,7 +17,11 @@ import kotlinx.coroutines.launch
  */
 
 //authViewModel is responsible for LoginFrag, SignUpFrag, VerifyOtpFrag screens
-class AuthViewModel : ViewModel() {
+class AuthViewModel(
+
+    val repository: AuthUserRepository
+
+) : ViewModel() {
 
 
     var fullname: String? = null
@@ -66,7 +71,7 @@ class AuthViewModel : ViewModel() {
             // val loginResponse = AuthUserRepository().userLogin(phone!!, password!!,key) //tight cuppeld we just remove is using DI
             //loginStateListener?.onLoginSuccess(loginResponse)
             viewModelScope.launch {
-                val loginResponse = AuthUserRepository().userLogin(phone!!, password!!, key)
+                val loginResponse = repository.userLogin(phone!!, password!!, key)
                 if (loginResponse.isSuccessful) {
                     if (loginResponse.body()?.user_id == "error") {
                         loginStateListener?.onLoginFailure(loginResponse.body()?.opt!!)
@@ -93,7 +98,7 @@ class AuthViewModel : ViewModel() {
             //loginStateListener?.onLoginSuccess(loginResponse)
 
             viewModelScope.launch {
-                val forgetResponse = AuthUserRepository().userForgetPass(phone!!, key)
+                val forgetResponse = repository.userForgetPass(phone!!, key)
                 if (forgetResponse.isSuccessful) {
                     forgotPasswordStateListner?.onSuccessForgot(forgetResponse.body()?.opt!!)
                     view.findNavController()
@@ -117,7 +122,7 @@ class AuthViewModel : ViewModel() {
         } else {
             viewModelScope.launch {
                 val signUpResponse =
-                    AuthUserRepository().userSignUp(username!!, phone!!, password!!, key)
+                    repository.userSignUp(username!!, phone!!, password!!, key)
 
                 if (signUpResponse.isSuccessful) {//if the response opt is a number, it is success
                     if (signUpResponse.body()?.opt.toString() == "Already Registered Phone Number") signUpStateListener?.onSignUpFailure(
@@ -148,7 +153,7 @@ class AuthViewModel : ViewModel() {
         } else if (flagForOTP == 0) {
             //results in sign up success.
             viewModelScope.launch {
-                val signUpOtpResponse = AuthUserRepository().userSignUpOtp(phone!!, otp!!, key)
+                val signUpOtpResponse = repository.userSignUpOtp(phone!!, otp!!, key)
                 if (signUpOtpResponse.isSuccessful) {
                     signUpStateListener?.onSignUpSuccess(signUpOtpResponse.body()?.access_token.toString())
                     putaccesstokenintoDB(signUpOtpResponse.body()?.access_token.toString())
@@ -166,7 +171,7 @@ class AuthViewModel : ViewModel() {
         } else {
             viewModelScope.launch {
                 val signUpOtpResponse =
-                    AuthUserRepository().userResetPass(phone!!, otp!!, password!!, key)
+                    repository.userResetPass(phone!!, otp!!, password!!, key)
                 if (signUpOtpResponse.body()?.opt.toString() == "1") {//if the response opt is a numb// er, it is success
                     resetOtpStateListener?.onSuccessReset(signUpOtpResponse.body()?.opt.toString())
                     view.findNavController()

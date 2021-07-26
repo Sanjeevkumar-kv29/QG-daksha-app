@@ -10,7 +10,10 @@ import retrofit2.Response
  * @Date: 21-06-2021
  */
 
-class AuthUserRepository {
+class AuthUserRepository(
+
+    val APICALL:MainApis
+) {
 
     /*fun userLogin(mobile: String, password: String,daksha_key: String): LiveData<String> {
 
@@ -50,14 +53,14 @@ class AuthUserRepository {
         password: String,
         daksha_key: String
     ): Response<AuthLoginResponse> {
-        return MainApis().userLogin(mobile, password, daksha_key)
+        return APICALL.userLogin(mobile, password, daksha_key)
     }
 
     suspend fun userForgetPass(
         mobile: String,
         daksha_key: String
     ): Response<AuthForgetPasswordResponse> {
-        return MainApis().userForgetPass(mobile, daksha_key)
+        return APICALL.userForgetPass(mobile, daksha_key)
     }
 
     suspend fun userResetPass(
@@ -66,7 +69,7 @@ class AuthUserRepository {
         password: String,
         daksha_key: String
     ): Response<AuthPasswordResetRespones> {
-        return MainApis().userResetPass(mobile, otp, password, daksha_key)
+        return APICALL.userResetPass(mobile, otp, password, daksha_key)
     }
 
 
@@ -76,7 +79,7 @@ class AuthUserRepository {
         password: String,
         daksha_key: String
     ): Response<AuthSignUpResponse> {
-        return MainApis().userSignUp(name, mobile, password, daksha_key)
+        return APICALL.userSignUp(name, mobile, password, daksha_key)
     }
 
     suspend fun userSignUpOtp(
@@ -84,7 +87,7 @@ class AuthUserRepository {
         otp: String,
         daksha_key: String
     ): Response<AuthSignUpOtpResponse> {
-        return MainApis().userSignUpOtp(mobile, otp, daksha_key)
+        return APICALL.userSignUpOtp(mobile, otp, daksha_key)
     }
 
 }
