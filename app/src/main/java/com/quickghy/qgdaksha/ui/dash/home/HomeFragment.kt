@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import com.quickghy.qgdaksha.R
+import com.quickghy.qgdaksha.data.PrefDataStore
 import com.quickghy.qgdaksha.util.toast
 import kotlinx.coroutines.launch
-import net.simplifiedcoding.data.PrefDataStore
 import org.koin.core.component.getScopeName
 
 class HomeFragment : Fragment() {

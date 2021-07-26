@@ -1,9 +1,8 @@
 package com.quickghy.qgdaksha.data.auth.repositories
 
-import com.internshala.booky.database.UserEntity
+import com.quickghy.qgdaksha.data.PrefDataStore
 import com.quickghy.qgdaksha.data.auth.network.MainApis
 import com.quickghy.qgdaksha.data.auth.network.Response.*
-import net.simplifiedcoding.data.PrefDataStore
 import retrofit2.Response
 
 /**
@@ -14,12 +13,13 @@ import retrofit2.Response
 class AuthUserRepository(
 
     val APICALL:MainApis,
-    val DATASTORE:PrefDataStore ) {
+    val dataStore: PrefDataStore
+) {
 
 
     suspend fun saveDATAtoDS(uid: String, uname: String, utoken: String, uphone: String )
     {
-        DATASTORE.savedetailstoDS(uid,uname,utoken,uphone)
+        dataStore.savedetailstoDS(uid,uname,utoken,uphone)
     }
 
     suspend fun userLogin(
