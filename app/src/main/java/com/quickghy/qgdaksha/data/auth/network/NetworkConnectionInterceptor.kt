@@ -9,6 +9,11 @@ import com.quickghy.qgdaksha.util.NoInternetException
 import okhttp3.Interceptor
 import okhttp3.Response
 
+/**
+ * @Author: Sanjeev Kumar
+ * @Date: 27-07-2021
+ */
+
 class NetworkConnectionInterceptor(
     context: Context
 ) : Interceptor {

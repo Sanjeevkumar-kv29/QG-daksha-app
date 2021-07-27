@@ -73,28 +73,26 @@ class AuthViewModel(
             //loginStateListener?.onLoginSuccess(loginResponse)
             viewModelScope.launch {
                 try {
-                val loginResponse = repository.userLogin(phone!!, password!!, key)
-                if (loginResponse.isSuccessful) {
-                    if (loginResponse.body()?.user_id == "error") {
-                        loginStateListener?.onLoginFailure(loginResponse.body()?.opt!!)
-                    } else {
-                        loginStateListener?.onLoginSuccess(loginResponse.body()?.opt!!)
-                        repository.saveDATAtoDS(loginResponse.body()?.user_id.toString(),
-                                                loginResponse.body()?.user_name.toString(),
-                                                loginResponse.body()?.access_token.toString(),
-                                                phone!!)
+                    val loginResponse = repository.userLogin(phone!!, password!!, key)
+                    if (loginResponse.isSuccessful) {
+                        if (loginResponse.body()?.user_id == "error") {
+                            loginStateListener?.onLoginFailure(loginResponse.body()?.opt!!)
+                        } else {
+                            loginStateListener?.onLoginSuccess(loginResponse.body()?.opt!!)
+                            repository.saveDATAtoDS(loginResponse.body()?.user_id.toString(),
+                                                    loginResponse.body()?.user_name.toString(),
+                                                    loginResponse.body()?.access_token.toString(),
+                                                    phone!!)
+                        }
                     }
                 }
-            }
-            catch (e:NoInternetException){
-
+                catch (e:NoInternetException){
                     loginStateListener?.onLoginNetworkFailure(e.message.toString())
+                }
 
             }
 
-            }
         }
-
 
     }
 

@@ -115,7 +115,7 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
 
     override fun onLoginStarted() {
         // put api call for login here
-        context?.toast("login start")
+        context?.toast("login start...")
         anim_btn.visibility = View.VISIBLE
         binding.btnAnim.visibility = View.GONE
         anim_btn.playAnimation()
