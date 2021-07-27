@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.quickghy.qgdaksha.R
+import com.quickghy.qgdaksha.ui.dash.home.HomeViewModel
+import org.koin.android.ext.android.inject
 
 class OffersFragment : Fragment() {
 
@@ -14,7 +16,7 @@ class OffersFragment : Fragment() {
         fun newInstance() = OffersFragment()
     }
 
-    private lateinit var viewModel: OffersViewModel
+    val viewModel: OffersViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,8 +27,7 @@ class OffersFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(OffersViewModel::class.java)
-        // TODO: Use the ViewModel
+
     }
 
 }

@@ -1,6 +1,7 @@
 package com.quickghy.qgdaksha.data.auth.network
 
 import com.quickghy.qgdaksha.data.auth.network.Response.*
+import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -13,7 +14,7 @@ import retrofit2.http.POST
  * @Date: 21-06-2021
  */
 
-interface MainApis {
+interface AuthMainApis {
 
     // post reqs for login
     @FormUrlEncoded
@@ -66,12 +67,20 @@ interface MainApis {
 
     companion object {
 
-        operator fun invoke(): MainApis {
+        operator fun invoke(
+            networkConnectionInterceptor: NetworkConnectionInterceptor
+        ): AuthMainApis {
+
+            val okkHttpclient = OkHttpClient.Builder()
+                .addInterceptor(networkConnectionInterceptor)
+                .build()
+
             return Retrofit.Builder()
+                .client(okkHttpclient)
                 .baseUrl("https://dakshassam.org/daksha_app/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-                .create(MainApis::class.java)
+                .create(AuthMainApis::class.java)
         }
     }
 

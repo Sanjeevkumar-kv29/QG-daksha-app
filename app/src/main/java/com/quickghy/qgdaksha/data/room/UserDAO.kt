@@ -1,7 +1,6 @@
-package com.internshala.Usery.database
+package com.quickghy.qgdaksha.data.room
 
 import androidx.room.*
-import com.internshala.booky.database.UserEntity
 
 @Dao
 interface UserDAO {

@@ -1,8 +1,7 @@
-package com.internshala.booky.database
+package com.quickghy.qgdaksha.data.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.internshala.Usery.database.UserDAO
 
 @Database(entities = [UserEntity::class], version = 1)
 abstract class UserDatabase : RoomDatabase() {

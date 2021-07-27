@@ -9,6 +9,11 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
+/**
+ * @Author: Sanjeev Kumar
+ * @Date: 27-07-2021
+ */
+
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "UserDetailsDatastore")
 
 class PrefDataStore(context: Context) {

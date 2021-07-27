@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentProfileBinding
 import com.quickghy.qgdaksha.ui.auth.AuthViewModel
+import com.quickghy.qgdaksha.ui.dash.home.HomeViewModel
+import org.koin.android.ext.android.inject
 
 
 class ProfileFragment : Fragment() {
@@ -18,7 +20,7 @@ class ProfileFragment : Fragment() {
         fun newInstance() = ProfileFragment()
     }
 
-    lateinit var viewModel: AuthViewModel
+    val viewModel: AuthViewModel by inject()
     lateinit var binding: FragmentProfileBinding
 
     override fun onCreateView(
@@ -33,11 +35,7 @@ class ProfileFragment : Fragment() {
             false
         )
 
-        //so that it calls the viewmodel owned by the parent activity
-        activity.let {
-            viewModel = ViewModelProvider(it!!).get(AuthViewModel::class.java)
-        }
-        // Inflate the layout for this fragment
+
         return binding.root
     }
 

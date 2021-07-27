@@ -1,7 +1,7 @@
 package com.quickghy.qgdaksha.data.auth.repositories
 
 import com.quickghy.qgdaksha.data.PrefDataStore
-import com.quickghy.qgdaksha.data.auth.network.MainApis
+import com.quickghy.qgdaksha.data.auth.network.AuthMainApis
 import com.quickghy.qgdaksha.data.auth.network.Response.*
 import retrofit2.Response
 
@@ -12,7 +12,7 @@ import retrofit2.Response
 
 class AuthUserRepository(
 
-    val APICALL:MainApis,
+    val APICALL:AuthMainApis,
     val dataStore: PrefDataStore
 ) {
 

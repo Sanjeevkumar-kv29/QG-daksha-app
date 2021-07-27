@@ -1,12 +1,13 @@
 package com.quickghy.qgdaksha.ui.auth
 
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import com.quickghy.qgdaksha.R
-import com.quickghy.qgdaksha.data.auth.network.MainApis
 import com.quickghy.qgdaksha.data.auth.repositories.AuthUserRepository
+import com.quickghy.qgdaksha.util.NoInternetException
 import kotlinx.coroutines.launch
 
 
@@ -71,6 +72,7 @@ class AuthViewModel(
             // val loginResponse = AuthUserRepository().userLogin(phone!!, password!!,key) //tight cuppeld we just remove is using DI
             //loginStateListener?.onLoginSuccess(loginResponse)
             viewModelScope.launch {
+                try {
                 val loginResponse = repository.userLogin(phone!!, password!!, key)
                 if (loginResponse.isSuccessful) {
                     if (loginResponse.body()?.user_id == "error") {
@@ -82,8 +84,14 @@ class AuthViewModel(
                                                 loginResponse.body()?.access_token.toString(),
                                                 phone!!)
                     }
-
                 }
+            }
+            catch (e:NoInternetException){
+
+                    loginStateListener?.onLoginNetworkFailure(e.message.toString())
+
+            }
+
             }
         }
 

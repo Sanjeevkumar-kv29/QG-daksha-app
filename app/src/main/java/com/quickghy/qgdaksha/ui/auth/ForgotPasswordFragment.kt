@@ -11,10 +11,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentForgotPasswordBinding
 import com.quickghy.qgdaksha.util.toast
+import org.koin.android.ext.android.inject
 
 class ForgotPasswordFragment : Fragment(), AuthStateListener.ForgotPasswordStateListner {
 
-    lateinit var viewModel: AuthViewModel
+    val viewModel: AuthViewModel by inject()
     lateinit var binding: FragmentForgotPasswordBinding
 
     override fun onCreateView(
@@ -23,9 +24,6 @@ class ForgotPasswordFragment : Fragment(), AuthStateListener.ForgotPasswordState
     ): View {
         val view = inflater.inflate(R.layout.fragment_forgot_password, container, false)
 
-        activity.let {
-            viewModel = ViewModelProvider(it!!).get(AuthViewModel::class.java)
-        }
 
         binding = DataBindingUtil.inflate(
             inflater,

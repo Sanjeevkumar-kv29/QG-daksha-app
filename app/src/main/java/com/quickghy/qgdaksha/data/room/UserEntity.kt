@@ -1,4 +1,4 @@
-package com.internshala.booky.database
+package com.quickghy.qgdaksha.data.room
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

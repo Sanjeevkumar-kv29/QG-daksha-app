@@ -9,15 +9,19 @@ import androidx.fragment.app.commit
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.ui.dash.cart.CartFragment
 import com.quickghy.qgdaksha.ui.dash.home.HomeFragment
+import com.quickghy.qgdaksha.ui.dash.home.HomeViewModel
 import com.quickghy.qgdaksha.ui.dash.offers.OffersFragment
 import com.quickghy.qgdaksha.ui.dash.profile.ProfileFragment
 import kotlinx.android.synthetic.main.activity_dash.*
+import org.koin.android.ext.android.inject
 
 class DashActivity : AppCompatActivity() {
 
     lateinit var fragmentContainer: FragmentContainerView
     val homeFragment = HomeFragment.newInstance()
     val fragmentManager = supportFragmentManager
+
+    val viewModel: DashViewModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -18,26 +18,24 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentVerifyOtpBinding
+import org.koin.android.ext.android.inject
 
 
 var otp: StringBuilder = StringBuilder()
-lateinit var viewModel: AuthViewModel
 
-
+lateinit var  viewModel: AuthViewModel
 
 class VerifyOtpFragment : Fragment(), AuthStateListener.SignUpOtpStateListener {
 
     lateinit var binding: FragmentVerifyOtpBinding
+
+    val viewModel: AuthViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        // val view = inflater.inflate(R.layout.fragment_verify_otp, container, false)
-        activity.let {
-            viewModel = ViewModelProvider(it!!).get(AuthViewModel::class.java)
-        }
 
         binding = DataBindingUtil.inflate(
             inflater,

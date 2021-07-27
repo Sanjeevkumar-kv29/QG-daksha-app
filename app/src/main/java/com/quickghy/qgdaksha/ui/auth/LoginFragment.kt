@@ -115,7 +115,7 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
 
     override fun onLoginStarted() {
         // put api call for login here
-        Toast.makeText(context, "login start", Toast.LENGTH_SHORT).show()
+        context?.toast("login start")
         anim_btn.visibility = View.VISIBLE
         binding.btnAnim.visibility = View.GONE
         anim_btn.playAnimation()
@@ -123,7 +123,7 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
 
 
     override fun onLoginSuccess(successRes: String) {
-        Toast.makeText(context, successRes, Toast.LENGTH_SHORT).show()
+        context?.toast(successRes)
         anim_btn.visibility = View.GONE
         binding.btnAnim.visibility = View.VISIBLE
         anim_btn.pauseAnimation()
@@ -133,9 +133,13 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
 
     override fun onLoginFailure(message: String) {
         // display failure message toast
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+        context?.toast(message)
         binding.btnAnim.visibility = View.VISIBLE
         anim_btn.visibility = View.GONE
         anim_btn.pauseAnimation()
+    }
+
+    override fun onLoginNetworkFailure(message: String) {
+        context?.toast(message)
     }
 }

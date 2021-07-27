@@ -9,8 +9,10 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.data.PrefDataStore
+import com.quickghy.qgdaksha.ui.auth.AuthViewModel
 import com.quickghy.qgdaksha.util.toast
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 import org.koin.core.component.getScopeName
 
 class HomeFragment : Fragment() {
@@ -19,7 +21,7 @@ class HomeFragment : Fragment() {
         fun newInstance() = HomeFragment()
     }
 
-    private lateinit var viewModel: HomeViewModel
+    val viewModel: HomeViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,8 +32,9 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        // TODO: Use the ViewModel
+
+        /*viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        // TODO: Use the ViewModel   */
 
 
         context?.toast(PrefDataStore(requireContext()).uphoneno.toString())
