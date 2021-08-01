@@ -77,8 +77,6 @@ dependencies {
     implementation "androidx.datastore:datastore:1.0.0-rc01"
     //Preference DataStore
     implementation "androidx.datastore:datastore-preferences:1.0.0-rc01"
-    //Kodein
-    implementation 'org.kodein.di:kodein-di:7.6.0'
     //firebase auth.
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
     //Lottie Anim.
@@ -98,5 +96,8 @@ dependencies {
 // Koin for Jetpack Compose
     implementation "io.insert-koin:koin-androidx-compose:$koin_version"
 
+
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
 
 }

@@ -5,7 +5,6 @@
     tools:context=".ui.dash.profile.ProfileFragment">
 
     <data>
-
         <variable
             name="viewmodel"
             type="com.quickghy.qgdaksha.ui.auth.AuthViewModel" />
@@ -91,9 +90,11 @@
                 android:src="@drawable/illustration_mobile_otp" />
 
             <android.widget.Button
+                android:id="@+id/mapbtn"
                 style="@style/wide_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="mapclick"
                 android:paddingHorizontal="@dimen/_35sdp"
                 android:text="Login" />
 

@@ -1,9 +1,12 @@
 package com.quickghy.qgdaksha.ui.dash
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.FragmentContainerView
 import androidx.fragment.app.commit
 import com.quickghy.qgdaksha.R
@@ -11,6 +14,7 @@ import com.quickghy.qgdaksha.ui.dash.cart.CartFragment
 import com.quickghy.qgdaksha.ui.dash.home.HomeFragment
 import com.quickghy.qgdaksha.ui.dash.home.HomeViewModel
 import com.quickghy.qgdaksha.ui.dash.offers.OffersFragment
+import com.quickghy.qgdaksha.ui.dash.profile.MapMainActivity
 import com.quickghy.qgdaksha.ui.dash.profile.ProfileFragment
 import kotlinx.android.synthetic.main.activity_dash.*
 import org.koin.android.ext.android.inject
@@ -99,5 +103,11 @@ class DashActivity : AppCompatActivity() {
         tvoffers.setTextColor(Color.parseColor("#292932"))
         tvcart.setTextColor(Color.parseColor("#FFA200"))
     }
+
+    fun mapclick(view: View)
+    {
+        startActivity(Intent(this, MapMainActivity::class.java))
+    }
+
 
 }
