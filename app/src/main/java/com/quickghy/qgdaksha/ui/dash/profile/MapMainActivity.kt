@@ -17,6 +17,8 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.quickghy.qgdaksha.R
+import kotlinx.android.synthetic.main.mapmainactivity.*
+import java.lang.Exception
 import java.util.*
 
 
@@ -61,12 +63,26 @@ class MapMainActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
-        val latLng = LatLng(currentLocation.latitude, currentLocation.longitude)
+
+        var latLng = LatLng(currentLocation.latitude, currentLocation.longitude)
         val makerOptions = MarkerOptions().position(latLng).title("Hello I am here").draggable(true)
         Log.d("MAP","fetch location yyy")
         googleMap?.animateCamera(CameraUpdateFactory.newLatLng(latLng))
-        googleMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 5f))
+        googleMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13f))
         googleMap?.addMarker(makerOptions)
+
+        googleMap.setOnMapClickListener {
+
+            googleMap.clear()
+            var latLng = LatLng(it.latitude, it.longitude)
+            val makerOptions = MarkerOptions().position(latLng).title("Hello I am here").draggable(true)
+            getcompleteaddress(it.latitude,it.longitude)
+            googleMap?.animateCamera(CameraUpdateFactory.newLatLng(latLng))
+            googleMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13f))
+            googleMap?.addMarker(makerOptions)
+
+        }
+
     }
 
 
@@ -87,9 +103,9 @@ class MapMainActivity : AppCompatActivity(), OnMapReadyCallback {
 
     }
 
-    fun getcompleteaddress(latitude: Double, longitude: Double) {
+    fun getcompleteaddress(latitude: Double, longitude: Double): Boolean {
         val geocoder = Geocoder(this, Locale.getDefault())
-
+    try {
         val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)
         val address: String = addresses[0].getAddressLine(0)
         val city: String = addresses[0].getLocality()
@@ -98,6 +114,12 @@ class MapMainActivity : AppCompatActivity(), OnMapReadyCallback {
         val country: String = addresses[0].getCountryName()
 
         Toast.makeText(this, address+city+state+zip+country , Toast.LENGTH_SHORT).show()
+    }
+    catch (e:Exception){
+
+    }
+
+        return true
 
     }
 }
