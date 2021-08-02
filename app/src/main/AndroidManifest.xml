@@ -23,11 +23,6 @@
             android:name=".ui.dash.profile.MapMainActivity"
             android:label="@string/title_activity_dash" />
 
-        <activity
-            android:name=".ui.dash.profile.MapsActivity"
-            android:label="@string/title_activity_dash" />
-
-
 
         <activity android:name=".ui.auth.MainActivity"
             android:theme="@style/AuthStyle">
