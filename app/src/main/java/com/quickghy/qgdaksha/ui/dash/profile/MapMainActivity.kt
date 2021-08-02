@@ -1,12 +1,12 @@
 package com.quickghy.qgdaksha.ui.dash.profile
-
-
 import android.content.pm.PackageManager
+import android.location.Address
+import android.location.Geocoder
 import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -17,6 +17,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.quickghy.qgdaksha.R
+import java.util.*
 
 
 class MapMainActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -51,7 +52,7 @@ class MapMainActivity : AppCompatActivity(), OnMapReadyCallback {
                 currentLocation = location
                 Log.d("MAP","fetch location")
                 Toast.makeText(this, "lat- "+currentLocation.latitude.toString() + " long- " + currentLocation.longitude.toString(), Toast.LENGTH_SHORT).show()
-
+                getcompleteaddress(currentLocation.latitude,currentLocation.longitude)
                 val supportMapFragment = (supportFragmentManager.findFragmentById(R.id.myMap) as
                         SupportMapFragment?)!!
                 supportMapFragment.getMapAsync(this)
@@ -61,12 +62,15 @@ class MapMainActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         val latLng = LatLng(currentLocation.latitude, currentLocation.longitude)
-        val makerOptions = MarkerOptions().position(latLng).title("Hello I am here")
+        val makerOptions = MarkerOptions().position(latLng).title("Hello I am here").draggable(true)
         Log.d("MAP","fetch location yyy")
         googleMap?.animateCamera(CameraUpdateFactory.newLatLng(latLng))
         googleMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 5f))
         googleMap?.addMarker(makerOptions)
     }
+
+
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -80,5 +84,20 @@ class MapMainActivity : AppCompatActivity(), OnMapReadyCallback {
                 fetchLocation()
             }
         }
+
+    }
+
+    fun getcompleteaddress(latitude: Double, longitude: Double) {
+        val geocoder = Geocoder(this, Locale.getDefault())
+
+        val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)
+        val address: String = addresses[0].getAddressLine(0)
+        val city: String = addresses[0].getLocality()
+        val state: String = addresses[0].getAdminArea()
+        val zip: String = addresses[0].getPostalCode()
+        val country: String = addresses[0].getCountryName()
+
+        Toast.makeText(this, address+city+state+zip+country , Toast.LENGTH_SHORT).show()
+
     }
 }
