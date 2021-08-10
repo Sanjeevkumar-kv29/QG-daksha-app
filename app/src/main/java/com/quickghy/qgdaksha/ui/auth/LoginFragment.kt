@@ -35,7 +35,6 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
 
     lateinit var binding: FragmentLoginBinding
     lateinit var anim_btn: LottieAnimationView
-
     val viewModel: AuthViewModel by inject()
 
     override fun onCreateView(
@@ -103,27 +102,17 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
         }
     }
 
-    /*private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
-        try {
-            val account = completedTask.getResult(ApiException::class.java)
-
-            context?.toast("login successfully"+account?.displayName)
-
-        } catch (e: ApiException) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.w("singinresult", "signInResult:failed code=" + e.statusCode)
-            context?.toast("Something Went Wrong")
-        }
-    }*/
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(
                 ApiException::class.java
             )
-            context?.toast("login successfully"+account?.displayName)
+            context?.toast("logining In as "+account?.email)
+            val googleIdToken = account?.idToken?: ""
+            Log.i("GToken", googleIdToken)
+            viewModel.doGoogleLogin(googleIdToken)
             // Signed in successfully
-            val googleId = account?.id ?: ""
+            /*val googleId = account?.id ?: ""
             Log.i("Google ID",googleId)
 
             val googleFirstName = account?.givenName ?: ""
@@ -150,7 +139,7 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
             json.put("Google Profile URL",googleProfilePicURL)
 
 
-            Log.i("RESPONSE",json.toString())
+            Log.i("RESPONSE",json.toString())*/
 
         } catch (e: ApiException) {
             // Sign in was unsuccessful
@@ -160,6 +149,7 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
             )
         }
     }
+
 
     override fun onLoginStarted() {
         // put api call for login here
@@ -190,4 +180,7 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
     override fun onLoginNetworkFailure(message: String) {
         context?.toast(message)
     }
+
+
+
 }

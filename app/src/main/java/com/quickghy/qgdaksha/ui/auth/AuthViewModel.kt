@@ -1,5 +1,6 @@
 package com.quickghy.qgdaksha.ui.auth
 
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
@@ -31,6 +32,8 @@ class AuthViewModel(
     var repassword: String? = null
     var username: String? = null
     var otp: String? = null
+    var token: String? = null
+
 
     private var tNcflag = false
 
@@ -189,6 +192,23 @@ class AuthViewModel(
                 } else
                     resetOtpStateListener?.onFailReset("Password Update failed...")
             }
+        }
+    }
+
+    fun doGoogleLogin(Gtoken:String) {
+        viewModelScope.launch {
+            loginStateListener?.onLoginStarted()
+            val googleauthresponse = repository.GoogleAuth(Gtoken)
+
+            Log.d("true resp",googleauthresponse)
+            if (googleauthresponse == "true"){
+                loginStateListener?.onLoginSuccess("Login Success")
+                Log.d("true resp","true")
+            }
+            else{
+                loginStateListener?.onLoginFailure("Login Failure...")
+            }
+
         }
     }
 

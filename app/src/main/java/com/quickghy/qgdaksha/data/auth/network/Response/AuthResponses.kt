@@ -28,3 +28,8 @@ data class AuthSignUpResponse(
 data class AuthPasswordResetRespones(
     val opt: String?
 )
+
+data class GoogleAuthResp(
+    val message: String?,
+    val stack: String?
+)

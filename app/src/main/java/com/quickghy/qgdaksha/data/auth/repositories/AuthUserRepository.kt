@@ -1,5 +1,6 @@
 package com.quickghy.qgdaksha.data.auth.repositories
 
+import android.util.Log
 import com.quickghy.qgdaksha.data.PrefDataStore
 import com.quickghy.qgdaksha.data.auth.network.AuthMainApis
 import com.quickghy.qgdaksha.data.auth.network.Response.*
@@ -64,4 +65,22 @@ class AuthUserRepository(
         return APICALL.userSignUpOtp(mobile, otp, daksha_key)
     }
 
+
+    suspend fun GoogleAuth(token: String): String {
+        var resp = APICALL.googleAuth(token)
+        Log.d("GToken", token.toString())
+        if (resp.isSuccessful){
+
+            Log.d("true resp","true")
+            return "true"
+            // save the response into db
+
+        }
+        else{
+            Log.d("trueresp", resp.body()?.message.toString())
+
+            return resp.code().toString()
+
+        }
+    }
 }
