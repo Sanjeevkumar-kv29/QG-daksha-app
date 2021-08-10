@@ -36,6 +36,7 @@ class MapMainActivity : AppCompatActivity(), OnMapReadyCallback {
         fetchLocation()
     }
 
+
     private fun fetchLocation() {
 
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) !=
@@ -62,6 +63,8 @@ class MapMainActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+
+
     override fun onMapReady(googleMap: GoogleMap) {
 
         var latLng = LatLng(currentLocation.latitude, currentLocation.longitude)
@@ -86,8 +89,6 @@ class MapMainActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
 
-
-
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -103,6 +104,8 @@ class MapMainActivity : AppCompatActivity(), OnMapReadyCallback {
 
     }
 
+
+
     fun getcompleteaddress(latitude: Double, longitude: Double): Boolean {
         val geocoder = Geocoder(this, Locale.getDefault())
     try {
@@ -116,10 +119,10 @@ class MapMainActivity : AppCompatActivity(), OnMapReadyCallback {
         Toast.makeText(this, address+city+state+zip+country , Toast.LENGTH_SHORT).show()
     }
     catch (e:Exception){
-
     }
 
         return true
-
     }
+
+
 }

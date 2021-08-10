@@ -20,10 +20,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentLoginBinding
 import com.quickghy.qgdaksha.ui.dash.DashActivity
 import com.quickghy.qgdaksha.util.toast
+import org.json.JSONObject
 import org.koin.android.ext.android.inject
 import org.koin.java.KoinJavaComponent.inject
 
@@ -73,6 +76,7 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
 
         var gso: GoogleSignInOptions? =
             GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken("903207635478-d3h21sbg8bpusfvqldi01v2epek1qkui.apps.googleusercontent.com")
                 .requestEmail()
                 .build()
 
@@ -99,7 +103,7 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
         }
     }
 
-    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+    /*private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
 
@@ -110,6 +114,50 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w("singinresult", "signInResult:failed code=" + e.statusCode)
             context?.toast("Something Went Wrong")
+        }
+    }*/
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        try {
+            val account = completedTask.getResult(
+                ApiException::class.java
+            )
+            context?.toast("login successfully"+account?.displayName)
+            // Signed in successfully
+            val googleId = account?.id ?: ""
+            Log.i("Google ID",googleId)
+
+            val googleFirstName = account?.givenName ?: ""
+            Log.i("Google First Name", googleFirstName)
+
+            val googleLastName = account?.familyName ?: ""
+            Log.i("Google Last Name", googleLastName)
+
+            val googleEmail = account?.email ?: ""
+            Log.i("Google Email", googleEmail)
+
+            val googleProfilePicURL = account?.photoUrl.toString()
+            Log.i("Google Profile Pic URL", googleProfilePicURL)
+
+            val googleIdToken = account?.idToken?: ""
+            Log.i("Google ID Token", googleIdToken)
+
+            val json = JSONObject()
+            json.put("Google ID",googleId)
+            json.put("Google Token ID",googleIdToken)
+            json.put("Google First Name",googleFirstName)
+            json.put("Google Last Name",googleLastName)
+            json.put("Google Email",googleEmail)
+            json.put("Google Profile URL",googleProfilePicURL)
+
+
+            Log.i("RESPONSE",json.toString())
+
+        } catch (e: ApiException) {
+            // Sign in was unsuccessful
+            context?.toast("Something Went Wrong")
+            Log.e(
+                "failed code=", e.statusCode.toString()
+            )
         }
     }
 
