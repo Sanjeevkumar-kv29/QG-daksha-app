@@ -25,10 +25,22 @@ class AuthUserRepository(
 
     suspend fun userLogin(
         mobile: String,
-        password: String,
-        daksha_key: String
-    ): Response<AuthLoginResponse> {
-        return APICALL.userLogin(mobile, password, daksha_key)
+        password: String): String{
+        val resp =  APICALL.userLogin(mobile, password)
+        if (resp.isSuccessful){
+
+            val id = resp.body()?._id
+            val name = resp.body()?.name
+            val phone = resp.body()?.phoneNo
+            val email = resp.body()?.email
+            val token = resp.body()?.token
+
+            Log.d("login resp",id+name+email+phone)
+            return "true"
+        }
+        else{
+            return resp.code().toString()
+        }
     }
 
     suspend fun userForgetPass(

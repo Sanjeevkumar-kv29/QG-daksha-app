@@ -18,12 +18,11 @@ interface AuthMainApis {
 
     // post reqs for login
     @FormUrlEncoded
-    @POST("Dgu_Mob/mob_dguLoginAttempt")
+    @POST("/api/v1/user/login/password")
     suspend fun userLogin(
         // suspend function because this may run long
-        @Field("ru_phone") phone: String,
-        @Field("ru_password") password: String,
-        @Field("daksha_key") key: String,
+        @Field("phoneNo") phone: String,
+        @Field("password") password: String,
     ): Response<AuthLoginResponse>    // Response kept on auth login response data class inside response directory
 
     //    post reqs for forgot password--------------------------------

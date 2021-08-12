@@ -10,10 +10,13 @@ data class AuthForgetPasswordResponse(
 )
 
 data class AuthLoginResponse(
-    val opt: String?,
-    val user_id: String?,
-    val user_name: String?,
-    val access_token: String?
+    val _id: String?,
+    val name: String?,
+    val phoneNo: String?,
+    val email: String?,
+    val isAdmin: String?,
+    val isServiceProvider: String?,
+    val token: String?
 )
 
 data class AuthSignUpOtpResponse(

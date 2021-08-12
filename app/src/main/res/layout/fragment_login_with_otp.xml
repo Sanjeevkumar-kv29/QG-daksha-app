@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.auth.LoginFragment">
 
     <data>
-
         <variable
             name="viewmodel"
             type="com.quickghy.qgdaksha.ui.auth.AuthViewModel" />
@@ -145,7 +145,7 @@
                     android:drawablePadding="@dimen/_8sdp"
                     android:elevation="10dp"
                     android:padding="@dimen/_8sdp"
-                    android:text="Sign in with Google"
+                    android:text="Sign in with Google   "
                     android:textAlignment="center" />
 
                 <TextView
@@ -157,12 +157,13 @@
                     android:layout_marginBottom="@dimen/_35sdp"
                     android:background="@drawable/rectangle_3"
                     android:fontFamily="@font/poppins_regular"
-                    android:drawableStart="@drawable/phonesolid"
+                    android:drawableStart="@drawable/solidlock"
                     android:drawable="@color/app_gray"
                     android:drawablePadding="@dimen/_8sdp"
                     android:elevation="10dp"
                     android:padding="@dimen/_8sdp"
-                    android:text="Sign in with OTP       "
+                    android:onClick="@{viewmodel::goTologinpass}"
+                    android:text="Sign in with Password"
                     android:textAlignment="center" />
 
                 <LinearLayout

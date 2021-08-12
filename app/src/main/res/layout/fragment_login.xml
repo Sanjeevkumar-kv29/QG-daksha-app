@@ -192,6 +192,7 @@
                     android:elevation="10dp"
                     android:padding="@dimen/_8sdp"
                     android:text="Sign in with OTP       "
+                    android:onClick="@{viewmodel::goTologinotp}"
                     android:textAlignment="center" />
 
                 <LinearLayout

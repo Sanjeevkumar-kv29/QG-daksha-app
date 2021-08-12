@@ -64,6 +64,13 @@ class AuthViewModel(
     fun help(view: View) {
         view.findNavController().navigate(R.id.helpFragment)
     }
+    fun goTologinotp(view: View) {
+        view.findNavController().navigate(R.id.action_loginFragment_to_loginWithOtp)
+    }
+    fun goTologinpass(view: View) {
+        view.findNavController().navigate(R.id.action_loginWithOtp_to_loginFragment)
+    }
+
 
     fun doLogin(view: View) {
 
@@ -74,24 +81,19 @@ class AuthViewModel(
             loginStateListener?.onLoginStarted()
             // val loginResponse = AuthUserRepository().userLogin(phone!!, password!!,key) //tight cuppeld we just remove is using DI
             //loginStateListener?.onLoginSuccess(loginResponse)
+
             viewModelScope.launch {
-                try {
-                    val loginResponse = repository.userLogin(phone!!, password!!, key)
-                    if (loginResponse.isSuccessful) {
-                        if (loginResponse.body()?.user_id == "error") {
-                            loginStateListener?.onLoginFailure(loginResponse.body()?.opt!!)
-                        } else {
-                            loginStateListener?.onLoginSuccess(loginResponse.body()?.opt!!)
-                            repository.saveDATAtoDS(loginResponse.body()?.user_id.toString(),
-                                                    loginResponse.body()?.user_name.toString(),
-                                                    loginResponse.body()?.access_token.toString(),
-                                                    phone!!)
-                        }
-                    }
+                loginStateListener?.onLoginStarted()
+                val loginrepo = repository.userLogin(phone!!, password!!)
+
+                if (loginrepo == "true"){
+                    loginStateListener?.onLoginSuccess("Login Success")
+                    Log.d("true resp","true")
                 }
-                catch (e:NoInternetException){
-                    loginStateListener?.onLoginNetworkFailure(e.message.toString())
+                else{
+                    loginStateListener?.onLoginFailure("Login Failure...")
                 }
+
 
             }
 
@@ -107,8 +109,6 @@ class AuthViewModel(
             return
         } else {
             view.isEnabled = false
-            // val loginResponse = AuthUserRepository().userLogin(phone!!, password!!,key) //tight cuppeld we just remove is using DI
-            //loginStateListener?.onLoginSuccess(loginResponse)
 
             viewModelScope.launch {
                 val forgetResponse = repository.userForgetPass(phone!!, key)

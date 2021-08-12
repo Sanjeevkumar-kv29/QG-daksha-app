@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_loginFrag_to_forgotPassFrag"
             app:destination="@id/forgotPasswordFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_loginWithOtp"
+            app:destination="@id/loginWithOtp" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -72,6 +75,14 @@
         <action
             android:id="@+id/action_helpFragment_to_loginFragment"
             app:popUpTo="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginWithOtp"
+        android:name="com.quickghy.qgdaksha.ui.auth.LoginWithOtp"
+        android:label="LoginWithOtp" >
+        <action
+            android:id="@+id/action_loginWithOtp_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
 </navigation>
