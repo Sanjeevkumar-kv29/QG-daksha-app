@@ -88,7 +88,6 @@ interface AuthMainApis {
                 }
             }
 
-
              val okkHttpclient1 = OkHttpClient.Builder()
                 .addNetworkInterceptor(interceptor) // same for .addInterceptor(...)
                 .connectTimeout(30, TimeUnit.SECONDS) //Backend is really slow
@@ -109,6 +108,5 @@ interface AuthMainApis {
                 .create(AuthMainApis::class.java)
         }
     }
-
 
 }

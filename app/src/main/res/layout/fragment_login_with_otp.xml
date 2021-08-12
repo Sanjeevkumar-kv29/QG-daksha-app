@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_12sdp"
                 android:fontFamily="@font/poppins_regular"
-                android:text="Login here with your details" />
+                android:text="Login with your Phone Number" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout1"
@@ -93,36 +93,7 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout2"
-                style="@style/customPassET"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_password"
-                    style="@style/customInputTxtPass"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/password"
-                    android:text="@={viewmodel.password}" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <TextView
-                android:id="@+id/btn_forgot_pass"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:fontFamily="@font/poppins_regular"
-                android:onClick="@{viewmodel::goToForgotPass}"
-                android:padding="@dimen/_3sdp"
-                android:text="@string/forgot_password"
-                android:textColor="@color/gray" />
-
-             <LinearLayout
+            <LinearLayout
                 android:id="@+id/linearLayoutCompat2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -215,7 +186,7 @@
                     android:paddingStart="@dimen/_3sdp"
                     android:text="@string/sign_up" />
                 </LinearLayout>
-             </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </layout>
