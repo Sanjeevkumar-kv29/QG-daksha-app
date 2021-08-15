@@ -23,10 +23,10 @@ class AuthUserRepository(
         dataStore.savedetailstoDS(uid,uname,utoken,uphone)
     }
 
-    suspend fun userLogin(
+    suspend fun userLoginWithPass(
         mobile: String,
         password: String): String{
-        val resp =  APICALL.userLogin(mobile, password)
+        val resp =  APICALL.userLoginWithPass(mobile, password)
         if (resp.isSuccessful){
 
             val id = resp.body()?._id
@@ -43,11 +43,20 @@ class AuthUserRepository(
         }
     }
 
-    suspend fun userForgetPass(
-        mobile: String,
-        daksha_key: String
-    ): Response<AuthForgetPasswordResponse> {
-        return APICALL.userForgetPass(mobile, daksha_key)
+    suspend fun verifyOtpandLogin( mobile: String, otp: String ): String {
+        val resp = APICALL.verifySignupOTPandLogin(mobile,otp)
+
+        if (resp.isSuccessful){
+            return "true"
+            Log.d("req OTP","recived for otp")
+            Log.d("otp vreify", resp.body()?.token!!)
+
+            // resp carry the login data
+
+        }
+        else{
+            return  resp.message().toString()
+        }
     }
 
     suspend fun userResetPass(
@@ -69,12 +78,17 @@ class AuthUserRepository(
         return APICALL.userSignUp(name, mobile, password, daksha_key)
     }
 
-    suspend fun userSignUpOtp(
-        mobile: String,
-        otp: String,
-        daksha_key: String
-    ): Response<AuthSignUpOtpResponse> {
-        return APICALL.userSignUpOtp(mobile, otp, daksha_key)
+    suspend fun SendSignupOtp( mobile: String ): String {
+        val resp =  APICALL.sendSignupOTP(mobile)
+        Log.d("req OTP","requesting for otp  reposetory")
+        if (resp.isSuccessful){
+            return "true"
+            Log.d("req OTP","recived for otp")
+        }
+        else{
+            return  resp.message().toString()
+        }
+
     }
 
 

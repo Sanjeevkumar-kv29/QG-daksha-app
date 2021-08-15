@@ -19,11 +19,41 @@ interface AuthMainApis {
     // post reqs for login
     @FormUrlEncoded
     @POST("/api/v1/user/login/password")
-    suspend fun userLogin(
+    suspend fun userLoginWithPass(
         // suspend function because this may run long
         @Field("phoneNo") phone: String,
         @Field("password") password: String,
     ): Response<AuthLoginResponse>    // Response kept on auth login response data class inside response directory
+
+    @FormUrlEncoded
+    @POST("/api/v1/user/login/otp")
+    suspend fun userSignUpWithOtp(
+        @Field("phoneNo") phone: String,
+        @Field("otp") otp: String,
+    ): Response<AuthSignUpOtpResponse> // recieve access token on successful sign up.
+
+
+    @FormUrlEncoded
+    @POST("/api/v1/user/otp")
+    suspend fun sendSignupOTP(
+        @Field("phoneNo") phone: String,
+    ): Response<SignupOtpResp> // recieve access token on successful sign up.
+
+    @FormUrlEncoded
+    @POST("/api/v1/user/login/otp")
+    suspend fun verifySignupOTPandLogin(
+        @Field("phoneNo") phone: String,
+        @Field("otp") otp: String,
+    ): Response<AuthLoginResponse> // recieve access token on successful sign up.
+
+
+    @GET("/api/v1/user/google/callback")
+    suspend fun googleAuth(
+        // suspend function because this may run long
+        @Query("token") token: String
+    ): Response<GoogleAuthResp> // recieve access token on successful sign up.
+
+
 
     //    post reqs for forgot password--------------------------------
     @FormUrlEncoded
@@ -54,23 +84,6 @@ interface AuthMainApis {
         @Field("ru_password") password: String,
         @Field("daksha_key") key: String,
     ): Response<AuthSignUpResponse>
-
-    @FormUrlEncoded
-    @POST("Dgu_Mob/mob_enterVerificationCode")
-    suspend fun userSignUpOtp(
-        // suspend function because this may run long
-        @Field("ru_phone") phone: String,
-        @Field("ru_v_code") otp: String,
-        @Field("daksha_key") key: String,
-    ): Response<AuthSignUpOtpResponse> // recieve access token on successful sign up.
-
-
-
-    @GET("/api/v1/user/google/callback")
-    suspend fun googleAuth(
-        // suspend function because this may run long
-        @Query("token") token: String
-    ): Response<GoogleAuthResp> // recieve access token on successful sign up.
 
 
     companion object {

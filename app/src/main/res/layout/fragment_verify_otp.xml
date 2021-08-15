@@ -82,14 +82,6 @@
                     android:id="@+id/otp_et4"
                     style="@style/customET_OTP" />
 
-                <EditText
-                    android:id="@+id/otp_et5"
-                    style="@style/customET_OTP" />
-
-                <EditText
-                    android:id="@+id/otp_et6"
-                    style="@style/customET_OTP" />
-
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -98,7 +90,7 @@
                 style="@style/wide_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="@{viewmodel::doVerifyOTP}"
+                android:onClick="@{viewmodel::doVerifyOtp}"
                 android:text="Verify" />
 
             <TextView

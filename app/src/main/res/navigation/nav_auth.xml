@@ -83,6 +83,9 @@
         <action
             android:id="@+id/action_loginWithOtp_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_loginWithOtp_to_verifyOtpFragment"
+            app:destination="@id/verifyOtpFragment" />
     </fragment>
 
 </navigation>

@@ -36,3 +36,8 @@ data class GoogleAuthResp(
     val message: String?,
     val stack: String?
 )
+
+data class SignupOtpResp(
+    val message: String?,
+    val otp: String?
+)
