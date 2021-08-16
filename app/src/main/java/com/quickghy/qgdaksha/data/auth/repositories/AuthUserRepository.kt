@@ -17,10 +17,26 @@ class AuthUserRepository(
     val dataStore: PrefDataStore
 ) {
 
+    var phone = ""
+    var userdata : userData? = null
 
     suspend fun saveDATAtoDS(uid: String, uname: String, utoken: String, uphone: String )
     {
         dataStore.savedetailstoDS(uid,uname,utoken,uphone)
+    }
+
+    suspend fun GoogleAuth(token: String): String {
+        var resp = APICALL.googleAuth(token)
+        Log.d("GToken", token.toString())
+        if (resp.isSuccessful){
+            Log.d("true resp","true")
+            return "true"
+        }
+        else{
+            Log.d("trueresp", resp.body()?.message.toString())
+            return resp.code().toString()
+        }
+
     }
 
     suspend fun userLoginWithPass(
@@ -43,20 +59,46 @@ class AuthUserRepository(
         }
     }
 
-    suspend fun verifyOtpandLogin( mobile: String, otp: String ): String {
-        val resp = APICALL.verifySignupOTPandLogin(mobile,otp)
-
+    suspend fun SendSignupOtp( mobile: String ): String {
+        val resp =  APICALL.SendLoginOtp(mobile)
+        Log.d("req OTP","requesting for otp  reposetory")
         if (resp.isSuccessful){
+            phone = mobile
+            Log.d("req OTP", resp.body()?.message.toString())
             return "true"
-            Log.d("req OTP","recived for otp")
-            Log.d("otp vreify", resp.body()?.token!!)
-
-            // resp carry the login data
-
         }
         else{
             return  resp.message().toString()
         }
+
+    }
+
+    suspend fun verifyOtpandLogin(otp: String ): String {
+
+        Log.d("repo Phone",phone)
+
+        val respon = APICALL.verifySignupOTPandLogin(phone,otp)
+
+        if (respon.isSuccessful){
+            return "true"
+            Log.d("req OTP","recived for otp")
+
+        }
+        else{
+            return  respon.message().toString()
+        }
+    }
+
+    suspend fun userSignUp(userData: userData, otp: String,): String {
+        val resp = APICALL.userSignUp(userData,otp)
+        if (resp.isSuccessful){
+            Log.d("req OTP", resp.body()?.message.toString())
+            return "true"
+        }
+        else{
+            return  resp.message().toString()
+        }
+
     }
 
     suspend fun userResetPass(
@@ -69,44 +111,9 @@ class AuthUserRepository(
     }
 
 
-    suspend fun userSignUp(
-        name: String,
-        mobile: String,
-        password: String,
-        daksha_key: String
-    ): Response<AuthSignUpResponse> {
-        return APICALL.userSignUp(name, mobile, password, daksha_key)
-    }
-
-    suspend fun SendSignupOtp( mobile: String ): String {
-        val resp =  APICALL.sendSignupOTP(mobile)
-        Log.d("req OTP","requesting for otp  reposetory")
-        if (resp.isSuccessful){
-            return "true"
-            Log.d("req OTP","recived for otp")
-        }
-        else{
-            return  resp.message().toString()
-        }
-
-    }
 
 
-    suspend fun GoogleAuth(token: String): String {
-        var resp = APICALL.googleAuth(token)
-        Log.d("GToken", token.toString())
-        if (resp.isSuccessful){
 
-            Log.d("true resp","true")
-            return "true"
-            // save the response into db
 
-        }
-        else{
-            Log.d("trueresp", resp.body()?.message.toString())
 
-            return resp.code().toString()
-
-        }
-    }
 }

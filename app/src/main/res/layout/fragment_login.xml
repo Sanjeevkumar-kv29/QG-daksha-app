@@ -171,6 +171,27 @@
                     android:fontFamily="@font/poppins_regular"
                     android:text="OR" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal|bottom">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/dont_have_an_account"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:id="@+id/btn_go_to_signup"
+                        style="@style/sign_up"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{viewmodel::goToSignUp}"
+                        android:paddingStart="@dimen/_3sdp"
+                        android:text="@string/sign_up" />
+                </LinearLayout>
+
                 <TextView
                     android:id="@+id/sign_in_google"
                     android:layout_width="wrap_content"
@@ -203,26 +224,7 @@
                     android:text="Sign in with OTP       "
                     android:textAlignment="center" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal|bottom">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/dont_have_an_account"
-                        android:textSize="@dimen/_10sdp" />
-
-                    <TextView
-                        android:id="@+id/btn_go_to_signup"
-                        style="@style/sign_up"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="@{viewmodel::goToSignUp}"
-                        android:paddingStart="@dimen/_3sdp"
-                        android:text="@string/sign_up" />
-                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

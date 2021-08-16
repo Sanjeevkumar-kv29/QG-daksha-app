@@ -19,13 +19,9 @@ data class AuthLoginResponse(
     val token: String?
 )
 
-data class AuthSignUpOtpResponse(
-    val opt: String?,
-    val access_token: String?
-)
-
 data class AuthSignUpResponse(
-    val opt: String?
+    val message: String?,
+    val token: String?
 )
 
 data class AuthPasswordResetRespones(

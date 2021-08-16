@@ -9,6 +9,7 @@ import androidx.navigation.findNavController
 import com.quickghy.qgdaksha.MyApplication
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.data.auth.repositories.AuthUserRepository
+import com.quickghy.qgdaksha.data.auth.repositories.userData
 import com.quickghy.qgdaksha.util.NoInternetException
 import kotlinx.coroutines.launch
 import java.lang.Exception
@@ -34,7 +35,8 @@ class AuthViewModel(
     var repassword: String? = null
     var username: String? = null
     var otp: String? = null
-    var token: String? = null
+    var email: String? = null
+    var userdata : userData? = null
 
 
     private var tNcflag = false
@@ -118,8 +120,6 @@ class AuthViewModel(
                 val Respon = repository.SendSignupOtp(phone!!)
                 if (Respon == "true") {
                     loginStateListener?.onLoginSuccess("OTP SENT SUCCESSFULLY")
-                    flagForOTP = 0
-
                     Log.d("otp phone",phone!!)
                     view.findNavController()
                         .navigate(R.id.action_loginWithOtp_to_verifyOtpFragment)
@@ -134,71 +134,86 @@ class AuthViewModel(
 
     fun doVerifyOtp(view: View) {
 
-        if (flagForOTP == 1) {
-            //opens password reset screen
-            verifyOtpLoginStateListener?.onLoginStarted()
-            if (otp.isNullOrEmpty() || otp!!.length < 4) {
-                resetOtpStateListener?.onFailReset("Enter correct otp")
-            } else {
-                //go to reset screen
-                view.findNavController()
-                    .navigate(R.id.action_verifyOtpFragment_to_resetPasswordFragment)
-            }
-        } else if (flagForOTP == 0) {
+        if (otp.isNullOrEmpty() || otp!!.length < 4) {
+            loginStateListener?.onLoginFailure("Enter correct otp")
+        }
+        else {
+            Log.d("otp phone", phone.toString())
 
             loginStateListener?.onLoginStarted()
 
-            Log.d("otp phone","jhgjhfgjhfjf")
-            //results in sign up success.
             viewModelScope.launch {
-
-                if (otp.isNullOrEmpty() || otp!!.length < 4) {
-                    loginStateListener?.onLoginFailure("Enter correct otp")
-                } else {
-
                     try {
-                        val respon = repository.verifyOtpandLogin(phone!!, otp!!)
+                        val respon = repository.verifyOtpandLogin( otp!!)
                         if (respon == "true") {
+                            Log.d("LoginWithOtp", "Success")
                             loginStateListener?.onLoginSuccess("Otp verified")
+                            view.findNavController().navigate(R.id.action_verifyOtpFragment_to_loginFragment)
+
                         } else {
+                            Log.d("LoginWithOtp", "Fail")
                             loginStateListener?.onLoginFailure(" Error Send Otp ")
                         }
                     }
                     catch (e:Exception){
                         Log.d("verify exp",e.toString())
                     }
+
                 }
             }
-        }
+
     }
 
 
 
     fun doSignUp(view: View) {
 
-        signUpStateListener?.onSignUpStarted()
-        if (phone.isNullOrEmpty() or password.isNullOrEmpty() or username.isNullOrEmpty()) {
+        if (phone.isNullOrEmpty() or password.isNullOrEmpty() or username.isNullOrEmpty() or email.isNullOrEmpty()) {
             signUpStateListener?.onSignUpFailure("Fields Can't be empty.")
         } else if (!password.equals(repassword)) {
             signUpStateListener?.onSignUpFailure("Passwords do not match.")
         } else if (!tNcflag) {
             signUpStateListener?.onSignUpFailure("Please accept T&C")
         } else {
+             userdata = userData(fullname,phone,email,password)
             viewModelScope.launch {
-                val signUpResponse =
-                    repository.userSignUp(username!!, phone!!, password!!, key)
 
-                if (signUpResponse.isSuccessful) {//if the response opt is a number, it is success
-                    if (signUpResponse.body()?.opt.toString() == "Already Registered Phone Number") signUpStateListener?.onSignUpFailure(
-                        signUpResponse.body()?.opt.toString()
-                    )
-                    else {
-                        signUpStateListener?.onSignUpSuccess(signUpResponse.body()?.opt.toString())
-                        view.findNavController().navigate(R.id.action_signUpFrag_to_OtpFrag)
-                    }
+                val Respon = repository.SendSignupOtp(phone!!)
+                if (Respon == "true") {
+                    loginStateListener?.onLoginSuccess("OTP SENT SUCCESSFULLY")
+                    view.findNavController().navigate(R.id.action_signUpFragment_to_verifyOtpSignupFragment)
                 }
+                else{
+                    signUpStateListener?.onSignUpFailure(Respon)
+                }
+
+
             }
         }
+    }
+
+    fun doSignupNextStep(view: View){
+           try {
+                viewModelScope.launch {
+                    Log.d("userdata", phone + email + fullname + password )
+
+                    Log.d("userdata", userdata.toString())
+                        val signUpResponse = repository.userSignUp(userdata!!, otp!!)
+
+                        if (signUpResponse == "true") {//if the response opt is a number, it is success
+                            Log.d("signup Api", "singin Success")
+                        } else {
+                            Log.d("signup Api", " signing Fail")
+
+                        }
+                    }
+                }
+                catch(e:Exception) {
+                    Log.d("verify exp", e.toString())
+                }
+
+
+
     }
 
 

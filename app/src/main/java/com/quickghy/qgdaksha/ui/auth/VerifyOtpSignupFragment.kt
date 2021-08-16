@@ -1,5 +1,5 @@
-package com.quickghy.qgdaksha.ui.auth
-
+import com.quickghy.qgdaksha.ui.auth.AuthStateListener
+import com.quickghy.qgdaksha.ui.auth.AuthViewModel
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Editable
@@ -18,14 +18,15 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentVerifyOtpBinding
+import com.quickghy.qgdaksha.databinding.FragmentVerifyOtpsignupBinding
 import com.quickghy.qgdaksha.util.toast
 import org.koin.android.ext.android.inject
 
 
 var otp: StringBuilder = StringBuilder()
-class VerifyOtpFragment : Fragment(), AuthStateListener.LoginStateListener {
+class VerifyOtpSignupFragment : Fragment(), AuthStateListener.LoginStateListener {
 
-    lateinit var binding: FragmentVerifyOtpBinding
+    lateinit var binding: FragmentVerifyOtpsignupBinding
 
     val viewModel: AuthViewModel by inject()
 
@@ -37,7 +38,7 @@ class VerifyOtpFragment : Fragment(), AuthStateListener.LoginStateListener {
 
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_verify_otp,
+            R.layout.fragment_verify_otpsignup,
             container,
             false
         )

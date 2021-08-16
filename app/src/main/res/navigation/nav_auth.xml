@@ -28,6 +28,12 @@
         <action
             android:id="@+id/action_signUpFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_verifyOtpFragment"
+            app:destination="@id/verifyOtpFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_verifyOtpSignupFragment"
+            app:destination="@id/verifyOtpSignupFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
@@ -87,5 +93,9 @@
             android:id="@+id/action_loginWithOtp_to_verifyOtpFragment"
             app:destination="@id/verifyOtpFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/verifyOtpSignupFragment"
+        android:name="VerifyOtpSignupFragment"
+        android:label="VerifyOtpSignupFragment" />
 
 </navigation>
