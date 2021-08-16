@@ -11,24 +11,25 @@ import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentResetPasswordBinding
 import com.quickghy.qgdaksha.util.toast
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ResetPasswordFragment : Fragment(), AuthStateListener.ResetPassStateListener {
 
-    val viewModel: AuthViewModel by inject()
+    private val viewModel by sharedViewModel<AuthViewModel>()
     lateinit var binding: FragmentResetPasswordBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_reset_password, container, false)
-
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_reset_password,
             container,
             false
         )
+
 
         binding.viewmodel = viewModel
         return binding.root

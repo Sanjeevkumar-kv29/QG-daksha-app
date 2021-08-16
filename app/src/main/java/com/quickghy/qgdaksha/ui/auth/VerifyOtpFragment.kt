@@ -15,11 +15,14 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentVerifyOtpBinding
 import com.quickghy.qgdaksha.util.toast
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 var otp: StringBuilder = StringBuilder()
@@ -27,7 +30,7 @@ class VerifyOtpFragment : Fragment(), AuthStateListener.LoginStateListener {
 
     lateinit var binding: FragmentVerifyOtpBinding
 
-    val viewModel: AuthViewModel by inject()
+    private val viewModel by sharedViewModel<AuthViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +44,8 @@ class VerifyOtpFragment : Fragment(), AuthStateListener.LoginStateListener {
             container,
             false
         )
+
+
         binding.viewmodel = viewModel
 
 

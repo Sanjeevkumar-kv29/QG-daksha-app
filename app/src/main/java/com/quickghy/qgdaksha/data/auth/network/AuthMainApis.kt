@@ -1,9 +1,12 @@
 package com.quickghy.qgdaksha.data.auth.network
 
 import com.quickghy.qgdaksha.data.auth.network.Response.*
-import com.quickghy.qgdaksha.data.auth.repositories.userData
+import com.quickghy.qgdaksha.data.auth.network.request.loginViaOtp
+import com.quickghy.qgdaksha.data.auth.network.request.loginWithPass
+import com.quickghy.qgdaksha.data.auth.network.request.signupRequest
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -17,14 +20,11 @@ import java.util.concurrent.TimeUnit
 
 interface AuthMainApis {
 
-    // post reqs for login
-    @FormUrlEncoded
+
     @POST("/api/v1/user/login/password")
     suspend fun userLoginWithPass(
-        // suspend function because this may run long
-        @Field("phoneNo") phone: String,
-        @Field("password") password: String,
-    ): Response<AuthLoginResponse>    // Response kept on auth login response data class inside response directory
+        @Body loginpass:loginWithPass
+    ): Response<AuthLoginResponse>
 
 
     @FormUrlEncoded
@@ -33,11 +33,9 @@ interface AuthMainApis {
         @Field("phoneNo") phone: String,
     ): Response<SignupOtpResp> // recieve access token on successful sign up.
 
-    @FormUrlEncoded
     @POST("/api/v1/user/login/otp")
     suspend fun verifySignupOTPandLogin(
-        @Field("phoneNo") phone: String,
-        @Field("otp") otp: String,
+        @Body loginOtp: loginViaOtp
     ): Response<AuthLoginResponse> // recieve access token on successful sign up.
 
 
@@ -47,12 +45,9 @@ interface AuthMainApis {
         @Query("token") token: String
     ): Response<GoogleAuthResp> // recieve access token on successful sign up.
 
-    @FormUrlEncoded
     @POST("/api/v1/user/signUp")
     suspend fun userSignUp(
-        // suspend function because this may run long
-        @Field("userData") userData: userData,
-        @Field("otp") phone: String,
+        @Body userData: signupRequest,
     ): Response<AuthSignUpResponse>
 
 

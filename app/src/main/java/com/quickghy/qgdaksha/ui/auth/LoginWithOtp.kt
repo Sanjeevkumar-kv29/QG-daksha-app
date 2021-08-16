@@ -29,6 +29,8 @@ import com.quickghy.qgdaksha.ui.dash.DashActivity
 import com.quickghy.qgdaksha.util.toast
 import org.json.JSONObject
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.java.KoinJavaComponent.inject
 
 
@@ -36,7 +38,7 @@ class LoginWithOtp : Fragment(), AuthStateListener.verifyLoginStateListener {
 
     lateinit var binding: FragmentLoginWithOtpBinding
     lateinit var anim_btn: LottieAnimationView
-    val viewModel: AuthViewModel by inject()
+    private val viewModel by sharedViewModel<AuthViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +50,6 @@ class LoginWithOtp : Fragment(), AuthStateListener.verifyLoginStateListener {
             container,
             false
         )
-
 
         viewModel.verifyOtpLoginStateListener = this
         binding.viewmodel = viewModel

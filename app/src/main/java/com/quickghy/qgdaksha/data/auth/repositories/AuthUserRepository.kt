@@ -4,6 +4,11 @@ import android.util.Log
 import com.quickghy.qgdaksha.data.PrefDataStore
 import com.quickghy.qgdaksha.data.auth.network.AuthMainApis
 import com.quickghy.qgdaksha.data.auth.network.Response.*
+import com.quickghy.qgdaksha.data.auth.network.request.UserData
+import com.quickghy.qgdaksha.data.auth.network.request.loginViaOtp
+import com.quickghy.qgdaksha.data.auth.network.request.loginWithPass
+import com.quickghy.qgdaksha.data.auth.network.request.signupRequest
+import com.quickghy.qgdaksha.ui.auth.LoginWithOtp
 import retrofit2.Response
 
 /**
@@ -16,9 +21,6 @@ class AuthUserRepository(
     val APICALL:AuthMainApis,
     val dataStore: PrefDataStore
 ) {
-
-    var phone = ""
-    var userdata : userData? = null
 
     suspend fun saveDATAtoDS(uid: String, uname: String, utoken: String, uphone: String )
     {
@@ -42,7 +44,7 @@ class AuthUserRepository(
     suspend fun userLoginWithPass(
         mobile: String,
         password: String): String{
-        val resp =  APICALL.userLoginWithPass(mobile, password)
+        val resp =  APICALL.userLoginWithPass(loginWithPass(mobile,password))
         if (resp.isSuccessful){
 
             val id = resp.body()?._id
@@ -63,7 +65,6 @@ class AuthUserRepository(
         val resp =  APICALL.SendLoginOtp(mobile)
         Log.d("req OTP","requesting for otp  reposetory")
         if (resp.isSuccessful){
-            phone = mobile
             Log.d("req OTP", resp.body()?.message.toString())
             return "true"
         }
@@ -73,11 +74,11 @@ class AuthUserRepository(
 
     }
 
-    suspend fun verifyOtpandLogin(otp: String ): String {
+    suspend fun verifyOtpandLogin(phone:String,otp: String ): String {
 
         Log.d("repo Phone",phone)
 
-        val respon = APICALL.verifySignupOTPandLogin(phone,otp)
+        val respon = APICALL.verifySignupOTPandLogin(loginViaOtp(phone,otp))
 
         if (respon.isSuccessful){
             return "true"
@@ -89,13 +90,15 @@ class AuthUserRepository(
         }
     }
 
-    suspend fun userSignUp(userData: userData, otp: String,): String {
-        val resp = APICALL.userSignUp(userData,otp)
+    suspend fun userSignUp(userData: UserData?, otp: String,): String {
+
+        val resp = APICALL.userSignUp(signupRequest(userData!!,otp))
         if (resp.isSuccessful){
             Log.d("req OTP", resp.body()?.message.toString())
             return "true"
         }
         else{
+            Log.d("req OTP", resp.body()?.message.toString())
             return  resp.message().toString()
         }
 

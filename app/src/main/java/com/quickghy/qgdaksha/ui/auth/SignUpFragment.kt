@@ -12,10 +12,12 @@ import com.airbnb.lottie.LottieAnimationView
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentSignUpBinding
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
 
-    val viewModel: AuthViewModel by inject()
+    private val viewModel by sharedViewModel<AuthViewModel>()
     lateinit var binding: FragmentSignUpBinding
     private lateinit var anim_btn: LottieAnimationView
 
@@ -34,6 +36,7 @@ class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
             container,
             false
         )
+
 
         binding.viewmodel = viewModel
         anim_btn = binding.btnAnimWheel

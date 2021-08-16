@@ -5,16 +5,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.quickghy.qgdaksha.R
 import org.koin.android.ext.android.get
+import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
 
-    //lateinit var authViewModel: AuthViewModel
+    val viewModel: AuthViewModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //authViewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
 
 
     }

@@ -15,12 +15,15 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentVerifyOtpBinding
 import com.quickghy.qgdaksha.databinding.FragmentVerifyOtpsignupBinding
 import com.quickghy.qgdaksha.util.toast
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 var otp: StringBuilder = StringBuilder()
@@ -28,7 +31,7 @@ class VerifyOtpSignupFragment : Fragment(), AuthStateListener.LoginStateListener
 
     lateinit var binding: FragmentVerifyOtpsignupBinding
 
-    val viewModel: AuthViewModel by inject()
+    private val viewModel by sharedViewModel<AuthViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +45,8 @@ class VerifyOtpSignupFragment : Fragment(), AuthStateListener.LoginStateListener
             container,
             false
         )
+
+
         binding.viewmodel = viewModel
 
 
@@ -84,7 +89,6 @@ class VerifyOtpSignupFragment : Fragment(), AuthStateListener.LoginStateListener
 
     override fun onLoginSuccess(opt: String) {
         context?.toast("Login Successfull")
-        findNavController().navigate(R.id.action_verifyOtpFragment_to_loginFragment)
     }
 
     override fun onLoginFailure(message: String) {
