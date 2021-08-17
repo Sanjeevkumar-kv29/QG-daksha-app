@@ -20,7 +20,6 @@ import java.util.concurrent.TimeUnit
 
 interface AuthMainApis {
 
-
     @POST("/api/v1/user/login/password")
     suspend fun userLoginWithPass(
         @Body loginpass:loginWithPass
@@ -60,44 +59,4 @@ interface AuthMainApis {
         @Field("ru_password") password: String,
         @Field("daksha_key") key: String,
     ): Response<AuthPasswordResetRespones>  // Response kept on auth login response data class inside response directory
-
-    //    post requests for sign up seq------------------------------------
-
-
-
-    companion object {
-
-        operator fun invoke(
-            networkConnectionInterceptor: NetworkConnectionInterceptor
-        ): AuthMainApis {
-
-             val interceptor = run {
-                val httpLoggingInterceptor = HttpLoggingInterceptor()
-                httpLoggingInterceptor.apply {
-                    httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-                    print(httpLoggingInterceptor)
-                }
-            }
-
-             val okkHttpclient1 = OkHttpClient.Builder()
-                .addNetworkInterceptor(interceptor) // same for .addInterceptor(...)
-                .connectTimeout(30, TimeUnit.SECONDS) //Backend is really slow
-                .writeTimeout(30, TimeUnit.SECONDS)
-                .readTimeout(30, TimeUnit.SECONDS)
-                .build()
-
-            val okkHttpclient2 = OkHttpClient.Builder()
-                .addInterceptor(networkConnectionInterceptor)
-                .build()
-
-            return Retrofit.Builder()
-                .client(okkHttpclient1)
-                .client(okkHttpclient2)
-                .baseUrl("https://qg-staging.herokuapp.com")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(AuthMainApis::class.java)
-        }
-    }
-
 }

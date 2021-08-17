@@ -9,6 +9,7 @@ import com.quickghy.qgdaksha.ui.dash.DashViewModel
 import com.quickghy.qgdaksha.ui.dash.cart.CartViewModel
 import com.quickghy.qgdaksha.ui.dash.home.HomeViewModel
 import com.quickghy.qgdaksha.ui.dash.offers.OffersViewModel
+import com.quickghy.qgdaksha.util.ApiClient
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.instance.newInstance
@@ -22,9 +23,9 @@ import org.koin.dsl.module
 val appModule = module{
 
 single { NetworkConnectionInterceptor(androidApplication()) }
-single { AuthMainApis(get()) }
+single { ApiClient(get()).create(AuthMainApis::class.java) }
 single { PrefDataStore(get()) }
-single { AuthUserRepository(get(),get()) }
+single { AuthUserRepository(get(), get()) }
 
 }
 
