@@ -38,10 +38,6 @@ class AuthViewModel(
 
     private var tNcflag = false
 
-    //if otp for sign up needed, use flag 1, for password reset use flag 0
-    private var flagForOTP = 0
-
-
     var signUpStateListener: AuthStateListener.SignUpStateListener? = null
     var signUpOtpListener: AuthStateListener.SignUpOtpStateListener? = null
     var loginStateListener: AuthStateListener.LoginStateListener? = null
@@ -54,7 +50,6 @@ class AuthViewModel(
     }
 
     fun goToForgotPass(view: View) {
-        flagForOTP = 1
         view.findNavController().navigate(R.id.action_loginFrag_to_forgotPassFrag)
     }
 
@@ -80,8 +75,6 @@ class AuthViewModel(
             return
         } else {
             loginStateListener?.onLoginStarted()
-            // val loginResponse = AuthUserRepository().userLogin(phone!!, password!!,key) //tight cuppeld we just remove is using DI
-            //loginStateListener?.onLoginSuccess(loginResponse)
 
             viewModelScope.launch {
                 loginStateListener?.onLoginStarted()
@@ -94,12 +87,8 @@ class AuthViewModel(
                 else{
                     loginStateListener?.onLoginFailure("Login Failure...")
                 }
-
-
             }
-
         }
-
     }
 
 
@@ -117,8 +106,7 @@ class AuthViewModel(
                 if (Respon == "true") {
                     loginStateListener?.onLoginSuccess("OTP SENT SUCCESSFULLY")
                     Log.d("otp phone",phone!!)
-                    view.findNavController()
-                        .navigate(R.id.action_loginWithOtp_to_verifyOtpFragment)
+                    view.findNavController().navigate(R.id.action_loginWithOtp_to_verifyOtpFragment)
                 }
                 else{
                     loginStateListener?.onLoginFailure(Respon)
@@ -131,7 +119,7 @@ class AuthViewModel(
     fun doVerifyOtp(view: View) {
 
         if (otp.isNullOrEmpty() || otp!!.length < 4) {
-            loginStateListener?.onLoginFailure("Enter correct otp")
+            verifyOtpLoginStateListener?.onLoginFailure("Enter correct otp")
         }
         else {
             Log.d("otp phone", phone.toString())
@@ -143,12 +131,12 @@ class AuthViewModel(
                         val respon = repository.verifyOtpandLogin(phone!!,otp!!)
                         if (respon == "true") {
                             Log.d("LoginWithOtp", "Success")
-                            loginStateListener?.onLoginSuccess("Otp verified")
+                            verifyOtpLoginStateListener?.onLoginSuccess("Otp verified")
                             view.findNavController().navigate(R.id.action_verifyOtpFragment_to_loginFragment)
 
                         } else {
                             Log.d("LoginWithOtp", "Fail")
-                            loginStateListener?.onLoginFailure(" Error Send Otp ")
+                            verifyOtpLoginStateListener?.onLoginFailure(" Error Send Otp ")
                         }
                     }
                     catch (e:Exception){
@@ -159,7 +147,6 @@ class AuthViewModel(
             }
 
     }
-
 
 
     fun doSignUp(view: View) {
@@ -175,18 +162,15 @@ class AuthViewModel(
 
                 val Respon = repository.SendSignupOtp(phone!!)
                 if (Respon == "true") {
-
                     view.findNavController().navigate(R.id.action_signUpFragment_to_verifyOtpSignupFragment)
-
                 }
                 else{
 
                 }
-
-
             }
         }
     }
+
 
     fun doSignupNextStep(view: View){
            try {

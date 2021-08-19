@@ -27,7 +27,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 var otp: StringBuilder = StringBuilder()
-class VerifyOtpSignupFragment : Fragment(), AuthStateListener.LoginStateListener {
+class VerifyOtpSignupFragment : Fragment(), AuthStateListener.verifyLoginStateListener {
 
     lateinit var binding: FragmentVerifyOtpsignupBinding
 
