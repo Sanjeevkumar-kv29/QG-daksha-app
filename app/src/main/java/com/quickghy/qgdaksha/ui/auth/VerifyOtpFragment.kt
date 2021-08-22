@@ -1,5 +1,6 @@
 package com.quickghy.qgdaksha.ui.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Editable
@@ -19,6 +20,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentVerifyOtpBinding
+import com.quickghy.qgdaksha.ui.dash.DashActivity
 import com.quickghy.qgdaksha.util.toast
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -26,7 +28,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 var otp: StringBuilder = StringBuilder()
-class VerifyOtpFragment : Fragment(), AuthStateListener.LoginStateListener {
+class VerifyOtpFragment : Fragment(), AuthStateListener.verifyLoginStateListener {
 
     lateinit var binding: FragmentVerifyOtpBinding
 
@@ -47,6 +49,7 @@ class VerifyOtpFragment : Fragment(), AuthStateListener.LoginStateListener {
 
 
         binding.viewmodel = viewModel
+        viewModel.verifyOtpLoginStateListener = this
 
         val timer = object: CountDownTimer(30000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
@@ -79,25 +82,21 @@ class VerifyOtpFragment : Fragment(), AuthStateListener.LoginStateListener {
         return binding.root
     }
 
-    override fun onLoginStarted() {
+    override fun onverifyLoginStarted(opt: String) {
         binding.Resend.isEnabled = false
-        context?.toast("Verifying OTP")
+        context?.toast(opt)
     }
 
-    override fun onLoginSuccess(opt: String) {
+    override fun onverifyLoginSuccess(opt: String) {
         context?.toast("Login Successfull")
-        findNavController().navigate(R.id.action_verifyOtpFragment_to_loginFragment)
+        startActivity(Intent(context, DashActivity::class.java))
+        requireActivity().finish()
     }
 
-    override fun onLoginFailure(message: String) {
+    override fun onverifyLoginFailure(message: String) {
         context?.toast("Some Thing Went Wrong")
         binding.Resend.isEnabled = true
     }
-
-    override fun onLoginNetworkFailure(message: String) {
-        TODO("Not yet implemented")
-    }
-
 
 
 class GenericKeyEvent internal constructor(

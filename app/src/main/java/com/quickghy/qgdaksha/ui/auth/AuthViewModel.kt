@@ -41,6 +41,7 @@ class AuthViewModel(
     var signUpStateListener: AuthStateListener.SignUpStateListener? = null
     var loginStateListener: AuthStateListener.LoginStateListener? = null
     var forgotPasswordStateListner: AuthStateListener.ForgotPasswordStateListner? = null
+    var loginOTPStateListener: AuthStateListener.LoginOTPStateListener? = null
     var verifyOtpLoginStateListener: AuthStateListener.verifyLoginStateListener? = null
     var verifyOtpSignupStateListener: AuthStateListener.verifySignupStateListener? = null
 
@@ -94,22 +95,22 @@ class AuthViewModel(
     fun doSendOtpForlogin(view: View) {
 
         if (phone.isNullOrEmpty()) {
-            loginStateListener?.onLoginFailure("Fields Can't be empty")
+            loginOTPStateListener?.onLoginOtpFailure("Fields Can't be empty")
             return
         } else {
-            loginStateListener?.onLoginStarted()
+            loginOTPStateListener?.onLoginOtpStarted()
             view.isEnabled = false
 
             viewModelScope.launch {
                 Log.d("req OTP","requesting for otp")
                 val Respon = repository.SendSignupOtp(phone!!)
                 if (Respon == "true") {
-                    loginStateListener?.onLoginSuccess("Otp Sent Successfully")
+                    loginOTPStateListener?.onLoginOtpSuccess("Otp Sent Successfully")
                     Log.d("otp phone",phone!!)
                     view.findNavController().navigate(R.id.action_loginWithOtp_to_verifyOtpFragment)
                 }
                 else{
-                    loginStateListener?.onLoginFailure(Respon)
+                    loginOTPStateListener?.onLoginOtpFailure("an error encountered try again later")
                 }
             }
         }
@@ -135,7 +136,7 @@ class AuthViewModel(
 
                         } else {
                             Log.d("LoginWithOtp", "Fail")
-                            verifyOtpLoginStateListener?.onverifyLoginFailure(" Error Send Otp ")
+                            verifyOtpLoginStateListener?.onverifyLoginFailure(respon)
                         }
                     }
                     catch (e:Exception){
@@ -228,10 +229,6 @@ class AuthViewModel(
 
     fun updatetncflag(view: View) {
         tNcflag = !tNcflag
-    }
-
-    private fun putaccesstokenintoDB(toString: String) {
-        //call DB
     }
 
 }

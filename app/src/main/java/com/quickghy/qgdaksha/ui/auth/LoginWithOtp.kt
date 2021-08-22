@@ -34,7 +34,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.java.KoinJavaComponent.inject
 
 
-class LoginWithOtp : Fragment(), AuthStateListener.verifyLoginStateListener {
+class LoginWithOtp : Fragment(), AuthStateListener.LoginOTPStateListener {
 
     lateinit var binding: FragmentLoginWithOtpBinding
     private val viewModel by sharedViewModel<AuthViewModel>()
@@ -51,34 +51,32 @@ class LoginWithOtp : Fragment(), AuthStateListener.verifyLoginStateListener {
         )
 
         binding.viewmodel = viewModel
-        viewModel.verifyOtpLoginStateListener = this
+        viewModel.loginOTPStateListener = this
 
         return binding.root
 
     }
 
 
-    override fun onverifyLoginStarted(successRes: String) {
+    override fun onLoginOtpStarted() {
         // put api call for login here
-        context?.toast(successRes)
+        binding.btnAnimWheel.visibility = View.VISIBLE
+        binding.btnAnim.visibility = View.GONE
     }
 
 
-    override fun onverifyLoginSuccess(successRes: String) {
+    override fun onLoginOtpSuccess(successRes: String) {
         context?.toast(successRes)
-        startActivity(Intent(context,DashActivity::class.java))
-        requireActivity().finish()
+        binding.btnAnim.visibility = View.GONE
+        binding.btnAnimWheel.visibility = View.VISIBLE
+
     }
 
-    override fun onverifyLoginFailure(message: String) {
+    override fun onLoginOtpFailure(message: String) {
         // display failure message toast
         context?.toast(message)
+        binding.btnAnim.visibility = View.VISIBLE
+        binding.btnAnimWheel.visibility = View.GONE
     }
-
-    override fun onverifyLoginNetworkFailure(message: String) {
-        context?.toast(message)
-    }
-
-
 
 }

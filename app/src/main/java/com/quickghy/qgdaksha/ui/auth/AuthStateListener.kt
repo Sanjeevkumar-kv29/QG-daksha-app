@@ -13,11 +13,16 @@ interface AuthStateListener {
         fun onLoginNetworkFailure(message: String)
     }
 
+    interface LoginOTPStateListener {
+        fun onLoginOtpStarted()
+        fun onLoginOtpSuccess(successRes: String)
+        fun onLoginOtpFailure(message: String)
+    }
+
     interface verifyLoginStateListener {
         fun onverifyLoginStarted(successRes: String)
         fun onverifyLoginSuccess(successRes: String)
         fun onverifyLoginFailure(message: String)
-        fun onverifyLoginNetworkFailure(message: String)
     }
 
     interface verifySignupStateListener {
