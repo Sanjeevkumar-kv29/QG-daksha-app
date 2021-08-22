@@ -162,4 +162,9 @@
         <item name="android:padding">@dimen/_5sdp</item>
         <item name="android:textColor">@color/yellow_1</item>
     </style>
+
+    <style name="byttheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorAccent">@color/yellow_1</item>
+    </style>
+
 </resources>

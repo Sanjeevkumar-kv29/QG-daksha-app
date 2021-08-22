@@ -37,7 +37,6 @@ import org.koin.java.KoinJavaComponent.inject
 class LoginWithOtp : Fragment(), AuthStateListener.verifyLoginStateListener {
 
     lateinit var binding: FragmentLoginWithOtpBinding
-    lateinit var anim_btn: LottieAnimationView
     private val viewModel by sharedViewModel<AuthViewModel>()
 
     override fun onCreateView(
@@ -51,54 +50,32 @@ class LoginWithOtp : Fragment(), AuthStateListener.verifyLoginStateListener {
             false
         )
 
-        viewModel.verifyOtpLoginStateListener = this
         binding.viewmodel = viewModel
-
-        anim_btn = binding.btnAnimWheel
         viewModel.verifyOtpLoginStateListener = this
-
-//        binding.btnForgotPass.setOnClickListener { view ->
-//            viewModel.doSendOTP()
-//        }
-//        binding.btnGoToSignup.setOnClickListener { view ->
-//            viewModel.doSendOTP()
-//            view.findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
-//        }
-
-
 
         return binding.root
 
     }
 
 
-    override fun onLoginStarted() {
+    override fun onverifyLoginStarted(successRes: String) {
         // put api call for login here
-        context?.toast("login start...")
-        anim_btn.visibility = View.VISIBLE
-        binding.btnAnim.visibility = View.GONE
-        anim_btn.playAnimation()
+        context?.toast(successRes)
     }
 
 
-    override fun onLoginSuccess(successRes: String) {
+    override fun onverifyLoginSuccess(successRes: String) {
         context?.toast(successRes)
-        anim_btn.visibility = View.GONE
-        binding.btnAnim.visibility = View.VISIBLE
-        anim_btn.pauseAnimation()
         startActivity(Intent(context,DashActivity::class.java))
         requireActivity().finish()
     }
 
-    override fun onLoginFailure(message: String) {
+    override fun onverifyLoginFailure(message: String) {
         // display failure message toast
         context?.toast(message)
-        binding.btnAnim.visibility = View.VISIBLE
-        anim_btn.visibility = View.GONE
-        anim_btn.pauseAnimation()
     }
 
-    override fun onLoginNetworkFailure(message: String) {
+    override fun onverifyLoginNetworkFailure(message: String) {
         context?.toast(message)
     }
 

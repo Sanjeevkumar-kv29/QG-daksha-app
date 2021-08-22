@@ -14,10 +14,16 @@ interface AuthStateListener {
     }
 
     interface verifyLoginStateListener {
-        fun onLoginStarted()
-        fun onLoginSuccess(successRes: String)
-        fun onLoginFailure(message: String)
-        fun onLoginNetworkFailure(message: String)
+        fun onverifyLoginStarted(successRes: String)
+        fun onverifyLoginSuccess(successRes: String)
+        fun onverifyLoginFailure(message: String)
+        fun onverifyLoginNetworkFailure(message: String)
+    }
+
+    interface verifySignupStateListener {
+        fun onverifySignupStarted()
+        fun onverifySignupSuccess(successRes: String)
+        fun onverifySignupFailure(message: String)
     }
 
     interface SignUpStateListener {
@@ -26,16 +32,11 @@ interface AuthStateListener {
         fun onSignUpFailure(message: String)
     }
 
-    interface SignUpOtpStateListener {
-        fun onSignUpOtpStarted()
-        fun onSignUpOtpSuccess(opt: String)
-        fun onResetOtpFailure(message: String)
-    }
-
     interface ForgotPasswordStateListner {
         fun onSuccessForgot(opt: String)
         fun onFailureForgot(message: String)
     }
+
     interface ResetPassStateListener {
         fun onStartReset()
         fun onSuccessReset(opt: String)

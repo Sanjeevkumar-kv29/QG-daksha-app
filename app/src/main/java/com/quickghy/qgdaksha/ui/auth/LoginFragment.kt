@@ -37,7 +37,6 @@ import org.koin.java.KoinJavaComponent.inject
 class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
 
     lateinit var binding: FragmentLoginBinding
-    lateinit var anim_btn: LottieAnimationView
     private val viewModel by sharedViewModel<AuthViewModel>()
 
     override fun onCreateView(
@@ -55,17 +54,7 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
         viewModel.loginStateListener = this
         binding.viewmodel = viewModel
 
-        anim_btn = binding.btnAnimWheel
         viewModel.loginStateListener = this
-
-//        binding.btnForgotPass.setOnClickListener { view ->
-//            viewModel.doSendOTP()
-//        }
-//        binding.btnGoToSignup.setOnClickListener { view ->
-//            viewModel.doSendOTP()
-//            view.findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
-//        }
-
 
 
         return binding.root
@@ -157,17 +146,15 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
     override fun onLoginStarted() {
         // put api call for login here
         context?.toast("login start...")
-        anim_btn.visibility = View.VISIBLE
+        binding.btnAnimWheel.visibility = View.VISIBLE
         binding.btnAnim.visibility = View.GONE
-        anim_btn.playAnimation()
     }
 
 
     override fun onLoginSuccess(successRes: String) {
         context?.toast(successRes)
-        anim_btn.visibility = View.GONE
-        binding.btnAnim.visibility = View.VISIBLE
-        anim_btn.pauseAnimation()
+        binding.btnAnim.visibility = View.GONE
+        binding.btnAnimWheel.visibility = View.VISIBLE
         startActivity(Intent(context,DashActivity::class.java))
         requireActivity().finish()
     }
@@ -176,8 +163,7 @@ class LoginFragment : Fragment(), AuthStateListener.LoginStateListener {
         // display failure message toast
         context?.toast(message)
         binding.btnAnim.visibility = View.VISIBLE
-        anim_btn.visibility = View.GONE
-        anim_btn.pauseAnimation()
+        binding.btnAnimWheel.visibility = View.GONE
     }
 
     override fun onLoginNetworkFailure(message: String) {

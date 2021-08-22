@@ -70,7 +70,6 @@ interface AuthMainApis {
         operator fun invoke(
             networkConnectionInterceptor: NetworkConnectionInterceptor
         ): AuthMainApis {
-
              val interceptor = run {
                 val httpLoggingInterceptor = HttpLoggingInterceptor()
                 httpLoggingInterceptor.apply {
@@ -99,5 +98,4 @@ interface AuthMainApis {
                 .create(AuthMainApis::class.java)
         }
     }
-
 }

@@ -1,3 +1,4 @@
+import android.content.Intent
 import com.quickghy.qgdaksha.ui.auth.AuthStateListener
 import com.quickghy.qgdaksha.ui.auth.AuthViewModel
 import android.os.Bundle
@@ -20,6 +21,7 @@ import androidx.navigation.fragment.findNavController
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentVerifyOtpBinding
 import com.quickghy.qgdaksha.databinding.FragmentVerifyOtpsignupBinding
+import com.quickghy.qgdaksha.ui.dash.DashActivity
 import com.quickghy.qgdaksha.util.toast
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -27,10 +29,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 var otp: StringBuilder = StringBuilder()
-class VerifyOtpSignupFragment : Fragment(), AuthStateListener.verifyLoginStateListener {
+class VerifyOtpSignupFragment : Fragment(), AuthStateListener.verifySignupStateListener {
 
     lateinit var binding: FragmentVerifyOtpsignupBinding
-
     private val viewModel by sharedViewModel<AuthViewModel>()
 
     override fun onCreateView(
@@ -46,8 +47,8 @@ class VerifyOtpSignupFragment : Fragment(), AuthStateListener.verifyLoginStateLi
             false
         )
 
-
         binding.viewmodel = viewModel
+        viewModel.verifyOtpSignupStateListener = this
 
 
         val timer = object: CountDownTimer(30000, 1000) {
@@ -70,8 +71,7 @@ class VerifyOtpSignupFragment : Fragment(), AuthStateListener.verifyLoginStateLi
         binding.otpEt3.addTextChangedListener(GenericTextWatcher(binding.otpEt3, binding.otpEt4,viewModel))
         binding.otpEt4.addTextChangedListener(GenericTextWatcher(binding.otpEt4, null,viewModel))
 
-        //GenericKeyEvent here works for delEting the element and to switch back to previous binding.otpEt
-        // first paramEter is the current binding.otpEt and second paramEter is previous binding.otpEt
+
 
         binding.otpEt1.setOnKeyListener(GenericKeyEvent(binding.otpEt1, null))
         binding.otpEt2.setOnKeyListener(GenericKeyEvent(binding.otpEt2, binding.otpEt1))
@@ -81,25 +81,21 @@ class VerifyOtpSignupFragment : Fragment(), AuthStateListener.verifyLoginStateLi
         return binding.root
     }
 
-    override fun onLoginStarted() {
+    override fun onverifySignupStarted() {
 //        update ui or do other stuff
         binding.Resend.isEnabled = false
         context?.toast("Verifying OTP")
     }
 
-    override fun onLoginSuccess(opt: String) {
-        context?.toast("Login Successfull")
+    override fun onverifySignupSuccess(opt: String) {
+        context?.toast("SignUp Successfull")
+        startActivity(Intent(requireContext(),DashActivity::class.java))
     }
 
-    override fun onLoginFailure(message: String) {
+    override fun onverifySignupFailure(message: String) {
         context?.toast("Some Thing Went Wrong")
         binding.Resend.isEnabled = true
     }
-
-    override fun onLoginNetworkFailure(message: String) {
-        TODO("Not yet implemented")
-    }
-
 
 
 class GenericKeyEvent internal constructor(
@@ -153,7 +149,6 @@ class GenericTextWatcher internal constructor(
 
                 }
 
-            //You can use EditText6 same as above to hide the keyboard
         }
 
     }
@@ -178,9 +173,7 @@ class GenericTextWatcher internal constructor(
         arg3: Int
     ) {
     }
-
 }
-
 
 }
 

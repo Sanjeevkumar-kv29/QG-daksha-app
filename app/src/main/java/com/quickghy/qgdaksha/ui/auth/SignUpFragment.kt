@@ -19,7 +19,6 @@ class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
 
     private val viewModel by sharedViewModel<AuthViewModel>()
     lateinit var binding: FragmentSignUpBinding
-    private lateinit var anim_btn: LottieAnimationView
 
 
     override fun onCreateView(
@@ -39,7 +38,6 @@ class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
 
 
         binding.viewmodel = viewModel
-        anim_btn = binding.btnAnimWheel
 
         viewModel.signUpStateListener = this
 
@@ -50,16 +48,14 @@ class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
     override fun onSignUpStarted() {
         //put api to for
 //        show progress bar here
-        anim_btn.visibility = View.VISIBLE
-        binding.btnAnimSignUp.visibility = View.INVISIBLE
-        anim_btn.playAnimation()
+        binding.btnAnimWheel.visibility = View.VISIBLE
+        binding.btnAnim.visibility = View.GONE
     }
 
     override fun onSignUpSuccess(SignUpResponse: String) {
         Toast.makeText(context, SignUpResponse, Toast.LENGTH_SHORT).show()
-        anim_btn.visibility = View.INVISIBLE
-        binding.btnAnimSignUp.visibility = View.VISIBLE
-        anim_btn.pauseAnimation()
+        binding.btnAnimWheel.visibility = View.GONE
+        binding.btnAnim.visibility = View.VISIBLE
 //        do nav here to the otp screen
     }
 
@@ -67,9 +63,8 @@ class SignUpFragment : Fragment(), AuthStateListener.SignUpStateListener {
     override fun onSignUpFailure(message: String) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 //        toast error and do nothing else
-        binding.btnAnimSignUp.visibility = View.VISIBLE
-        anim_btn.visibility = View.INVISIBLE
-        anim_btn.pauseAnimation()
+        binding.btnAnim.visibility = View.VISIBLE
+        binding.btnAnimWheel.visibility = View.GONE
     }
 
 }

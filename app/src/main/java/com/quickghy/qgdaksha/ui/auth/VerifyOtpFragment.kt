@@ -48,17 +48,16 @@ class VerifyOtpFragment : Fragment(), AuthStateListener.LoginStateListener {
 
         binding.viewmodel = viewModel
 
-
         val timer = object: CountDownTimer(30000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 binding.Resend.text = "Re-send OTP? (${millisUntilFinished/1000})"
             }
 
             override fun onFinish() {
-
                 binding.Resend.isEnabled = true
             }
         }
+
 
         binding.btnSendVCode.setOnClickListener {
             timer.start()
@@ -81,7 +80,6 @@ class VerifyOtpFragment : Fragment(), AuthStateListener.LoginStateListener {
     }
 
     override fun onLoginStarted() {
-//        update ui or do other stuff
         binding.Resend.isEnabled = false
         context?.toast("Verifying OTP")
     }
@@ -107,10 +105,8 @@ class GenericKeyEvent internal constructor(
     private val previousView: EditText?
 ) : View.OnKeyListener {
 
-
     override fun onKey(p0: View?, keyCode: Int, event: KeyEvent?): Boolean {
         if (event!!.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_DEL && currentView.id != R.id.otp_et1 && currentView.text.isEmpty()) {
-            //If current is empty then previous EditText's number will also be deleted
             previousView!!.text = null
             otp.deleteAt(otp.lastIndex)
             previousView.requestFocus()
@@ -128,7 +124,7 @@ class GenericTextWatcher internal constructor(
     val viewModel: AuthViewModel
 ) : TextWatcher {
 
-    override fun afterTextChanged(editable: Editable) { // TODO Auto-generated mEthod stub
+    override fun afterTextChanged(editable: Editable) {
         val text = editable.toString()
         when (currentView.id) {
                 R.id.otp_et1 -> if (text.length == 1) {
@@ -150,13 +146,11 @@ class GenericTextWatcher internal constructor(
                     if (otp.length == 4 ){
                         viewModel.otp = otp.toString()
                     }
-
                 }
-
             //You can use EditText6 same as above to hide the keyboard
         }
-
     }
+
 
     private fun hideKeyboard(view: View) {
         val imm = getSystemService(view.context, InputMethodManager::class.java)
@@ -180,7 +174,6 @@ class GenericTextWatcher internal constructor(
     }
 
 }
-
 
 }
 
