@@ -7,7 +7,7 @@
 
     <activity
         android:id="@+id/auth_activity"
-        android:name="com.quickghy.qgdaksha.ui.auth.MainActivity"
+        android:name="com.quickghy.qgdaksha.ui.auth.AuthMainActivity"
         android:label="Auth Activity"
         tools:layout="@layout/activity_main" />
     <activity

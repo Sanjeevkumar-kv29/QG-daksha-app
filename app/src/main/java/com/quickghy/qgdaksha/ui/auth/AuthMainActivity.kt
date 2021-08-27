@@ -7,7 +7,7 @@ import com.quickghy.qgdaksha.R
 import org.koin.android.ext.android.get
 import org.koin.android.ext.android.inject
 
-class MainActivity : AppCompatActivity() {
+class AuthMainActivity : AppCompatActivity() {
 
     val viewModel: AuthViewModel by inject()
 

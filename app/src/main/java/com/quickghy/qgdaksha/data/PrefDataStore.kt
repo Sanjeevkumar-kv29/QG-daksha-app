@@ -41,12 +41,15 @@ class PrefDataStore(context: Context) {
             preferences[DSphone]
         }
 
-    suspend fun savedetailstoDS(uid: String, uname: String,utoken: String,uphone: String) {
+    suspend fun savedetailstoDS(uid: String, uname: String,uphone: String,email: String,isadmin:String,isserviceprovider: String,utoken: String) {
         appContext.dataStore.edit { preferences ->
             preferences[DSuid] = uid
             preferences[DSusername] = uname
             preferences[DStoken] = utoken
             preferences[DSphone] = uphone
+            preferences[DSemail] = email
+            preferences[DSisAdmin] = isadmin
+            preferences[DSisServiceProvider] = isserviceprovider
         }
     }
 
@@ -58,10 +61,13 @@ class PrefDataStore(context: Context) {
     }
 
     companion object {
-        private val DSusername = stringPreferencesKey("user_name")
-        private val DSuid = stringPreferencesKey("user_uid")
-        private val DStoken = stringPreferencesKey("user_token")
-        private val DSphone = stringPreferencesKey("user_phone")
+        private val DSuid = stringPreferencesKey("_id")
+        private val DSusername = stringPreferencesKey("name")
+        private val DSphone = stringPreferencesKey("phoneNo")
+        private val DSemail = stringPreferencesKey("email")
+        private val DSisAdmin = stringPreferencesKey("isAdmin")
+        private val DSisServiceProvider = stringPreferencesKey("isServiceProvider")
+        private val DStoken = stringPreferencesKey("token")
     }
 
 }

@@ -10,6 +10,7 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.FragmentContainerView
 import androidx.fragment.app.commit
 import com.quickghy.qgdaksha.R
+import com.quickghy.qgdaksha.ui.auth.AuthMainActivity
 import com.quickghy.qgdaksha.ui.dash.cart.CartFragment
 import com.quickghy.qgdaksha.ui.dash.home.HomeFragment
 import com.quickghy.qgdaksha.ui.dash.home.HomeViewModel
@@ -106,7 +107,7 @@ class DashActivity : AppCompatActivity() {
 
     fun mapclick(view: View)
     {
-        startActivity(Intent(this, MapMainActivity::class.java))
+        startActivity(Intent(this, AuthMainActivity::class.java))
     }
 
 

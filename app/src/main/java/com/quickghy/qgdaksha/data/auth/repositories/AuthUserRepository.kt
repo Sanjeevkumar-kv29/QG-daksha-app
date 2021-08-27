@@ -8,7 +8,6 @@ import com.quickghy.qgdaksha.data.auth.network.request.UserData
 import com.quickghy.qgdaksha.data.auth.network.request.loginViaOtp
 import com.quickghy.qgdaksha.data.auth.network.request.loginWithPass
 import com.quickghy.qgdaksha.data.auth.network.request.signupRequest
-import com.quickghy.qgdaksha.ui.auth.LoginWithOtp
 import retrofit2.Response
 
 /**
@@ -22,16 +21,17 @@ class AuthUserRepository(
     val dataStore: PrefDataStore
 ) {
 
-    suspend fun saveDATAtoDS(uid: String, uname: String, utoken: String, uphone: String )
+    suspend fun saveDATAtoDS(uid: String, uname: String,uphone: String,email: String,isadmin:String,isserviceprovider: String,utoken: String)
     {
-        dataStore.savedetailstoDS(uid,uname,utoken,uphone)
+        dataStore.savedetailstoDS(uid,uname,uphone,email,isadmin,isserviceprovider,utoken)
     }
 
     suspend fun GoogleAuth(token: String): String {
         var resp = APICALL.googleAuth(token)
-        Log.d("GToken", token.toString())
+        Log.d("GToken", dataStore.Token.toString())
         if (resp.isSuccessful){
-            Log.d("true resp","true")
+            Log.d("trueresp",resp.body()?.token.toString())
+            saveDATAtoDS("null","null","null","null","null","null", resp.body()?.token.toString())
             return "true"
         }
         else{

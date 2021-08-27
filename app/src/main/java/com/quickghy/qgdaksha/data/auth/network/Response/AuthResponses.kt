@@ -30,6 +30,7 @@ data class AuthPasswordResetRespones(
 
 data class GoogleAuthResp(
     val message: String?,
+    val token: String?,
     val stack: String?
 )
 
