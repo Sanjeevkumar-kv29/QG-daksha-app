@@ -78,7 +78,7 @@ class AuthViewModel(
 
             viewModelScope.launch {
                 loginStateListener?.onLoginStarted()
-                val loginrepo = repository.userLoginWithPass(phone!!, password!!)
+                val loginrepo = repository.userLoginWithPass("+91"+phone!!, password!!)
 
                 if (loginrepo == "true"){
                     loginStateListener?.onLoginSuccess("Login Success")
@@ -103,7 +103,7 @@ class AuthViewModel(
 
             viewModelScope.launch {
                 Log.d("req OTP","requesting for otp")
-                val Respon = repository.SendSignupOtp(phone!!)
+                val Respon = repository.SendSignupOtp("+91"+phone!!)
                 if (Respon == "true") {
                     loginOTPStateListener?.onLoginOtpSuccess("Otp Sent Successfully")
                     Log.d("otp phone",phone!!)
@@ -129,7 +129,7 @@ class AuthViewModel(
 
             viewModelScope.launch {
                     try {
-                        val respon = repository.verifyOtpandLogin(phone!!,otp!!)
+                        val respon = repository.verifyOtpandLogin("+91"+phone!!,otp!!)
                         if (respon == "true") {
                             Log.d("LoginWithOtp", "Success")
                             verifyOtpLoginStateListener?.onverifyLoginSuccess("Otp verified")
@@ -159,7 +159,7 @@ class AuthViewModel(
             signUpStateListener?.onSignUpStarted()
             viewModelScope.launch {
 
-                val Respon = repository.SendSignupOtp(phone!!)
+                val Respon = repository.SendSignupOtp("+91"+phone!!)
                 if (Respon == "true") {
                     view.findNavController().navigate(R.id.action_signUpFragment_to_verifyOtpSignupFragment)
                     signUpStateListener?.onSignUpSuccess("OTP sent Succesfully")
@@ -182,7 +182,7 @@ class AuthViewModel(
                 viewModelScope.launch {
 
                     verifyOtpSignupStateListener?.onverifySignupStarted()
-                    userdata = UserData(email!!,username!!,password!!,phone!!)
+                    userdata = UserData(email!!,username!!,password!!,"+91"+phone!!)
 
                     Log.d("userdata", userdata.toString()+otp)
                         val signUpResponse = repository.userSignUp(userdata , otp.toString())

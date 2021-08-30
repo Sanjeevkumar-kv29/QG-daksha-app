@@ -47,13 +47,9 @@ class AuthUserRepository(
         val resp =  APICALL.userLoginWithPass(loginWithPass(mobile,password))
         if (resp.isSuccessful){
 
-            val id = resp.body()?._id
-            val name = resp.body()?.name
-            val phone = resp.body()?.phoneNo
-            val email = resp.body()?.email
             val token = resp.body()?.token
-
-            Log.d("login resp",id+name+email+phone)
+            saveDATAtoDS("null","null","null","null","null","null", resp.body()?.token.toString())
+            Log.d("login resp", token.toString())
             return "true"
         }
         else{
@@ -81,6 +77,8 @@ class AuthUserRepository(
         val respon = APICALL.verifySignupOTPandLogin(loginViaOtp(phone,otp))
 
         if (respon.isSuccessful){
+
+            saveDATAtoDS("null","null","null","null","null","null", respon.body()?.token.toString())
             return "true"
             Log.d("req OTP","recived for otp")
 
@@ -95,6 +93,8 @@ class AuthUserRepository(
         val resp = APICALL.userSignUp(signupRequest(userData!!,otp))
         if (resp.isSuccessful){
             Log.d("req OTP", resp.body()?.message.toString())
+            saveDATAtoDS("null","null","null","null","null","null", resp.body()?.token.toString())
+
             return "true"
         }
         else{
