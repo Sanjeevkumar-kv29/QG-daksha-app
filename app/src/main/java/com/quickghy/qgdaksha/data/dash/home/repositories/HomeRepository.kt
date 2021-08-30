@@ -47,7 +47,7 @@ class HomeRepository(
         Log.d("tttttInside",token)
         PrefDataStore(context).Token.collect { value ->
             token = value.toString()
-            getAndSaveData("Bearer ${value.toString()}")
+            getAndSaveData("$value")
             Log.d("tttttInside",value.toString())
         }
         Log.d("tttttOutside",token)
@@ -80,6 +80,7 @@ class HomeRepository(
 
     suspend fun getProfile() {
         PrefDataStore(context).Token.collect { value ->
+            Log.d("TOKEN_CHECK", "$value ----")
             if(value!=null) {
                 try {
                     val resp = APICALL.GetProfile(value)

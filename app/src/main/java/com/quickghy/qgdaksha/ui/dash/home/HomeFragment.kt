@@ -30,6 +30,7 @@ class HomeFragment : Fragment() {
 
         binding.viewmodel = viewModel
 
+        viewModel.getProfile()
         viewModel.profile.observe(requireActivity(), {
             Log.d("PROFILE_DATA", "$it")
         })
