@@ -46,7 +46,6 @@ class AuthUserRepository(
         password: String): String{
         val resp =  APICALL.userLoginWithPass(loginWithPass(mobile,password))
         if (resp.isSuccessful){
-
             val token = resp.body()?.token
             saveDATAtoDS("null","null","null","null","null","null", resp.body()?.token.toString())
             Log.d("login resp", token.toString())

@@ -3,6 +3,7 @@ package com.quickghy.qgdaksha.data.dash.home.repositories
 import android.content.Context
 import android.util.Log
 import androidx.core.content.ContentProviderCompat
+import androidx.lifecycle.MutableLiveData
 import com.quickghy.qgdaksha.data.PrefDataStore
 import com.quickghy.qgdaksha.data.auth.network.AuthMainApis
 import com.quickghy.qgdaksha.data.auth.network.Response.*
@@ -11,8 +12,10 @@ import com.quickghy.qgdaksha.data.auth.network.request.loginViaOtp
 import com.quickghy.qgdaksha.data.auth.network.request.loginWithPass
 import com.quickghy.qgdaksha.data.auth.network.request.signupRequest
 import com.quickghy.qgdaksha.data.dash.profile.network.ProfileApi
+import com.quickghy.qgdaksha.data.dash.profile.network.Response.GetProfileResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -31,24 +34,23 @@ class HomeRepository(
 
     val AL = ArrayList<String>()
 
+    val err = MutableLiveData<String>()
+    val profileData = MutableLiveData<GetProfileResponse>()
+
     suspend fun saveDATAtoDS(uid: String, uname: String,uphone: String,email: String,isadmin:String,isserviceprovider: String,utoken: String)
     {
         dataStore.savedetailstoDS(uid,uname,uphone,email,isadmin,isserviceprovider,utoken)
     }
 
-
-
     suspend fun isuserlogin(): String{
-        var token =""
+        var token = ""
         Log.d("tttttInside",token)
-        PrefDataStore(context).Token.collect{ value ->
+        PrefDataStore(context).Token.collect { value ->
             token = value.toString()
-            //getAndSaveData("Bearer ${value.toString()}")
+            getAndSaveData("Bearer ${value.toString()}")
             Log.d("tttttInside",value.toString())
-
         }
         Log.d("tttttOutside",token)
-
         return token
     }
 
@@ -72,4 +74,25 @@ class HomeRepository(
 
     }
 
+    fun getTokenFlow(): Flow<String?> {
+        return PrefDataStore(context).Token
+    }
+
+    suspend fun getProfile() {
+        PrefDataStore(context).Token.collect { value ->
+            if(value!=null) {
+                try {
+                    val resp = APICALL.GetProfile(value)
+                    if (resp.isSuccessful){
+                        profileData.postValue(resp.body())
+                    }
+                    else{
+                        err.postValue("Something went wrong")
+                    }
+                } catch (e: Exception) {
+                    err.postValue("Something went wrong : ${e.message}")
+                }
+            }
+        }
+    }
 }

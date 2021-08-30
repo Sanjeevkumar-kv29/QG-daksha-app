@@ -4,6 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Work Stuff/QuickGhy/QuickGhyAndroidApp/app/src/main/res/layout/fragment_help.xml" value="0.23097826086956522" />
+        <entry key="..\:/Work Stuff/QuickGhy/QuickGhyAndroidApp/app/src/main/res/layout/fragment_login.xml" value="0.1" />
+        <entry key="..\:/Work Stuff/QuickGhy/QuickGhyAndroidApp/app/src/main/res/layout/fragment_login_with_otp.xml" value="0.2857142857142857" />
+        <entry key="..\:/Work Stuff/QuickGhy/QuickGhyAndroidApp/app/src/main/res/layout/home_fragment.xml" value="0.11322188449848024" />
+        <entry key="..\:/Work Stuff/QuickGhy/QuickGhyAndroidApp/app/src/main/res/layout/splashscreen.xml" value="0.20572916666666666" />
       </map>
     </option>
   </component>

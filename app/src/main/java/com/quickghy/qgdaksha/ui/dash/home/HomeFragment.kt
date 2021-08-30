@@ -1,10 +1,12 @@
 package com.quickghy.qgdaksha.ui.dash.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.HomeFragmentBinding
@@ -27,6 +29,15 @@ class HomeFragment : Fragment() {
         )
 
         binding.viewmodel = viewModel
+
+        viewModel.profile.observe(requireActivity(), {
+            Log.d("PROFILE_DATA", "$it")
+        })
+
+        viewModel.error.observe(requireActivity(), {
+            Log.d("PROFILE_DATA", "ERR -- $it")
+        })
+
         return binding.root
     }
 
@@ -37,11 +48,6 @@ class HomeFragment : Fragment() {
         // TODO: Use the ViewModel   */
 
         viewModel.userlogincheck()
-
-
-
-
-
 
     }
 
