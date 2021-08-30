@@ -1,6 +1,6 @@
 package com.quickghy.qgdaksha.util
 
-import com.quickghy.qgdaksha.data.auth.network.NetworkConnectionInterceptor
+import com.quickghy.qgdaksha.data.NetworkConnectionInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

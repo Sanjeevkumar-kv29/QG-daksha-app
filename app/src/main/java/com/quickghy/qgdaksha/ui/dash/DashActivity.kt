@@ -23,7 +23,6 @@ import org.koin.android.ext.android.inject
 class DashActivity : AppCompatActivity() {
 
     lateinit var fragmentContainer: FragmentContainerView
-    val homeFragment = HomeFragment.newInstance()
     val fragmentManager = supportFragmentManager
 
     val viewModel: DashViewModel by inject()
@@ -33,10 +32,10 @@ class DashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_dash)
 
         fragmentContainer = findViewById(R.id.dash_host_fragment)
-        supportFragmentManager.beginTransaction().add(R.id.dash_host_fragment, homeFragment)
+        supportFragmentManager.beginTransaction().add(R.id.dash_host_fragment, HomeFragment())
             .commit()
         supportFragmentManager.commit {
-            add(R.id.dash_host_fragment, HomeFragment.newInstance())
+            add(R.id.dash_host_fragment, HomeFragment())
         }
     }
 
@@ -44,7 +43,7 @@ class DashActivity : AppCompatActivity() {
     fun homeclick(view: View) {
 
         fragmentManager.commit {
-            replace(R.id.dash_host_fragment, HomeFragment.newInstance())
+            replace(R.id.dash_host_fragment, HomeFragment())
         }
 
 

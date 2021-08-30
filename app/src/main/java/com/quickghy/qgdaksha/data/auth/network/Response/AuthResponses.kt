@@ -1,7 +1,7 @@
 package com.quickghy.qgdaksha.data.auth.network.Response
 
 /**
- * @Author: Shubham Rimjha
+ * @Author: Sanjeev Kumar
  * @Date: 27-06-2021
  */
 

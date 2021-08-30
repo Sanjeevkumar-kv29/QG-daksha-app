@@ -1,5 +1,8 @@
 package com.quickghy.qgdaksha.data.auth.network.request
-
+/**
+ * @Author: Sanjeev Kumar
+ * @Date: 27-07-2021
+ */
 data class signupRequest(
 
     val userData: UserData,

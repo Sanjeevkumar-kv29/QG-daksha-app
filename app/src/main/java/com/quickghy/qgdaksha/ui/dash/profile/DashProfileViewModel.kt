@@ -1,18 +1,11 @@
 package com.quickghy.qgdaksha.ui.dash.profile
 
-import android.app.Activity
-import android.content.Intent
 import android.util.Log
-import android.view.View
-import androidx.core.content.ContextCompat.startActivity
-import androidx.core.content.contentValuesOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.quickghy.qgdaksha.ui.auth.AuthMainActivity
-import com.quickghy.qgdaksha.ui.dash.DashActivity
+import com.quickghy.qgdaksha.data.dash.profile.repositories.ProfileRepository
+import com.quickghy.qgdaksha.ui.dash.DashStateListener
 import kotlinx.coroutines.launch
-import java.lang.Exception
-import kotlin.coroutines.coroutineContext
 
 
 /**
@@ -21,11 +14,30 @@ import kotlin.coroutines.coroutineContext
  *
  */
 
-class DashProfileViewModel : ViewModel() {
+class DashProfileViewModel(
+    val repository: ProfileRepository
+) : ViewModel() {
 
-    fun LoginFromProfile(view: View) {
 
 
+    var userloggedinstatelistner: DashStateListener.IsUserLoggedin?  = null
+
+
+    fun Loginstatus() {
+
+        viewModelScope.launch {
+            val islogin = repository.isuserlogincheck()
+
+            if (islogin){
+                Log.d("userloggin","user logged in")
+                userloggedinstatelistner?.yes()
+
+            }
+            else{
+                Log.d("userloggin","user not logged in")
+                userloggedinstatelistner?.no()
+            }
+        }
 
 
     }

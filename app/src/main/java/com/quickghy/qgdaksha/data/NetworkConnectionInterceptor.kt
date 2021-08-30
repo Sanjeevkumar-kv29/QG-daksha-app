@@ -1,4 +1,4 @@
-package com.quickghy.qgdaksha.data.auth.network
+package com.quickghy.qgdaksha.data
 
 import android.content.Context
 import android.net.ConnectivityManager
