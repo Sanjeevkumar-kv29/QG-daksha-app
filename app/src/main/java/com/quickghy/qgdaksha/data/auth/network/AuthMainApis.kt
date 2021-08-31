@@ -38,6 +38,7 @@ interface AuthMainApis {
     @GET("/api/v1/user/google/callback")
     suspend fun googleAuth(
         // suspend function because this may run long
+        @Header("Authorization")
         @Query("token") token: String
     ): Response<GoogleAuthResp> // recieve access token on successful sign up.
 

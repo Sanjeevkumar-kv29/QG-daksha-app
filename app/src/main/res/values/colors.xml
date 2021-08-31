@@ -20,4 +20,7 @@
     <color name="red_hot">#FF1717</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="dashtextcolor">#292932</color>
+    <color name="Black_blue_shade">#303A3F</color>
+    <color name="Dark_grey">#9E9E9E</color>
+    <color name="Red_warm">#ED1C24</color>
 </resources>
