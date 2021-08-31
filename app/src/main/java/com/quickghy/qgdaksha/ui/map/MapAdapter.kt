@@ -9,9 +9,9 @@ import com.google.android.gms.maps.model.*
 import com.google.maps.android.PolyUtil
 import com.google.maps.android.PolyUtil.locationIndexOnEdgeOrPath
 import com.quickghy.qgdaksha.R
-import com.quickghy.qgdaksha.data.map.network.DirectionsApi
 import com.quickghy.qgdaksha.data.map.network.response.Bounds
 import com.quickghy.qgdaksha.data.map.network.response.DirectionResponse
+import com.quickghy.qgdaksha.util.toast
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,15 +22,13 @@ import java.util.*
  * @Author: Shubham Rimjha
  * @Date: 21-08-2021
  */
-
-class MapAdapter(private val context: Context, private val map: GoogleMap, private val selfLoc: LatLng) {
+class MapAdapter(private val context: Context, private val map: GoogleMap, private val mapRepo: MapRepository) {
 
     private val TAG: String = MapAdapter::class.java.name
     private lateinit var orderLatLng: LatLng
 
     private var points: MutableList<LatLng>? = null
     private lateinit var response: Response<DirectionResponse>
-
 
     /** This function is called from the callback class, everytime a updated coordinate is received from the Pubnub
      * Subscriber Object.
@@ -51,13 +49,7 @@ class MapAdapter(private val context: Context, private val map: GoogleMap, priva
     private fun updateRoute(newLoc: LatLng) {
         if (points == null) {
             CoroutineScope(Dispatchers.IO).launch {
-//---------------------------------RETROFIT Segment-------------------------------------
-                response = DirectionsApi.invoke().getRoute(
-                    "${selfLoc.latitude},${selfLoc.longitude}",
-                    "${newLoc.latitude},${newLoc.longitude}",
-                    "motorcycle",
-                    ""
-                )
+                response = mapRepo.getRoute(newLoc, mapRepo.selfPoint)
 
                 if (response.isSuccessful) {
                     val obj = response.body()
@@ -68,7 +60,8 @@ class MapAdapter(private val context: Context, private val map: GoogleMap, priva
                     points = PolyUtil.decode(encodedPolyline)
 
                     plotLine(points!!)
-                }
+
+                } else context.toast(response.errorBody().toString())
             }
         } else {
             val closestIndex = locationIndexOnEdgeOrPath(
@@ -76,7 +69,7 @@ class MapAdapter(private val context: Context, private val map: GoogleMap, priva
                 points,
                 false,
                 false,
-                10.0
+                15.0
             )
 
             if (closestIndex == -1) {
@@ -84,6 +77,7 @@ class MapAdapter(private val context: Context, private val map: GoogleMap, priva
                 updateRoute(newLoc)
             } else {
                 points = points!!.subList(0, closestIndex)
+                points!!.add(newLoc)
                 plotLine(points!!)
             }
         }
@@ -94,7 +88,6 @@ class MapAdapter(private val context: Context, private val map: GoogleMap, priva
             val ne = LatLng(bounds.northeast.lat, bounds.northeast.lng)
             val sw = LatLng(bounds.southwest.lat, bounds.southwest.lng)
             map.setLatLngBoundsForCameraTarget(LatLngBounds(sw, ne))
-
         }
     }
 
@@ -108,6 +101,11 @@ class MapAdapter(private val context: Context, private val map: GoogleMap, priva
                     MarkerOptions().position(points.last())
                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker_service))
                         .title("Your  Order")
+                )
+                map.addMarker(
+                    MarkerOptions().position(points.last())
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_nav_profile))
+                        .title("Your Location")
                 )
             }
         }
