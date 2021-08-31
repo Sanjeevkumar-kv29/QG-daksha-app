@@ -103,8 +103,8 @@ class MapAdapter(private val context: Context, private val map: GoogleMap, priva
                         .title("Your  Order")
                 )
                 map.addMarker(
-                    MarkerOptions().position(points.last())
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_nav_profile))
+                    MarkerOptions().position(points.first())
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
                         .title("Your Location")
                 )
             }
