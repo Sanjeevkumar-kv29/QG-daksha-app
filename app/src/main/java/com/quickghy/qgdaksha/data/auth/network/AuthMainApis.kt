@@ -24,7 +24,7 @@ interface AuthMainApis {
         @Body loginpass: loginWithPass
     ): Response<AuthLoginResponse>
 
-    @FormUrlEncoded
+
     @POST("/api/v1/user/otp")
     suspend fun SendLoginOtp(
         @Field("phoneNo") phone: String,
@@ -47,7 +47,7 @@ interface AuthMainApis {
         @Body userData: signupRequest,
     ): Response<AuthSignUpResponse>
 
-    @FormUrlEncoded
+
     @POST("Dgu_Mob/mob_enterVerCodeForgotPass")
     suspend fun userResetPass(
         // suspend function because this may run long

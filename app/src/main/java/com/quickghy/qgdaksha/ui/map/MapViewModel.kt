@@ -38,7 +38,6 @@ class MapViewModel(
 
     private lateinit var mMap: GoogleMap
     private lateinit var options: MarkerOptions
-    private var mMarkerPoints: ArrayList<LatLng>? = null
 
     override fun onMapReady(googleMap: GoogleMap) {
 
@@ -55,7 +54,7 @@ class MapViewModel(
         )
 
         //self point
-        mMarkerPoints!!.add(selfPoint)
+
         options = MarkerOptions()
             .position(selfPoint)
             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW))
@@ -64,7 +63,7 @@ class MapViewModel(
 
         mMap.animateCamera(
             CameraUpdateFactory.newLatLngZoom(
-                mMarkerPoints!![0],
+                selfPoint,
                 10f
             )
         )
