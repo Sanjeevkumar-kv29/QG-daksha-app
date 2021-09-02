@@ -36,7 +36,7 @@ class HomeRepository(
     val AL = ArrayList<String>()
 
     val token = MutableLiveData<String>()
-    val profileData = MutableLiveData<GetProfileResponse>()
+    val userprofileData = MutableLiveData<GetProfileResponse>()
 
     suspend fun saveDATAtoDS(uid: String, uname: String,uphone: String,email: String,isadmin:String,isserviceprovider: String,utoken: String)
     {
@@ -57,7 +57,10 @@ class HomeRepository(
 
 
     suspend fun getAndSaveData(token: String): Boolean {
+
+        Log.d("gettokrepo",token)
         var resp = APICALL.GetProfile(token)
+        userprofileData.postValue(resp.body())
         if (resp.isSuccessful){
             Log.d("trueresp",resp.body().toString())
             saveDATAtoDS(resp.body()?.data?._id.toString(),

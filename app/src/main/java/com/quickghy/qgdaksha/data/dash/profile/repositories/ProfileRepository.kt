@@ -29,27 +29,11 @@ class ProfileRepository(
     val homerepo: HomeRepository
 
 ) {
-    val profile = homerepo.token
+    val profiletoken = homerepo.token
+    val userprofileData = homerepo.userprofileData
 
 
-    suspend fun isuserlogincheck(): Boolean
-    {
-        var savedToken = ""
-        CoroutineScope(Dispatchers.Main).launch {
 
-            try {
-                PrefDataStore(context).Token.collect{ value ->
-                    Log.d("datastorePhonenumber",value.toString())
-                    savedToken = value.toString()
-
-                }
-            } catch (e: Exception) {
-                println("The flow has thrown an exception: $e")
-            }
-
-        }
-        return savedToken.isNullOrEmpty()
-    }
 
 
 }

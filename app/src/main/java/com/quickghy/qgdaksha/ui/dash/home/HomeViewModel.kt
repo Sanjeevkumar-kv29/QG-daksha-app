@@ -16,7 +16,7 @@ class HomeViewModel(
     val homerepo :HomeRepository
 ) : ViewModel() {
 
-    val profile = homerepo.profileData
+    val profile = homerepo.userprofileData
     val token = homerepo.token
 
     fun checkprofile(){

@@ -1,8 +1,9 @@
 package com.quickghy.qgdaksha.ui.dash.profile
 
+import android.provider.ContactsContract
 import android.util.Log
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.quickghy.qgdaksha.data.dash.profile.repositories.ProfileRepository
 import com.quickghy.qgdaksha.ui.dash.DashStateListener
 import kotlinx.coroutines.launch
@@ -18,29 +19,9 @@ class DashProfileViewModel(
     val repository: ProfileRepository
 ) : ViewModel() {
 
+    val getprofile = repository.userprofileData
+    val profiletoken = repository.profiletoken
 
-
-    var userloggedinstatelistner: DashStateListener.IsUserLoggedin?  = null
-
-
-    fun Loginstatus() {
-
-        viewModelScope.launch {
-            val islogin = repository.isuserlogincheck()
-
-            if (islogin){
-                Log.d("userloggin","user logged in")
-                userloggedinstatelistner?.yes()
-
-            }
-            else{
-                Log.d("userloggin","user not logged in")
-                userloggedinstatelistner?.no()
-            }
-        }
-
-
-    }
 
 
 }

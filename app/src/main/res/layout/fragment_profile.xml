@@ -24,6 +24,7 @@
 
             <TextView
                 style="@style/profile_txt1"
+                android:id="@+id/profile_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Himanta Biswa Sarma"
@@ -32,6 +33,7 @@
 
             <TextView
                 style="@style/profile_txt2"
+                android:id="@+id/profile_mobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="+91 9999999999"
@@ -39,6 +41,7 @@
 
             <TextView
                 style="@style/profile_txt2"
+                android:id="@+id/profile_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="@dimen/_2sdp"
