@@ -22,7 +22,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.home_fragment,
@@ -32,25 +32,18 @@ class HomeFragment : Fragment() {
 
         binding.viewmodel = viewModel
 
-        viewModel.checkprofile()
-        viewModel.token.observe(requireActivity()){
-            viewModel.viewModelScope.launch {
-                viewModel.homerepo.getAndSaveData(it)
-            }
-            Log.d("gettok",it)
-        }
-
-
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.checkprofile()
+        viewModel.token.observe(requireActivity()){
+            if(it!=null) {
+                viewModel.viewModelScope.launch {
+                    viewModel.homerepo.getAndSaveData(it)
+                }
+            }
+        }
     }
-
-
-
 }

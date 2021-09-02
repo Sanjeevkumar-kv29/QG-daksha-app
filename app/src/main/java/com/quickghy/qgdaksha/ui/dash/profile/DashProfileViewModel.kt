@@ -22,6 +22,4 @@ class DashProfileViewModel(
     val getprofile = repository.userprofileData
     val profiletoken = repository.profiletoken
 
-
-
 }

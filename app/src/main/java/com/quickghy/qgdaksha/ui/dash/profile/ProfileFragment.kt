@@ -41,9 +41,8 @@ class ProfileFragment : Fragment(){
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel.profiletoken.observe(requireActivity()){
             viewModel.viewModelScope.launch {
                 if (it.isNullOrEmpty()){
@@ -58,7 +57,7 @@ class ProfileFragment : Fragment(){
                 }
             }
 
-            viewModel.getprofile.observe(requireActivity()){
+            viewModel.getprofile.observe(requireActivity()) {
                 binding.profileName.text = it.data.name
                 binding.profileEmail.text = it.data.email
                 binding.profileMobile.text = it.data.phoneNo
@@ -69,10 +68,5 @@ class ProfileFragment : Fragment(){
         binding.getaddress.setOnClickListener {
             startActivity(Intent(requireContext(),MapMainActivity::class.java))
         }
-
     }
-
-
-
-
 }
