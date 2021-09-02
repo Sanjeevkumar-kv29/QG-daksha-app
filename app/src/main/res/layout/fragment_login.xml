@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.auth.LoginFragment">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.quickghy.qgdaksha.ui.auth.AuthViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/headerlyt"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_80sdp"
+            android:background="@drawable/ic_elip"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:onClick="@{viewmodel::help}"
+                    android:text="Need help?"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/headerlyt">
+
+            <TextView
+                style="@style/hey_there_w"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hey, there!\nWelcome back" />
+
+
+            <TextView
+                android:id="@+id/login_here"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Login here with your details" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout1"
+                style="@style/customET"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                app:startIconDrawable="@drawable/ic_mail">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_phone"
+                    style="@style/customInputTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLength="10"
+                    android:hint="@string/phone_or_email"
+                    android:text="@={viewmodel.phone}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout2"
+                style="@style/customPassET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_20sdp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_password"
+                    style="@style/customInputTxtPass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password"
+                    android:text="@={viewmodel.password}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/btn_forgot_pass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:fontFamily="@font/poppins_regular"
+                android:onClick="@{viewmodel::goToForgotPass}"
+                android:padding="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:text="@string/forgot_password"
+                android:textColor="@color/gray" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutCompat2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|bottom"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginBottom="@dimen/_5sdp">
+
+                <ImageButton
+                    android:id="@+id/btn_anim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:contentDescription="@string/login_button"
+                    android:onClick="@{viewmodel::doLoginWithPass}"
+                    android:src="@drawable/btn" />
+
+                <ProgressBar
+                    android:id="@+id/btn_anim_wheel"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:scaleType="fitCenter"
+                    android:theme="@style/byttheme"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/poppins_regular"
+                android:text="OR" />
+
+           <TextView
+                android:id="@+id/sign_in_google"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/rectangle_3"
+                android:drawableStart="@drawable/googleg_standard_color_18"
+                android:drawablePadding="@dimen/_6sdp"
+                android:elevation="10dp"
+               android:textSize="@dimen/_10sdp"
+                android:fontFamily="@font/poppins_regular"
+                android:padding="@dimen/_8sdp"
+                android:text="    Sign in with Google    " />
+
+            <TextView
+                android:id="@+id/sign_in_otp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:background="@drawable/rectangle_3"
+                android:drawable="@color/app_gray"
+                android:drawableStart="@drawable/phonesolid"
+                android:drawablePadding="@dimen/_6sdp"
+                android:elevation="10dp"
+                android:textSize="@dimen/_10sdp"
+                android:fontFamily="@font/poppins_regular"
+                android:onClick="@{viewmodel::goTologinotp}"
+                android:padding="@dimen/_8sdp"
+                android:text="    Sign in with OTP           " />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|bottom">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dont_have_an_account"
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    android:id="@+id/btn_go_to_signup"
+                    style="@style/sign_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{viewmodel::goToSignUp}"
+                    android:paddingStart="@dimen/_3sdp"
+                    android:text="@string/sign_up" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

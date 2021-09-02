@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.auth.VerifyOtpSignupFragment">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.quickghy.qgdaksha.ui.auth.AuthViewModel" />
+    </data>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayoutCompat3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/_35sdp"
+        android:layout_marginVertical="@dimen/_1sdp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_20sdp"
+            android:gravity="start"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{viewmodel::goBack}"
+                android:src="@drawable/ic_backarrow" />
+
+        </LinearLayout>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight=".5"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_enter_mob_numb"
+                style="@style/hey_there_w"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_80sdp"
+                android:text="Enter Code" />
+
+            <TextView
+                android:id="@+id/txt_forgot_pass_enter_mob"
+                style="@style/login_here"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:letterSpacing=".01"
+                android:text="We have sent you an SMS with the code to your phone number"
+                android:textAlignment="center"
+                android:textSize="@dimen/_11ssp" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_15sdp"
+                android:gravity="center"
+                android:weightSum="6">
+
+                <EditText
+                    android:id="@+id/otp_et1"
+                    style="@style/customET_OTP" />
+
+                <EditText
+                    android:id="@+id/otp_et2"
+                    style="@style/customET_OTP" />
+
+                <EditText
+                    android:id="@+id/otp_et3"
+                    style="@style/customET_OTP" />
+
+                <EditText
+                    android:id="@+id/otp_et4"
+                    style="@style/customET_OTP" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <android.widget.Button
+                android:id="@+id/btn_send_v_code"
+                style="@style/wide_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{viewmodel::doSignupNextStep}"
+                android:text="Verify Otp And SignUp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="Didn't recieve the OTP?" />
+
+            <TextView
+                android:id="@+id/Resend"
+                style="@style/sign_up"
+                android:textSize="@dimen/_12sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Re-send OTP? (30)" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

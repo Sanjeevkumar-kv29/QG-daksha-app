@@ -1,0 +1,53 @@
+package com.quickghy.qgdaksha.ui.auth
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.quickghy.qgdaksha.R
+import com.quickghy.qgdaksha.databinding.FragmentResetPasswordBinding
+import com.quickghy.qgdaksha.util.toast
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
+class ResetPasswordFragment : Fragment(), AuthStateListener.ResetPassStateListener {
+
+    private val viewModel by sharedViewModel<AuthViewModel>()
+    lateinit var binding: FragmentResetPasswordBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_reset_password,
+            container,
+            false
+        )
+
+
+        binding.viewmodel = viewModel
+        return binding.root
+    }
+
+    override fun onStartReset() {
+        context?.toast("Updating your password")
+        binding.btnResetPass.isEnabled = false
+    }
+
+    override fun onSuccessReset(opt: String) {
+        context?.toast("Success code = $opt")
+    }
+
+    override fun onFailReset(message: String) {
+        context?.toast("Failure: $message")
+        binding.btnResetPass.isEnabled = true
+    }
+
+
+}
