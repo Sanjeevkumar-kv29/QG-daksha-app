@@ -95,12 +95,13 @@ class MapAdapter(private val context: Context, private val map: GoogleMap, priva
         CoroutineScope(Dispatchers.Main).launch {
             if (points.isEmpty()) Toast.makeText(context, "Order Reached", Toast.LENGTH_LONG).show()
             else {
-                val polylineOptions = PolylineOptions().addAll(points).color(Color.YELLOW).width(10f)
+                val polylineOptions = PolylineOptions().addAll(points).color(Color.MAGENTA).width(10f)
+                map.clear()
                 map.addPolyline(polylineOptions)
                 map.addMarker(
                     MarkerOptions().position(points.last())
                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker_service))
-                        .title("Your  Order")
+                        .title("Your Order")
                 )
                 map.addMarker(
                     MarkerOptions().position(points.first())
