@@ -30,9 +30,10 @@
             android:label="@string/title_activity_dash" />
         <activity
             android:name=".ui.auth.AuthMainActivity"
-            android:theme="@style/AuthStyle">
-
-        </activity>
+            android:theme="@style/AuthStyle" />
+        <activity
+            android:name=".ui.map.MapsActivity"
+            android:theme="@style/AuthStyle" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
