@@ -20,14 +20,12 @@ import java.util.concurrent.TimeUnit
 
 interface AuthMainApis {
 
-
     @POST("/api/v1/user/login/password")
     suspend fun userLoginWithPass(
-        @Body loginpass:loginWithPass
+        @Body loginpass: loginWithPass
     ): Response<AuthLoginResponse>
 
 
-    @FormUrlEncoded
     @POST("/api/v1/user/otp")
     suspend fun SendLoginOtp(
         @Field("phoneNo") phone: String,
@@ -38,10 +36,10 @@ interface AuthMainApis {
         @Body loginOtp: loginViaOtp
     ): Response<AuthLoginResponse> // recieve access token on successful sign up.
 
-
     @GET("/api/v1/user/google/callback")
     suspend fun googleAuth(
         // suspend function because this may run long
+        @Header("Authorization")
         @Query("token") token: String
     ): Response<GoogleAuthResp> // recieve access token on successful sign up.
 
@@ -51,7 +49,6 @@ interface AuthMainApis {
     ): Response<AuthSignUpResponse>
 
 
-    @FormUrlEncoded
     @POST("Dgu_Mob/mob_enterVerCodeForgotPass")
     suspend fun userResetPass(
         // suspend function because this may run long
@@ -63,14 +60,11 @@ interface AuthMainApis {
 
     //    post requests for sign up seq------------------------------------
 
-
-
     companion object {
-
         operator fun invoke(
             networkConnectionInterceptor: NetworkConnectionInterceptor
         ): AuthMainApis {
-             val interceptor = run {
+            val interceptor = run {
                 val httpLoggingInterceptor = HttpLoggingInterceptor()
                 httpLoggingInterceptor.apply {
                     httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -78,7 +72,7 @@ interface AuthMainApis {
                 }
             }
 
-             val okkHttpclient1 = OkHttpClient.Builder()
+            val okkHttpclient1 = OkHttpClient.Builder()
                 .addNetworkInterceptor(interceptor) // same for .addInterceptor(...)
                 .connectTimeout(30, TimeUnit.SECONDS) //Backend is really slow
                 .writeTimeout(30, TimeUnit.SECONDS)
