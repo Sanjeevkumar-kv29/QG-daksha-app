@@ -2,7 +2,6 @@ package com.quickghy.qgdaksha.ui.dash.profile
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.viewModelScope
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.FragmentProfileBinding
-import com.quickghy.qgdaksha.ui.dash.DashStateListener
+import com.quickghy.qgdaksha.ui.map.MapsActivity
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
 
-class ProfileFragment : Fragment(){
+class ProfileFragment : Fragment() {
 
     companion object {
         fun newInstance() = ProfileFragment()
@@ -37,23 +36,25 @@ class ProfileFragment : Fragment(){
             false
         )
 
+        binding.dummyBtn.setOnClickListener {
+            startActivity(Intent(requireContext(), MapsActivity::class.java))
+        }
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.profiletoken.observe(requireActivity()){
+        viewModel.profiletoken.observe(requireActivity()) {
             viewModel.viewModelScope.launch {
-                if (it.isNullOrEmpty()){
+                if (it.isNullOrEmpty()) {
 
                     binding.llIfSigned1.visibility = View.GONE
-                    binding.llIfUnsigned . visibility = View.VISIBLE
-                }
-                else{
+                    binding.llIfUnsigned.visibility = View.VISIBLE
+                } else {
 
                     binding.llIfSigned1.visibility = View.VISIBLE
-                    binding.llIfUnsigned . visibility = View.GONE
+                    binding.llIfUnsigned.visibility = View.GONE
                 }
             }
 
@@ -66,7 +67,7 @@ class ProfileFragment : Fragment(){
         }
 
         binding.getaddress.setOnClickListener {
-            startActivity(Intent(requireContext(),MapMainActivity::class.java))
+            startActivity(Intent(requireContext(), MapMainActivity::class.java))
         }
     }
 }

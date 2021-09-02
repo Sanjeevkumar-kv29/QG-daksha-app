@@ -5,6 +5,7 @@
     tools:context=".ui.dash.profile.ProfileFragment">
 
     <data>
+
         <variable
             name="viewmodel"
             type="com.quickghy.qgdaksha.ui.dash.profile.DashProfileViewModel" />
@@ -23,8 +24,8 @@
             android:visibility="gone">
 
             <TextView
-                style="@style/profile_txt1"
                 android:id="@+id/profile_name"
+                style="@style/profile_txt1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Himanta Biswa Sarma"
@@ -32,16 +33,16 @@
 
 
             <TextView
-                style="@style/profile_txt2"
                 android:id="@+id/profile_mobile"
+                style="@style/profile_txt2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="+91 9999999999"
                 app:drawableStartCompat="@drawable/ic_phone" />
 
             <TextView
-                style="@style/profile_txt2"
                 android:id="@+id/profile_email"
+                style="@style/profile_txt2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="@dimen/_2sdp"
@@ -58,6 +59,7 @@
 
 
                 <TextView
+                    android:id="@+id/dummy_btn"
                     style="@style/profile_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

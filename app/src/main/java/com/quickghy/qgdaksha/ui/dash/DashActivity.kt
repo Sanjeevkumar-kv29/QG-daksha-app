@@ -25,6 +25,7 @@ class DashActivity : AppCompatActivity() {
     lateinit var fragmentContainer: FragmentContainerView
     val fragmentManager = supportFragmentManager
 
+
     val viewModel: DashViewModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +39,7 @@ class DashActivity : AppCompatActivity() {
             add(R.id.dash_host_fragment, HomeFragment())
         }
     }
+
 
 
     fun homeclick(view: View) {

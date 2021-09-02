@@ -3,14 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/ghost_gray">
 
     <ImageButton
         android:id="@+id/map_ui_back_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_15sdp"
         android:background="@drawable/ellipse_29"
-        android:src="@drawable/ic_backarrow" />
+        android:src="@drawable/ic_backarrow"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/map"
@@ -20,18 +23,16 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="@dimen/_450sdp"
         app:behavior_hideable="false"
         app:behavior_peekHeight="@dimen/_210sdp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/bottom_sheet_bg"
-        android:orientation="vertical"
-       >
-
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bottom_sheet_bg"
+            android:orientation="vertical">
 
 
             <ImageView
@@ -486,6 +487,6 @@
                 android:textColor="@color/Red_warm"
                 android:textSize="@dimen/_14ssp" />
 
-    </RelativeLayout>
+        </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
