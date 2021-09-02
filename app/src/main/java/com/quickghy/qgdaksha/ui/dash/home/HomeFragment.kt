@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.viewModelScope
 import com.quickghy.qgdaksha.R
 import com.quickghy.qgdaksha.databinding.HomeFragmentBinding
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
 class HomeFragment : Fragment() {
@@ -30,14 +32,14 @@ class HomeFragment : Fragment() {
 
         binding.viewmodel = viewModel
 
-        viewModel.getProfile()
-        viewModel.profile.observe(requireActivity(), {
-            Log.d("PROFILE_DATA", "$it")
-        })
+        viewModel.checkprofile()
+        viewModel.token.observe(requireActivity()){
+            viewModel.viewModelScope.launch {
+                viewModel.homerepo.getAndSaveData(it)
+            }
+            Log.d("gettok",it)
+        }
 
-        viewModel.error.observe(requireActivity(), {
-            Log.d("PROFILE_DATA", "ERR -- $it")
-        })
 
         return binding.root
     }
@@ -45,10 +47,7 @@ class HomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        /*viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        // TODO: Use the ViewModel   */
 
-        viewModel.userlogincheck()
 
     }
 

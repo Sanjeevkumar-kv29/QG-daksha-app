@@ -1,9 +1,7 @@
 package com.quickghy.qgdaksha.ui.dash.home
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.quickghy.qgdaksha.data.dash.home.repositories.HomeRepository
 import com.quickghy.qgdaksha.data.dash.profile.network.Response.GetProfileResponse
 import kotlinx.coroutines.flow.collect
@@ -18,53 +16,15 @@ class HomeViewModel(
     val homerepo :HomeRepository
 ) : ViewModel() {
 
-    val token = MutableLiveData<String?>()
     val profile = homerepo.profileData
-    val error = homerepo.err
+    val token = homerepo.token
 
-    fun userlogincheck(){
-
+    fun checkprofile(){
 
         viewModelScope.launch {
-            Log.d("tttttmodel","tttttmodel")
-            val islogin = homerepo.isuserlogin()
-
-            Log.d("tttttmodel",islogin.toString())
-
+            val check =  homerepo.getTokenFlow()
         }
-
 
     }
-
-    fun getProfile() {
-        viewModelScope.launch {
-            homerepo.getProfile()
-        }
-    }
-
-    fun readToken() {
-        viewModelScope.launch {
-            homerepo.getTokenFlow().collect {
-                token.postValue(it)
-            }
-        }
-    }
-
-   /* fun getdata(token:String){
-
-        viewModelScope.launch {
-            val islogin = homerepo.getAndSaveData(token)
-
-            if (islogin){
-                Log.d("profile fetched","yes")
-
-            }
-            else{
-                Log.d("profile fetched","no")
-            }
-        }
-
-
-    }*/
 
 }

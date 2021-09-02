@@ -9,6 +9,7 @@ import com.quickghy.qgdaksha.data.auth.network.request.UserData
 import com.quickghy.qgdaksha.data.auth.network.request.loginViaOtp
 import com.quickghy.qgdaksha.data.auth.network.request.loginWithPass
 import com.quickghy.qgdaksha.data.auth.network.request.signupRequest
+import com.quickghy.qgdaksha.data.dash.home.repositories.HomeRepository
 import com.quickghy.qgdaksha.data.dash.profile.network.ProfileApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -25,8 +26,11 @@ import java.lang.Exception
 class ProfileRepository(
 
     val context: Context,
-    val dataStore: PrefDataStore
+    val homerepo: HomeRepository
+
 ) {
+    val profile = homerepo.token
+
 
     suspend fun isuserlogincheck(): Boolean
     {
@@ -36,8 +40,8 @@ class ProfileRepository(
             try {
                 PrefDataStore(context).Token.collect{ value ->
                     Log.d("datastorePhonenumber",value.toString())
-
                     savedToken = value.toString()
+
                 }
             } catch (e: Exception) {
                 println("The flow has thrown an exception: $e")

@@ -15,6 +15,7 @@ import com.quickghy.qgdaksha.data.dash.profile.network.ProfileApi
 import com.quickghy.qgdaksha.data.dash.profile.network.Response.GetProfileResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -34,7 +35,7 @@ class HomeRepository(
 
     val AL = ArrayList<String>()
 
-    val err = MutableLiveData<String>()
+    val token = MutableLiveData<String>()
     val profileData = MutableLiveData<GetProfileResponse>()
 
     suspend fun saveDATAtoDS(uid: String, uname: String,uphone: String,email: String,isadmin:String,isserviceprovider: String,utoken: String)
@@ -42,17 +43,18 @@ class HomeRepository(
         dataStore.savedetailstoDS(uid,uname,uphone,email,isadmin,isserviceprovider,utoken)
     }
 
-    suspend fun isuserlogin(): String{
-        var token = ""
-        Log.d("tttttInside",token)
-        PrefDataStore(context).Token.collect { value ->
-            token = value.toString()
-            getAndSaveData("$value")
-            Log.d("tttttInside",value.toString())
+
+    suspend fun getTokenFlow():Boolean {
+
+        coroutineScope {
+            PrefDataStore(context).Token.collect { value ->
+                token.postValue(value)
+            }
         }
-        Log.d("tttttOutside",token)
-        return token
+
+        return true
     }
+
 
     suspend fun getAndSaveData(token: String): Boolean {
         var resp = APICALL.GetProfile(token)
@@ -74,10 +76,8 @@ class HomeRepository(
 
     }
 
-    fun getTokenFlow(): Flow<String?> {
-        return PrefDataStore(context).Token
-    }
 
+/*
     suspend fun getProfile() {
         PrefDataStore(context).Token.collect { value ->
             Log.d("TOKEN_CHECK", "$value ----")
@@ -95,5 +95,5 @@ class HomeRepository(
                 }
             }
         }
-    }
+    }*/
 }
