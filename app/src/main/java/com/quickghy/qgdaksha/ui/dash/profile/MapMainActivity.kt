@@ -28,6 +28,7 @@ class MapMainActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var fusedLocationProvider: FusedLocationProviderClient
     private val permissionCode = 101
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.mapmainactivity)

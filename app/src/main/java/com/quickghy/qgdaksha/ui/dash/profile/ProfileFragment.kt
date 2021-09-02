@@ -1,5 +1,6 @@
 package com.quickghy.qgdaksha.ui.dash.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -57,12 +58,16 @@ class ProfileFragment : Fragment(){
                 }
             }
 
-            viewModel.getprofile.observe(this){
+            viewModel.getprofile.observe(requireActivity()){
                 binding.profileName.text = it.data.name
                 binding.profileEmail.text = it.data.email
                 binding.profileMobile.text = it.data.phoneNo
             }
 
+        }
+
+        binding.getaddress.setOnClickListener {
+            startActivity(Intent(requireContext(),MapMainActivity::class.java))
         }
 
     }

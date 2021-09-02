@@ -67,6 +67,7 @@
 
 
                 <TextView
+                    android:id="@+id/getaddress"
                     style="@style/profile_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
