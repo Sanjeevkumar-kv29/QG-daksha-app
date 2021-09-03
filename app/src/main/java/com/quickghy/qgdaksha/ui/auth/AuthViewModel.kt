@@ -25,7 +25,6 @@ class AuthViewModel(
 
 ) : ViewModel() {
 
-
     var fullname: String? = null
     var phone: String? = null
     var password: String? = null

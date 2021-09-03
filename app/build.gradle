@@ -39,9 +39,10 @@ android {
 
 dependencies {
     implementation 'com.google.firebase:firebase-auth:21.0.1'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
     def room_version = "2.3.0"
     def nav_version = "2.3.5"
-    def koin_version= "3.1.2"
+    def koin_version = "3.1.2"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.5.0'
@@ -91,15 +92,20 @@ dependencies {
 
     // Koin main features for Android (Scope,ViewModel ...)
     implementation "io.insert-koin:koin-android:$koin_version"
-// Koin Java Compatibility
+    // Koin Java Compatibility
     implementation "io.insert-koin:koin-android-compat:$koin_version"
-// Koin for Jetpack WorkManager
+    // Koin for Jetpack WorkManager
     implementation "io.insert-koin:koin-androidx-workmanager:$koin_version"
-// Koin for Jetpack Compose
+    // Koin for Jetpack Compose
     implementation "io.insert-koin:koin-androidx-compose:$koin_version"
 
-
+    //Google Maps Util, provides utilities for maps.
+    implementation 'com.google.maps.android:android-maps-utils:2.2.5'
+    //Google Maps and play services implementations.
     implementation 'com.google.android.gms:play-services-maps:17.0.1'
     implementation 'com.google.android.gms:play-services-location:18.0.0'
+    //PUBNUB messaging service.
+    implementation 'com.pubnub:pubnub-kotlin:6.0.3'
+
 
 }
