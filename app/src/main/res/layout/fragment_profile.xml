@@ -67,7 +67,6 @@
                     android:text="My Orders"
                     app:drawableStartCompat="@drawable/ic_pass_lock" />
 
-
                 <TextView
                     android:id="@+id/getaddress"
                     style="@style/profile_btn"
