@@ -58,9 +58,11 @@ class ProfileFragment : Fragment(){
             }
 
             viewModel.getprofile.observe(requireActivity()) {
-                binding.profileName.text = it.data.name
-                binding.profileEmail.text = it.data.email
-                binding.profileMobile.text = it.data.phoneNo
+                if(it!=null) {
+                    binding.profileName.text = it.data.name
+                    binding.profileEmail.text = it.data.email
+                    binding.profileMobile.text = it.data.phoneNo
+                }
             }
 
         }
