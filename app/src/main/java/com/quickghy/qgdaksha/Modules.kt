@@ -44,11 +44,11 @@ val appModule = module {
 val viewmodelModule = module {
 
     viewModel { AuthViewModel(get()) }
-    viewModel { CartViewModel() }
-    viewModel { HomeViewModel(get()) }
-    viewModel { OffersViewModel() }
-    viewModel { DashViewModel() }
-    viewModel { DashProfileViewModel(get()) }
+    viewModel{ CartViewModel()}
+    viewModel{ HomeViewModel(get())}
+    viewModel{ OffersViewModel() }
+    viewModel{DashViewModel()}
+    viewModel{DashProfileViewModel(get())}
 
     viewModel { MapViewModel(get(), get()) }
 

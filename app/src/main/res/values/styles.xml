@@ -195,10 +195,12 @@
 
     <style name="bottomSheet_line_vertical">
         <item name="tint">#CFCFCF</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">1.5dp</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:layout_marginBottom">0dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
         <item name="android:background">?attr/dividerVertical</item>
-        <item name="android:layout_marginTop">@dimen/_12sdp</item>
-        <item name="android:layout_marginBottom">@dimen/_15sdp</item>
     </style>
 
 
@@ -248,4 +250,47 @@
     </style>
 
 
+    <style name="setting_list_item" parent="profile_list_item">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/_10ssp</item>
+        <item name="fontFamily">@font/poppins_light</item>
+    </style>
+
+    <style name="setting_title_txt">
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_marginTop">14dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="setting_option_txt_enabled">
+        <item name="android:textSize">@dimen/_10ssp</item>
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_marginTop">14dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="setting_option_txt_disabled" parent="setting_option_txt_enabled">
+        <item name="android:textColor">@color/ghost_gray</item>
+    </style>
+
+    <style name="bottomSheet_line_settings" parent="bottomSheet_line">
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:layout_marginBottom">0dp</item>
+    </style>
+
+    <style name="switch_theme">
+        <item name="android:thumb">@drawable/switch_thumb</item>
+        <item name="android:track">@drawable/switch_track</item>
+    </style>
+
+    <style name="setting_btn_txt" parent="setting_title_txt">
+        <item name="fontFamily">@font/poppins_light</item>
+        <item name="android:textSize">@dimen/_10ssp</item>
+        <item name="android:textColor">#FFA200</item>
+    </style>
 </resources>

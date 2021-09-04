@@ -3,6 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/shubh/AndroidStudioProjects/QuickGhyAndroidApp/app/src/main/res/drawable/selector_setting_switch.xml" value="0.1" />
+        <entry key="..\:/Users/shubh/AndroidStudioProjects/QuickGhyAndroidApp/app/src/main/res/drawable/setting_box.xml" value="0.22453703703703703" />
+        <entry key="..\:/Users/shubh/AndroidStudioProjects/QuickGhyAndroidApp/app/src/main/res/drawable/switch_thumb.xml" value="0.22453703703703703" />
+        <entry key="..\:/Users/shubh/AndroidStudioProjects/QuickGhyAndroidApp/app/src/main/res/drawable/switch_track.xml" value="0.1" />
+        <entry key="..\:/Users/shubh/AndroidStudioProjects/QuickGhyAndroidApp/app/src/main/res/layout/activity_maps.xml" value="0.42830188679245285" />
+        <entry key="..\:/Users/shubh/AndroidStudioProjects/QuickGhyAndroidApp/app/src/main/res/layout/activity_myaddressed.xml" value="0.4" />
+        <entry key="..\:/Users/shubh/AndroidStudioProjects/QuickGhyAndroidApp/app/src/main/res/layout/activity_settings.xml" value="0.152" />
+        <entry key="..\:/Users/shubh/AndroidStudioProjects/QuickGhyAndroidApp/app/src/main/res/layout/cardview_address.xml" value="0.264" />
+        <entry key="..\:/Users/shubh/AndroidStudioProjects/QuickGhyAndroidApp/app/src/main/res/layout/fragment_profile.xml" value="0.2101851851851852" />
         <entry key="..\:/Work Stuff/QuickGhy/QuickGhyAndroidApp/app/src/main/res/layout/activity_maps.xml" value="0.2857142857142857" />
         <entry key="..\:/Work Stuff/QuickGhy/QuickGhyAndroidApp/app/src/main/res/layout/fragment_help.xml" value="0.23097826086956522" />
         <entry key="..\:/Work Stuff/QuickGhy/QuickGhyAndroidApp/app/src/main/res/layout/fragment_login.xml" value="0.1" />
