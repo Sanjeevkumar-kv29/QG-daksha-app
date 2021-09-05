@@ -46,7 +46,6 @@
                 style="@style/setting_list_item"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_centerVertical="true"
                 android:layout_toEndOf="@+id/setting_ic_offer"
                 android:includeFontPadding="false"
                 android:text="Offer Notifications" />
@@ -87,7 +86,8 @@
                 style="@style/setting_list_item"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_centerVertical="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="4dp"
                 android:layout_toEndOf="@+id/setting_ic_push"
                 android:includeFontPadding="false"
                 android:text="Push Notifications" />

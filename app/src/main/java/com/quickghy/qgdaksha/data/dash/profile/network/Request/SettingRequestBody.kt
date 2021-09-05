@@ -1,6 +1,6 @@
 package com.quickghy.qgdaksha.data.dash.profile.network.Request
 
-data class SettingRequestBody(
+data class  SettingRequestBody(
     val settings: Settings
 )
 data class Settings(

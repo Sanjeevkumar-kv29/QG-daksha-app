@@ -8,6 +8,10 @@ import com.quickghy.qgdaksha.data.auth.network.request.UserData
 import com.quickghy.qgdaksha.data.auth.network.request.loginViaOtp
 import com.quickghy.qgdaksha.data.auth.network.request.loginWithPass
 import com.quickghy.qgdaksha.data.auth.network.request.signupRequest
+import com.quickghy.qgdaksha.data.dash.profile.network.Request.NotificationSettings
+import com.quickghy.qgdaksha.data.dash.profile.network.Request.SettingRequestBody
+import com.quickghy.qgdaksha.data.dash.profile.network.Request.Settings
+import com.quickghy.qgdaksha.data.dash.profile.network.SettingsApis
 import retrofit2.Response
 
 /**
@@ -17,6 +21,7 @@ import retrofit2.Response
 
 class AuthUserRepository(
 
+    val APIFORSETTING:SettingsApis,
     val APICALL:AuthMainApis,
     val dataStore: PrefDataStore
 ) {
@@ -111,6 +116,20 @@ class AuthUserRepository(
     ): Response<AuthPasswordResetRespones> {
         return APICALL.userResetPass(mobile, otp, password, daksha_key)
     }
+
+
+    suspend fun settingSET( ){
+        val resp =  APIFORSETTING.SetSettings(SettingRequestBody(Settings(NotificationSettings(true, true, true, true))))
+
+        if (resp.isSuccessful){
+            Log.d("req OTP", resp.body().toString())
+            }
+        else{
+
+        }
+
+    }
+
 
 
 

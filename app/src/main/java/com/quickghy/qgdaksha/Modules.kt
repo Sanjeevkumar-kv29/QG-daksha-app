@@ -6,6 +6,7 @@ import com.quickghy.qgdaksha.data.auth.network.AuthMainApis
 import com.quickghy.qgdaksha.data.auth.repositories.AuthUserRepository
 import com.quickghy.qgdaksha.data.dash.home.repositories.HomeRepository
 import com.quickghy.qgdaksha.data.dash.profile.network.ProfileApi
+import com.quickghy.qgdaksha.data.dash.profile.network.SettingsApis
 import com.quickghy.qgdaksha.data.dash.profile.repositories.ProfileRepository
 import com.quickghy.qgdaksha.data.map.network.DirectionsApi
 import com.quickghy.qgdaksha.ui.auth.AuthViewModel
@@ -31,8 +32,9 @@ val appModule = module {
     single { NetworkConnectionInterceptor(androidApplication()) }
     single { ApiClient(get()).create(AuthMainApis::class.java) }
     single { ApiClient(get()).create(ProfileApi::class.java) }
+    single { ApiClient(get()).create(SettingsApis::class.java) }
     single { PrefDataStore(get()) }
-    single { AuthUserRepository(get(), get()) }
+    single { AuthUserRepository(get(), get(),get()) }
     single { HomeRepository(get(), get(), get()) }
     single { ProfileRepository(get(), get()) }
 

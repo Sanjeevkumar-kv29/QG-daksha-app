@@ -189,6 +189,7 @@ class AuthViewModel(
                         if (signUpResponse == "true") {//if the response opt is a number, it is success
                             Log.d("signup Api", "singin Success")
                             verifyOtpSignupStateListener?.onverifySignupSuccess("Signup Successfully")
+                            repository.settingSET()
                         } else {
                             Log.d("signup Api", " signing Fail")
                             Log.d("signup Api", signUpResponse)
