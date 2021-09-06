@@ -24,3 +24,8 @@ data class loginWithPass(
     val phoneNo: String,
     val password: String
 )
+
+
+data class SendOtp(
+    val phoneNo: String
+)

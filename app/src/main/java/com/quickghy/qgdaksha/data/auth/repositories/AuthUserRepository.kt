@@ -5,10 +5,7 @@ import com.quickghy.qgdaksha.data.PrefDataStore
 import com.quickghy.qgdaksha.data.SettingDataStore
 import com.quickghy.qgdaksha.data.auth.network.AuthMainApis
 import com.quickghy.qgdaksha.data.auth.network.Response.AuthPasswordResetRespones
-import com.quickghy.qgdaksha.data.auth.network.request.UserData
-import com.quickghy.qgdaksha.data.auth.network.request.loginViaOtp
-import com.quickghy.qgdaksha.data.auth.network.request.loginWithPass
-import com.quickghy.qgdaksha.data.auth.network.request.signupRequest
+import com.quickghy.qgdaksha.data.auth.network.request.*
 import com.quickghy.qgdaksha.data.dash.profile.network.Request.NotificationSettings
 import com.quickghy.qgdaksha.data.dash.profile.network.Request.SettingRequestBody
 import com.quickghy.qgdaksha.data.dash.profile.network.Request.Settings
@@ -83,7 +80,7 @@ class AuthUserRepository(
     }
 
     suspend fun SendSignupOtp(mobile: String): String {
-        val resp = APICALL.SendLoginOtp(mobile)
+        val resp = APICALL.SendLoginOtp(SendOtp(mobile))
         Log.d("req OTP", "requesting for otp  reposetory")
         if (resp.isSuccessful) {
             Log.d("req OTP", resp.body()?.message.toString())
@@ -127,16 +124,6 @@ class AuthUserRepository(
         }
 
     }
-
-    suspend fun userResetPass(
-        mobile: String,
-        otp: String,
-        password: String,
-        daksha_key: String
-    ): Response<AuthPasswordResetRespones> {
-        return APICALL.userResetPass(mobile, otp, password, daksha_key)
-    }
-
 
     suspend fun settingSET() {
         val resp = APIFORSETTING.SetSettings(SettingRequestBody(Settings(NotificationSettings(true, true, true, true))))

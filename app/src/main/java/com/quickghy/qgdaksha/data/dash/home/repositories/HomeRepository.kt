@@ -59,7 +59,7 @@ class HomeRepository(
     suspend fun getAndSaveData(token: String): Boolean {
 
         Log.d("gettokrepo",token)
-        var resp = APICALL.GetProfile(token)
+        var resp = APICALL.GetProfile("Bearer $token")
         userprofileData.postValue(resp.body())
         if (resp.isSuccessful){
             Log.d("trueresp",resp.body().toString())

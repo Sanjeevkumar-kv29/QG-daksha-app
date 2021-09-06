@@ -2,6 +2,7 @@ package com.quickghy.qgdaksha.data.auth.network
 
 import com.quickghy.qgdaksha.data.NetworkConnectionInterceptor
 import com.quickghy.qgdaksha.data.auth.network.Response.*
+import com.quickghy.qgdaksha.data.auth.network.request.SendOtp
 import com.quickghy.qgdaksha.data.auth.network.request.loginViaOtp
 import com.quickghy.qgdaksha.data.auth.network.request.loginWithPass
 import com.quickghy.qgdaksha.data.auth.network.request.signupRequest
@@ -28,7 +29,7 @@ interface AuthMainApis {
 
     @POST("/api/v1/user/otp")
     suspend fun SendLoginOtp(
-        @Field("phoneNo") phone: String,
+        @Body phone: SendOtp,
     ): Response<SignupOtpResp> // recieve access token on successful sign up.
 
     @POST("/api/v1/user/login/otp")
@@ -38,8 +39,7 @@ interface AuthMainApis {
 
     @GET("/api/v1/user/google/callback")
     suspend fun googleAuth(
-        // suspend function because this may run long
-        @Header("Authorization")         @Query("token") token: String
+       @Query("token") token: String
     ): Response<GoogleAuthResp> // recieve access token on successful sign up.
 
     @POST("/api/v1/user/signUp")
@@ -47,17 +47,6 @@ interface AuthMainApis {
         @Body userData: signupRequest,
     ): Response<AuthSignUpResponse>
 
-
-    @POST("Dgu_Mob/mob_enterVerCodeForgotPass")
-    suspend fun userResetPass(
-        // suspend function because this may run long
-        @Field("ru_phone") phone: String,
-        @Field("ru_v_code") otp: String,
-        @Field("ru_password") password: String,
-        @Field("daksha_key") key: String,
-    ): Response<AuthPasswordResetRespones>  // Response kept on auth login response data class inside response directory
-
-    // post requests for sign up seq------------------------------------
 
     companion object {
         operator fun invoke(
