@@ -39,8 +39,7 @@ interface AuthMainApis {
     @GET("/api/v1/user/google/callback")
     suspend fun googleAuth(
         // suspend function because this may run long
-        @Header("Authorization")
-        @Query("token") token: String
+        @Header("Authorization")         @Query("token") token: String
     ): Response<GoogleAuthResp> // recieve access token on successful sign up.
 
     @POST("/api/v1/user/signUp")
@@ -58,7 +57,7 @@ interface AuthMainApis {
         @Field("daksha_key") key: String,
     ): Response<AuthPasswordResetRespones>  // Response kept on auth login response data class inside response directory
 
-    //    post requests for sign up seq------------------------------------
+    // post requests for sign up seq------------------------------------
 
     companion object {
         operator fun invoke(

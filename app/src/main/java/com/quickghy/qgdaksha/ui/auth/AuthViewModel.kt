@@ -211,12 +211,17 @@ class AuthViewModel(
             if (googleauthresponse == "true"){
                 loginStateListener?.onLoginSuccess("Login Success")
                 Log.d("true resp","true")
+
             }
             else{
                 loginStateListener?.onLoginFailure("Login Failure...")
             }
 
         }
+    }
+
+    fun GetSettingsFromServer(){
+
     }
 
     fun goBack(view: View) {

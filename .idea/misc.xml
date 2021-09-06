@@ -9,9 +9,12 @@
         <entry key="..\:/Users/shubh/AndroidStudioProjects/QuickGhyAndroidApp/app/src/main/res/drawable/switch_track.xml" value="0.1" />
         <entry key="..\:/Users/shubh/AndroidStudioProjects/QuickGhyAndroidApp/app/src/main/res/layout/activity_maps.xml" value="0.42830188679245285" />
         <entry key="..\:/Users/shubh/AndroidStudioProjects/QuickGhyAndroidApp/app/src/main/res/layout/activity_myaddressed.xml" value="0.4" />
-        <entry key="..\:/Users/shubh/AndroidStudioProjects/QuickGhyAndroidApp/app/src/main/res/layout/activity_settings.xml" value="0.152" />
+        <entry key="..\:/Users/shubh/AndroidStudioProjects/QuickGhyAndroidApp/app/src/main/res/layout/activity_settings.xml" value="0.4" />
         <entry key="..\:/Users/shubh/AndroidStudioProjects/QuickGhyAndroidApp/app/src/main/res/layout/cardview_address.xml" value="0.264" />
+        <entry key="..\:/Users/shubh/AndroidStudioProjects/QuickGhyAndroidApp/app/src/main/res/layout/fragment_forgot_password.xml" value="0.1648148148148148" />
         <entry key="..\:/Users/shubh/AndroidStudioProjects/QuickGhyAndroidApp/app/src/main/res/layout/fragment_profile.xml" value="0.2101851851851852" />
+        <entry key="..\:/Users/shubh/AndroidStudioProjects/QuickGhyAndroidApp/app/src/main/res/layout/fragment_verify_otpsignup.xml" value="0.2045045045045045" />
+        <entry key="..\:/Users/shubh/AndroidStudioProjects/QuickGhyAndroidApp/app/src/main/res/layout/settings_fragment.xml" value="0.2045045045045045" />
         <entry key="..\:/Work Stuff/QuickGhy/QuickGhyAndroidApp/app/src/main/res/layout/activity_maps.xml" value="0.2857142857142857" />
         <entry key="..\:/Work Stuff/QuickGhy/QuickGhyAndroidApp/app/src/main/res/layout/fragment_help.xml" value="0.23097826086956522" />
         <entry key="..\:/Work Stuff/QuickGhy/QuickGhyAndroidApp/app/src/main/res/layout/fragment_login.xml" value="0.1" />

@@ -2,8 +2,9 @@ package com.quickghy.qgdaksha.data.auth.repositories
 
 import android.util.Log
 import com.quickghy.qgdaksha.data.PrefDataStore
+import com.quickghy.qgdaksha.data.SettingDataStore
 import com.quickghy.qgdaksha.data.auth.network.AuthMainApis
-import com.quickghy.qgdaksha.data.auth.network.Response.*
+import com.quickghy.qgdaksha.data.auth.network.Response.AuthPasswordResetRespones
 import com.quickghy.qgdaksha.data.auth.network.request.UserData
 import com.quickghy.qgdaksha.data.auth.network.request.loginViaOtp
 import com.quickghy.qgdaksha.data.auth.network.request.loginWithPass
@@ -21,25 +22,43 @@ import retrofit2.Response
 
 class AuthUserRepository(
 
-    val APIFORSETTING:SettingsApis,
-    val APICALL:AuthMainApis,
-    val dataStore: PrefDataStore
+    val APIFORSETTING: SettingsApis,
+    val APICALL: AuthMainApis,
+    val dataStore: PrefDataStore,
+    val settingStore: SettingDataStore
 ) {
 
-    suspend fun saveDATAtoDS(uid: String, uname: String,uphone: String,email: String,isadmin:String,isserviceprovider: String,utoken: String)
-    {
-        dataStore.savedetailstoDS(uid,uname,uphone,email,isadmin,isserviceprovider,utoken)
+    suspend fun saveDATAtoDS(
+        uid: String,
+        uname: String,
+        uphone: String,
+        email: String,
+        isadmin: String,
+        isserviceprovider: String,
+        utoken: String
+    ) {
+        dataStore.savedetailstoDS(uid, uname, uphone, email, isadmin, isserviceprovider, utoken)
+    }
+
+    suspend fun saveSETTINGStoDS(
+        offer: Boolean,
+        push: Boolean,
+        text: Boolean,
+        email: Boolean
+    ) {
+        settingStore.saveSettingsToDS(offer, push, text, email)
     }
 
     suspend fun GoogleAuth(token: String): String {
         var resp = APICALL.googleAuth(token)
         Log.d("GToken", dataStore.Token.toString())
-        if (resp.isSuccessful){
-            Log.d("trueresp",resp.body()?.token.toString())
-            saveDATAtoDS("null","null","null","null","null","null", resp.body()?.token.toString())
+        if (resp.isSuccessful) {
+            Log.d("trueresp", resp.body()?.token.toString())
+            val token = resp.body()?.token.toString()
+            saveDATAtoDS("null", "null", "null", "null", "null", "null", token)
+            settingGET(token)
             return "true"
-        }
-        else{
+        } else {
             Log.d("trueresp", resp.body()?.message.toString())
             return resp.code().toString()
         }
@@ -48,62 +67,63 @@ class AuthUserRepository(
 
     suspend fun userLoginWithPass(
         mobile: String,
-        password: String): String{
-        val resp =  APICALL.userLoginWithPass(loginWithPass(mobile,password))
-        if (resp.isSuccessful){
-            val token = resp.body()?.token
-            saveDATAtoDS("null","null","null","null","null","null", resp.body()?.token.toString())
-            Log.d("login resp", token.toString())
+        password: String
+    ): String {
+        val resp = APICALL.userLoginWithPass(loginWithPass(mobile, password))
+        if (resp.isSuccessful) {
+            val token = resp.body()?.token.toString()
+            saveDATAtoDS("null", "null", "null", "null", "null", "null", token)
+            settingGET(token)
+            Log.d("login resp", token)
+
             return "true"
-        }
-        else{
+        } else {
             return resp.code().toString()
         }
     }
 
-    suspend fun SendSignupOtp( mobile: String ): String {
-        val resp =  APICALL.SendLoginOtp(mobile)
-        Log.d("req OTP","requesting for otp  reposetory")
-        if (resp.isSuccessful){
+    suspend fun SendSignupOtp(mobile: String): String {
+        val resp = APICALL.SendLoginOtp(mobile)
+        Log.d("req OTP", "requesting for otp  reposetory")
+        if (resp.isSuccessful) {
             Log.d("req OTP", resp.body()?.message.toString())
             return "true"
-        }
-        else{
-            return  resp.message().toString()
+        } else {
+            return resp.message().toString()
         }
 
     }
 
-    suspend fun verifyOtpandLogin(phone:String,otp: String ): String {
+    suspend fun verifyOtpandLogin(phone: String, otp: String): String {
 
-        Log.d("repo Phone",phone)
+        Log.d("repo Phone", phone)
 
-        val respon = APICALL.verifySignupOTPandLogin(loginViaOtp(phone,otp))
+        val respon = APICALL.verifySignupOTPandLogin(loginViaOtp(phone, otp))
 
-        if (respon.isSuccessful){
-
-            saveDATAtoDS("null","null","null","null","null","null", respon.body()?.token.toString())
+        if (respon.isSuccessful) {
+            val token = respon.body()?.token.toString()
+            saveDATAtoDS("null", "null", "null", "null", "null", "null", token)
+            settingGET(token)
             return "true"
-            Log.d("req OTP","recived for otp")
+            Log.d("req OTP", "recived for otp")
 
-        }
-        else{
-            return  respon.message().toString()
+        } else {
+            return respon.message().toString()
         }
     }
 
-    suspend fun userSignUp(userData: UserData?, otp: String,): String {
+    suspend fun userSignUp(userData: UserData?, otp: String): String {
 
-        val resp = APICALL.userSignUp(signupRequest(userData!!,otp))
-        if (resp.isSuccessful){
+        val resp = APICALL.userSignUp(signupRequest(userData!!, otp))
+        if (resp.isSuccessful) {
             Log.d("req OTP", resp.body()?.message.toString())
-            saveDATAtoDS("null","null","null","null","null","null", resp.body()?.token.toString())
-
+            val token = resp.body()?.token.toString()
+            saveDATAtoDS("null", "null", "null", "null", "null", "null", token)
+            settingGET(token)
             return "true"
-        }
-        else{
+        } else {
             Log.d("req OTP", resp.body()?.message.toString())
-            return  resp.message().toString()
+            return resp.message().toString()
         }
 
     }
@@ -118,23 +138,27 @@ class AuthUserRepository(
     }
 
 
-    suspend fun settingSET( ){
-        val resp =  APIFORSETTING.SetSettings(SettingRequestBody(Settings(NotificationSettings(true, true, true, true))))
+    suspend fun settingSET() {
+        val resp = APIFORSETTING.SetSettings(SettingRequestBody(Settings(NotificationSettings(true, true, true, true))))
 
-        if (resp.isSuccessful){
+        if (resp.isSuccessful) {
             Log.d("req OTP", resp.body().toString())
-            }
-        else{
+        } else {
 
         }
 
     }
 
-
-
-
-
-
+    suspend fun settingGET(token: String) {
+        val resp = APIFORSETTING.GetSettings(token = token)
+        if (resp.isSuccessful) {
+            val settings = resp.body()!!.notificationSettings
+            saveSETTINGStoDS(settings.offerNotif, settings.pushNotif, settings.textNotif, settings.emailNotif)
+            Log.d("Setting imported", resp.body().toString())
+        } else {
+            Log.d("Setting not imported", resp.body().toString())
+        }
+    }
 
 
 }
